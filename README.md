@@ -172,7 +172,7 @@ If you have some comment, please feel free to open an issue or a PR.
 - [x] 11.3
 - [ ] 11.4
 - [x] 11.5
-- [ ] 11.6
+- [x] 11.6
 - [ ] 11.7
 - [ ] 11.8
 - [ ] 11.9

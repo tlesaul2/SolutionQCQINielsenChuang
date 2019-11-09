@@ -87,6 +87,14 @@ From the non-negativity of the relative entropy,
 
 
 \Textbf{11.6}
+\begin{align}
+    H(Y) + H (X, Y, Z) - H(X, Y) - H(Y, Z)  
+        &= \sum_{x,y,z} p(x,y,z) \log \left( p(x,y)p(y,z)/p(y)p(x,y,z) \right) \\
+        &\geq \frac{1}{\ln{2}} \sum_{x,y,z} p(x,y,z) \left[1-p(x,y)p(y,z)/p(y)p(x,y,z) \right] 
+        = \frac{1-1}{\ln{2}}
+        = 0
+\end{align}
+The equality occurs if and only if $p(x,y)p(y,z)/p(y)p(x,y,z)=1$, which means a Markov chain condition of $Z \rightarrow Y \rightarrow X$; $p(x|y)=p(x|y,z)$ 
 \Textbf{11.7}
 \Textbf{11.8}
 \Textbf{11.9}

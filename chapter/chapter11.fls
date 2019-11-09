@@ -1,0 +1,6 @@
+PWD C:/Users/Yutaka/Desktop/SolutionQCQINielsenChuang/chapter
+INPUT c:/texlive/2018/texmf.cnf
+INPUT c:/texlive/2018/texmf-var/web2c/eptex/platex.fmt
+INPUT chapter11.tex
+OUTPUT chapter11.log
+OUTPUT chapter11.dvi
