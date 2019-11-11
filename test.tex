@@ -1,0 +1,90 @@
+\documentclass[11pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage[width=16.00cm, height=24.00cm]{geometry}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[english]{babel}
+
+%図の場所をなるべく指定した場所にする
+\usepackage{booktabs}
+\usepackage{here}
+
+\RequirePackage[l2tabu, orthodox]{nag}
+\usepackage[all, warning]{onlyamsmath}
+
+%単位を書くときに使う
+\usepackage{siunitx}
+
+\usepackage{CJKutf8}
+\usepackage{ascmac} % screen
+\usepackage{ulem}
+\usepackage{cases}
+\usepackage{braket}
+\usepackage{dsfont}
+\usepackage{ascmac}
+\usepackage{url}
+\usepackage{hyperref} % hyper link
+\usepackage{ccicons} % creative commons license icon
+\usepackage{fancyhdr} % footer
+%\pagestyle{fancy}
+%\cfoot[\href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License}.]{}
+\usepackage{color}
+
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+\lhead[\leftmark ]{\thepage}
+\rhead[\thepage]{\leftmark}
+
+\cfoot{\footnotesize \textcopyright 2018 goropikari - \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License}}
+
+% コマンド定義
+\DeclareMathOperator{\Tr}{Tr}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert} % norm ||x||
+\newcommand{\kb}[1]{\ket{#1}\hspace{-1mm} \bra{#1}} % |x><x|
+\newcommand{\kbt}[2]{\ket{#1}\hspace{-1mm} \bra{#2}} % |x><y|
+\newcommand{\Textbf}[1]{\hspace{3mm}\\ \textbf{#1}\\}
+\newtheorem{thm}{Theorem.}[section]
+\newtheorem{prop}{Proposition.}[section]
+\begin{document}
+
+\Textbf{11.6}
+\begin{align}
+    H(Y) + H (X, Y, Z) - H(X, Y) - H(Y, Z)
+        &= \sum_{x,y,z} p(x,y,z) \log \left( p(x,y)p(y,z)/p(y)p(x,y,z) \right) \\
+        &\le \frac{1}{\ln{2}} \sum_{x,y,z} p(x,y,z) \left[1-p(x,y)p(y,z)/p(y)p(x,y,z) \right]\\
+        &= \frac{1-1}{\ln{2}}
+        = 0
+\end{align}
+The equality occurs if and only if $p(x,y)p(y,z)/p(y)p(x,y,z)=1$, which means a Markov chain condition of $Z \rightarrow Y \rightarrow X$,which is $p(x|y)=p(x|y,z)$
+\Textbf{11.7}
+\Textbf{11.8}
+\Textbf{11.9}
+\Textbf{11.10}
+\Textbf{11.11}
+\Textbf{11.12}
+\Textbf{11.13}
+\Textbf{11.14}
+\Textbf{11.15}
+\Textbf{11.16}
+\Textbf{11.17}
+\Textbf{11.18}
+\Textbf{11.19}
+\Textbf{11.20}
+\Textbf{11.21}
+\Textbf{11.22}
+\Textbf{11.23}
+\Textbf{11.24}
+\Textbf{11.25}
+\Textbf{11.26}
+
+
+
+
+
+
+
+
+\end{document}
+\\

@@ -1,11 +1,9 @@
 PWD C:/Users/Yutaka/Desktop/SolutionQCQINielsenChuang/chapter
 INPUT c:/texlive/2018/texmf.cnf
-INPUT c:/texlive/2018/texmf-dist/web2c/texmf.cnf
-INPUT c:/texlive/2018/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT c:/texlive/2018/texmf-var/web2c/eptex/platex.fmt
 INPUT chapter2.tex
 OUTPUT chapter2.log
-OUTPUT chapter2.pdf
-INPUT c:/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map
+OUTPUT chapter2.dvi
 INPUT c:/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx7.tfm
