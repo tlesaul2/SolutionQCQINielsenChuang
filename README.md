@@ -2,7 +2,7 @@
 
 This is a forked project from goropikari/SolutionQCQINielsenChuang.
 I am making solutions mainly in chapter 11 and 12.
-
+My(qope's) original solutions is in draft.md file.
 
 [get the PDF](https://docs.google.com/viewer?url=https://github.com/goropikari/SolutionForQuantumComputationAndQuantumInformation/raw/master/solnQCQI.pdf)
 
