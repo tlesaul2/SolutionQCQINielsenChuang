@@ -5,6 +5,8 @@
 *.toc
 *.out
 *.ilg
+*.fls
+.DS_Store
 *.fdb_latexmk
 *.latexmain
 reddit

@@ -225,7 +225,7 @@ If you have some comment, please feel free to open an issue or a PR.
 - [ ] 12.28
 - [ ] 12.29
 - [ ] 12.30
-- [ x] 12.31
+- [x] 12.31
 - [ ] 12.32
 - [ ] 12.33
 - [ ] 12.34
