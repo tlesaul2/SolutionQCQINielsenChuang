@@ -1,18 +1,19 @@
 # Solution for Quantum Computation and Quantum Information
 
-[get the PDF](https://docs.google.com/viewer?url=https://github.com/goropikari/SolutionForQuantumComputationAndQuantumInformation/raw/master/solnQCQI.pdf)
+[get the PDF](https://docs.google.com/viewer?url=https://github.com/tlesaul2/SolutionForQuantumComputationAndQuantumInformation/raw/master/solnQCQI.pdf)
 
 
 This is unofficial solution manual for "[Quantum Computation and Quantum Information: 10th Anniversary Edition](http://www.cambridge.org/jp/academic/subjects/physics/quantum-physics-quantum-information-and-quantum-computation/quantum-computation-and-quantum-information-10th-anniversary-edition?format=HB&isbn=9781107002173#BBFv83H3ofgcgG3A.97)" (ISBN-13: 978-1107002173) by Nielsen and Chuang
 
-There is no guarantee that these solutions are correct.
+There is no guarantee that these solutions are correct from either author.
 
-If you have some comment, please feel free to open an issue or a PR.
+If you have a comment, please feel free to open an issue or a PR.  Responses are not guaranteed.
 
 ## License
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
 
 ## Compile tex files with Docker
+The docker set up is not maintained by the current author, but may still work
 
 ```
 docker-compose build
@@ -20,15 +21,16 @@ docker-compose run qcqi
 ```
 
 
-## Solved exercises
+## Solved exercises 
+Second checkboxes correspond to checked and/or extended solutions by the current author.  Single checkboxes indicate no updates from this author.  [x] = fully checked/extended, [p] = partially checked/extended, []/nonexistant = not checked/extended 
 
 ### Chapter 2
 
-- [x] 2.1
-- [x] 2.2
-- [x] 2.3
-- [x] 2.4
-- [x] 2.5
+- [x] [x] 2.1
+- [x] [x] 2.2
+- [x] [x] 2.3
+- [x] [x] 2.4
+- [x] [p] 2.5
 - [x] 2.6
 - [x] 2.7
 - [x] 2.8
