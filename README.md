@@ -180,7 +180,7 @@ Second checkboxes correspond to checked and/or extended solutions by the current
 - [x] 11.3
 - [ ] 11.4
 - [x] 11.5
-- [x] 11.6
+- [x] 11.6 (provided by qope)
 - [ ] 11.7
 - [ ] 11.8
 - [ ] 11.9
@@ -233,7 +233,7 @@ Second checkboxes correspond to checked and/or extended solutions by the current
 - [ ] 12.28
 - [ ] 12.29
 - [ ] 12.30
-- [x] 12.31
+- [x] 12.31 (provided by qope)
 - [ ] 12.32
 - [ ] 12.33
 - [ ] 12.34
