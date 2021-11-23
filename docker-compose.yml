@@ -9,3 +9,4 @@ services:
     stdin_open: true
 
     command: pdflatex solnQCQI
+
