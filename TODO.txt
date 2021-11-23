@@ -1,0 +1,5 @@
+Pull in updates from qope, it may have forked before latest commits from goropikari?
+Pull in updates from yquek in ../NielsenChuangSolutions.  A few solutions from chapters 4, 5, 10, 12
+Pull in updates from rehaanahmad2013 in ../NielsenChuang-QuantumComputingSolutions.  Quite a few solutions from chapters 3, 4
+Pull in updates from farice.github.io.  Select solutions from chapters 2, 4, 5, 6, 11.  HTML format, seemingly not hosted.
+

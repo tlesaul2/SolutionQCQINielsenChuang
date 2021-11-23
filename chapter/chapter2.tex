@@ -1,7 +1,7 @@
 \setcounter{chapter}{1}
 \chapter{Introduction to quantum mechanics}
-\Textbf{2.1}
-
+\Textbf{2.1} Show that $(1, -1), (1,2)$, and $(2,1)$ are linearly dependent.
+\Soln It is enough to express $(0, 0)$ as a linear combination of the specified vectors.
 \begin{align*}
 	\begin{bmatrix}
 		1 \\
@@ -24,89 +24,123 @@
 	\end{bmatrix}
 \end{align*}
 
-\Textbf{2.2}
-
+\Textbf{2.2} Suppose $V$ is a vector space with basis vectors $\ket{0}$ and $\ket{1}$, and $A$ is a linear operator
+from $V$ to $V$ such that $A\ket{0}=\ket{1}$ and $A\ket{1}=\ket{0}$.  Give a matrix representation for $A$, with
+respect to the input bais $\ket{0},\ket{1}$, and the output basis $\ket{0},\ket{1}$.  Find input and output bases which
+give rise to a different matrix representation of $A$.
+\Soln With specified operations, it is enough to solve for the entries of a 2x2 matrix which
+coverts the input vectors expressed as linear combinations of one basis, say $(\ket{a_1},\ket{a_2}),$
+into vectors expressed as linear combinations of another basis, say $(\ket{b_1},\ket{b_2})$.
+\[
+A = \begin{blockarray}{ccc}
+\begin{block}{ccc}
+& \ket{b_1} & \ket{b_2}\\
+    \end{block}
+\begin{block}{ c[cc] }
+\ket{a_1} & A_{11} & A_{12} \\
+\ket{a_2} & A_{21} & A_{22} \\
+            \end{block}
+        \end{blockarray}
+\]
+With $(\ket{a_1},\ket{a_2}) = (\ket{0},\ket{1})$ and $(\ket{b_1},\ket{b_2}) = (\ket{0},\ket{1})$, we have
 \begin{align*}
-	A\ket{0} &= A_{11}\ket{0} + A_{21}\ket{1} = \ket{1} \Rightarrow A_{11} = 0,\ A_{21} = 1\\
-	A\ket{1} &= A_{12}\ket{0} + A_{22}\ket{1} = \ket{0} \Rightarrow A_{12} = 1,\ A_{22} = 0\\
+	A\ket{0} &:= \ket{1} = 0\ket{0}+1\ket{1}= A_{11}\ket{b_1} + A_{21}\ket{b_2} = A_{11}\ket{0} + A_{21}\ket{1}\Rightarrow A_{11} = 0,\ A_{21} = 1\\
+	A\ket{1} &:= \ket{0} = 1\ket{0}+0\ket{1}=A_{12}\ket{b_1} + A_{22}\ket{b_2} = A_{12}\ket{0} + A_{22}\ket{1}\Rightarrow A_{12} = 1,\ A_{22} = 0\\
 %
 	\therefore A &=
 	\begin{bmatrix}
 		0 & 1 \\
 		1 & 0
 	\end{bmatrix}
-\end{align*}\\
-
-input: $\left\{\ket{0}, \ket{1}\right\}$,
-output: $\left\{\ket{1}, \ket{0}\right\}$
-
+\end{align*}
+If the output basis was $(\ket{b_1},\ket{b_2}) = (\ket{1},\ket{0})$ instead, then $A=I$.  More formally:
 \begin{align*}
-	A\ket{0}&= A_{11}\ket{1} + A_{21}\ket{0} = \ket{1} \Rightarrow A_{11} = 1,\ A_{21} = 0\\
-%
-	A\ket{1} &= A_{12}\ket{1} + A_{22}\ket{0} = \ket{0} \Rightarrow A_{12} = 0,\ A_{22} = 1\\
-%
-	A &=
-	\begin{bmatrix}
-	1 & 0 \\
-	0 & 1
-	\end{bmatrix}
+    A\ket{0} &:= \ket{1} = 1\ket{1}+0\ket{0}= A_{11}\ket{b_1} + A_{21}\ket{b_2} = A_{11}\ket{1} + A_{21}\ket{0}\Rightarrow A_{11} = 1,\ A_{21} = 0\\
+    A\ket{1} &:= \ket{0} = 0\ket{1}+1\ket{0}= A_{12}\ket{b_1} + A_{22}\ket{b_2} = A_{12}\ket{1} + A_{22}\ket{0}\Rightarrow A_{12} = 0,\ A_{22} = 1\\
+        %
+    \therefore A &=
+    \begin{bmatrix}
+    1 & 0 \\
+    0 & 1
+    \end{bmatrix}
+\end{align*}
+With a more interesting orthonormal output basis $(\ket{b_1},\ket{b_2})=(\ket{+},\ket{-})$:
+\begin{align*}
+        A\ket{0} &:= \ket{1} = \frac{\sqrt{2}}{2}\ket{+}-\frac{\sqrt{2}}{2}\ket{-}= A_{11}\ket{b_1} + A_{21}\ket{b_2} = A_{11}\ket{+} + A_{21}\ket{-}\Rightarrow A_{11} = \frac{\sqrt{2}}{2},\ A_{2} = -\frac{\sqrt{2}}{2}\\
+        A\ket{1} &:= \ket{0} = \frac{\sqrt{2}}{2}\ket{+}+\frac{\sqrt{2}}{2}\ket{-}= A_{12}\ket{b_1} + A_{22}\ket{b_2} = A_{12}\ket{+} + A_{22}\ket{-}\Rightarrow A_{12} = \frac{\sqrt{2}}{2},\ A_{22} = \frac{\sqrt{2}}{2}\\
+        %
+    \therefore A &= \frac{\sqrt{2}}{2}
+    \begin{bmatrix}
+    1 & -1 \\
+    1 & 1
+    \end{bmatrix}
+\end{align*}
+Note: This is similar, but not equal to $\mathbf{H}$.  Had $A$ been the identity transformation when expressed with the
+same input and output bases, then the result would have been exactly $\mathbf{H}$.
+
+\Textbf{2.3} Suppose $A$ is a linear operator from vector space $V$  to vector space $W$, and $B$ is a linear operator
+from vector space $W$ to vector space $X$.  Let $\ket{v_i}, \ket{w_j},$ and $\ket{x_k}$ be bases for the vector spaces
+$V, W,$ and $X$, respectively.  Show that the matrix representation for the linear transformation $BA$ is the matrix
+product of the matrix representations for $B$ and $A$ with respect to the appropriate bases.
+\Soln Fix $i$.  We'll show that $(B\circ A)_{ki} = (B \cdot A)_{ki}$.
+\begin{align*}
+(B\circ A) \ket{v_i} = \sum_k (B\circ A)_{ki} \ket{x_k} &= B \left( \sum_{j} A_{ji}\ket{w_j} \right) \tag{Eqn 2.12, composition}\\
+	&= \sum_{j} A_{ji} B\ket{w_j}\tag{linearity}\\
+	&= \sum_{j,k} A_{ji} B_{kj}\ket{x_k}\tag{Eqn 2.12}\\
+	&= \sum_k \left( \sum_j B_{kj} A_{ji}  \right) \ket{x_k}\tag{finiteness, commutativity}\\
+    &= \sum_k \left( (B\cdot A)_{ki}  \right) \ket{x_k}\tag{definition}\\\\
+	\therefore & (B\circ A)_{ki} = (B\cdot A)_{ki}
 \end{align*}
 
 
-\Textbf{2.3}
 
-From eq (2.12)
+\Textbf{2.4} Show that the identity operator on a vector space $V$ has a matrix representation which is one along the
+diagonal and zero everywhere else, if the matrix representation is taken with respect to the same input and output bases.
+This matrix is known as the \textit{identity matrix}
+\Soln Let $I$ be the matrix in question.
 \begin{align*}
-	A \ket{v_i} &= \sum_{j} A_{ji}\ket{w_j}\\
-	B \ket{w_j} &= \sum_{k} B_{kj}\ket{x_k}
-\end{align*}
-%
-Thus
-\begin{align*}
-	BA \ket{v_i} &= B \left( \sum_{j} A_{ji}\ket{w_j} \right)\\
-	&= \sum_{j} A_{ji} B\ket{w_j}\\
-	&= \sum_{j,k} A_{ji} B_{kj}\ket{x_k}\\
-	&= \sum_k \left( \sum_j B_{kj} A_{ji}  \right) \ket{x_k}\\
-	&= \sum_k (BA)_{ki} \ket{x_k}\\
-	\therefore& (BA)_{ki} = \sum_j B_{kj} A_{ji}
+I\ket{v_j} := \ket{v_j} &= \sum_i I_{ij} \ket{v_i}, \ \forall j.\\
+	&\Rightarrow I_{ij} = \delta_{ij} := \left\{ \begin{array}{cc} 1 & i=j \\ \\ 0 & o/w\end{array}\right.
 \end{align*}
 
 
-
-\Textbf{2.4}
-\begin{align*}
-	I\ket{v_j} = \sum_i I_{ij} \ket{v_i} = \ket{v_j},\ \forall j.\\
-	\Rightarrow I_{ij} = \delta_{ij}
-\end{align*}
-
-
-\Textbf{2.5}
-
-Defined inner product on $\mathcal{C}^n$ is
+\Textbf{2.5} Verify that $(\cdot, \cdot)$ just defined is an inner product on $\mathbb{C}^n$
+\Soln Defined inner product on $\mathbb{C}^n$ is
 \begin{align*}
 	\left(
 		(y_1, \cdots, y_n), (z_1, \cdots, z_n)
 	\right)
 	= \sum_{i} y_i^* z_i .
 \end{align*}
-Verify (1) of eq (2.13).
-
+Equation (2.13), linearity in second argument:
 \begin{align*}
-	\left(
-		(y_1, \cdots, y_n), \sum_i \lambda_i (z_{i1}, \cdots, z_{in})
-	\right)
-	&= \sum_i y_i^* \left(
-										\sum_j \lambda_j z_{ji}
-			      				   \right)\\
-	&= \sum_{i,j} y_i^* \lambda_j z_{ji}\\
-	&= \sum_j \lambda_j \left(\sum_i y_i^* z_{ji}  \right)\\
-	&= \sum_j \lambda_j \left(
-													(y_1, \cdots, y_n),  (z_{j1}, \cdots, z_{jn})
-											  \right)\\
-	&= \sum_i \lambda_i \left(
-													(y_1, \cdots, y_n),  (z_{i1}, \cdots, z_{in})
-												\right).
+	\left((y_1,\cdots,y_n),\sum_i\lambda_i(z_{i1},\cdots,z_{in})\right)
+	&= \left((y_1,\cdots,y_n),\left(\sum_i\lambda_iz_{i1},\cdots,\sum_i\lambda_iz_{in}\right)\right) \tag{definition} \\
+    &= \sum_jy^*_j\left(\sum_i\lambda_iz_{ij}\right) \tag{definition}\\
+    &= \sum_j\left(\sum_iy^*_j\lambda_iz_{ij}\right) \tag{linearity of multiplcation}\\
+    &= \sum_j\left(\sum_i\lambda_iy^*_jz_{ij}\right) \tag{associativity/commutativity}\\
+    &= \sum_i\left(\sum_j\lambda_iy^*_jz_{ij}\right) \tag{finiteness} \\
+    &= \sum_i\lambda_i\left(\sum_jy^*_jz_{ij}\right) \tag{linearity} \\
+    &= \sum_i\lambda_i\left((y_1,\cdots,y_n),(z_{i1},\cdots,z_{in})\right) \tag{definition}
 \end{align*}
+%
+%
+%    &= \sum_i\lambda_i\left(
+%(y_1, \cdots, y_n),(z_{i1}, \cdots, z_{in})
+%\right) \tag{definition}
+%
+
+% =\sum_i y_i^* \left(
+% 										\sum_j \lambda_j z_{ji}
+% 			      				   \right)\\
+% 	&= \sum_{i,j} y_i^* \lambda_j z_{ji}\\
+% 	&= \sum_j \lambda_j \left(\sum_i y_i^* z_{ji}  \right)\\
+% 	&= \sum_j \lambda_j \left(
+% 													(y_1, \cdots, y_n),  (z_{j1}, \cdots, z_{jn})
+% 											  \right)\\
+% 	&= \sum_i \lambda_i \left(
+% 													(y_1, \cdots, y_n),  (z_{i1}, \cdots, z_{in})
+% 												\right).
 
 
 Verify (2) of eq (2.13),
@@ -2124,10 +2158,10 @@ Now
 
 Next prepare an unitary operator
 \footnote{By Gram-Schmidt procedure construct an orthonormal basis $\{\boldsymbol{u}_j\}$ (row vector) with $\boldsymbol{u}_i = [u_{i1} \cdots u_{ik} \cdots u_{il}]$. Then define unitary $U = \begin{bmatrix}
-    \boldsymbol{u}_1 \\ 
-    \vdots \\ 
-    \boldsymbol{u}_i \\ 
-    \vdots \\ 
+    \boldsymbol{u}_1 \\
+    \vdots \\
+    \boldsymbol{u}_i \\
+    \vdots \\
     \boldsymbol{u}_l
     \end{bmatrix}$.}
 such that $i$th row of $U$ is $[u_{i1} \cdots u_{ik} \cdots u_{il}]$.
