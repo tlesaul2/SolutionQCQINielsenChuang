@@ -7,4 +7,8 @@
 *.ilg
 *.fdb_latexmk
 *.latexmain
+.kile/*
+*.pdf
 reddit
+*.kilepr
+*.bak

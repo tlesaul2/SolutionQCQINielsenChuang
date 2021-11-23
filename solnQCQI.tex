@@ -5,7 +5,7 @@
 \documentclass[11pt]{book}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amsfonts,amssymb,amsthm}
-\usepackage[width=16.00cm, height=24.00cm]{geometry}
+\usepackage[letterpaper,left=0.5in,top=0.65in,bottom=0.65in]{geometry}
 \usepackage[dvipdfmx]{graphicx}
 \usepackage[english]{babel}
 
@@ -41,7 +41,7 @@
 \lhead[\leftmark ]{\thepage}
 \rhead[\thepage]{\leftmark}
 
-\cfoot{\footnotesize \textcopyright 2018 goropikari - \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License}}
+\cfoot{\footnotesize \textcopyright 2018 goropikari, \textcopyright 2021 tdlesau - \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License}}
 
 % コマンド定義
 \DeclareMathOperator{\Tr}{Tr}
@@ -53,29 +53,28 @@
 \newtheorem{prop}{Proposition.}[section]
 
 
-\title{Solution for "Quantum Computation and Quantum Information: 10th Anniversary Edition" by Nielsen and Chuang}
-\author{goropikari}
+\title{Solution for ``Quantum Computation and Quantum Information: 10th Anniversary Edition" by Nielsen and Chuang}
+\author{Original author: goropikari\\Extended by: tlesaul2}
 \date{\today}
 
 \begin{document}
 \maketitle
 \thispagestyle{empty}
-\setcounter{page}{0} % 表紙のページを0ページにする
+\setcounter{page}{1} % 表紙のページを0ページにする
 
 \section*{Copylight Notice:}
 \ccbyncsa\\
-This work is licensed under a \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License}.
+    This work is licensed under a \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License} by the original author.  As such, the second author does the same.
 
 
 \section*{Repository}
-The latest version and source \LaTeX code are located in\\ \url{https://github.com/goropikari/SolutionForQuantumComputationAndQuantumInformation}.
+As of November, 2021, the original source \LaTeX \ code, located at \url{https://github.com/goropikari/SolutionForQuantumComputationAndQuantumInformation}\ has not been updated since April 2020.  The extended source \LaTeX \ code is located at \\ \url{https://github.com/tlesaul2/SolutionForQuantumComputationAndQuantumInformation}\ .  It may be updated more actively.
 
 \section*{For readers}
-This is an unofficial solution manual for "\href{http://www.cambridge.org/jp/academic/subjects/physics/quantum-physics-quantum-information-and-quantum-computation/quantum-computation-and-quantum-information-10th-anniversary-edition?format=HB&isbn=9781107002173#BBFv83H3ofgcgG3A.97}{Quantum Computation and Quantum Information: 10th Anniversary Edition}" (ISBN-13: 978-1107002173) by Michael A. Nielsen and Isaac L. Chuang.
+This is an unofficial solution manual for "\href{http://www.cambridge.org/jp/academic/subjects/physics/quantum-physics-quantum-information-and-quantum-computation/quantum-computation-and-quantum-information-10th-anniversary-edition?format=HB&isbn=9781107002173#BBFv83H3ofgcgG3A.97}{Quantum Computation and Quantum Information: 10th Anniversary Edition}" (ISBN-13: 978-1107002173) by Michael A. Nielsen and Isaac L. Chuang.\\
 
-
-
-I have studied quantum information theory as a hobby.
+\noindent From the original author:\\
+\indent I have studied quantum information theory as a hobby.
 And I'm not a researcher.
 So there is no guarantee that these solutions are correct.
 Especially because I'm not good at mathematics, proofs are often wrong.
@@ -83,7 +82,13 @@ Don't trust me. Verify yourself!
 
 If you find some mistake or have some comments, please feel free to open an issue or a PR.
 \begin{flushright}
-    \href{https://github.com/goropikari}{goropikari}
+\href{https://github.com/goropikari}{goropikari}\\
+\end{flushright}
+
+\noindent From the second author:\\
+\indent I'm a mathematician relatively new to quantum information theory as of the adoption of this repo, so hope to supplement the original author's work by checking and formalizing the mathematics, overly at times, while I use the task to learn the field.  The original author's sentiments about self-verification are echoed.
+\begin{flushright}
+\href{https://github.com/tlesaul2}{tlesaul2}
 \end{flushright}
 
 \tableofcontents
