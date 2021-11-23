@@ -1,6 +1,6 @@
 # Solution for Quantum Computation and Quantum Information
 
-[get the PDF (through google viewer)](https://docs.google.com/viewer?url=https://github.com/tlesaul2/SolutionQCQINielsenChuang/raw/master/solnQCQI.pdf) or [through github viewer)](https://github.com/tlesaul2/SolutionQCQINielsenChuang/blob/master/solnQCQI.pdf)
+[get the PDF (through google viewer)](https://docs.google.com/viewer?url=https://github.com/tlesaul2/SolutionQCQINielsenChuang/raw/master/solnQCQI.pdf) or [through github viewer](https://github.com/tlesaul2/SolutionQCQINielsenChuang/blob/master/solnQCQI.pdf)
 
 This is unofficial solution manual for "[Quantum Computation and Quantum Information: 10th Anniversary Edition](http://www.cambridge.org/jp/academic/subjects/physics/quantum-physics-quantum-information-and-quantum-computation/quantum-computation-and-quantum-information-10th-anniversary-edition?format=HB&isbn=9781107002173#BBFv83H3ofgcgG3A.97)" (ISBN-13: 978-1107002173) by Nielsen and Chuang
 
@@ -21,7 +21,7 @@ docker-compose run qcqi
 
 
 ## Solved exercises 
-Second checkboxes correspond to checked and/or extended solutions by the current author.  Single checkboxes indicate no updates from this author.  [x] = fully checked/extended, [p] = partially checked/extended, []/nonexistant = not checked/extended 
+Second checkboxes correspond to checked and/or extended solutions by the current author.  Single checkboxes indicate no updates from this author.  [x] = fully checked/extended, [p] = partially checked/extended, []/nonexistant = not checked/extended.  Parenthesized comments were added by the original author, or attribute solutions to others. 
 
 ### Chapter 2
 
