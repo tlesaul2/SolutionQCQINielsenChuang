@@ -1,0 +1,18 @@
+\Textbf{12.31}
+Eve makes her qubits entangled with $\ket{\beta_{00}}$, and gets $\rho^E$.
+\begin{align}
+\ket{ABE} = U\ket{\beta_{00}^{\otimes n}}\ket{0}_E\\
+\rho^E = tr_{AB} (\ket{ABE} \bra{ABE})
+\end{align}
+Note that Eve's mutual information with Alice and Bob measurements does not depend on whether Eve measures $\rho^E$ before Alice and Bob's measurement or after.
+So we can assume that Eve measures $\rho^E$ after Alice and Bob's measurement.
+Alice and Bob measure their Bell state, getting binary string $\vec{k}$ as an outcome.
+Let $\rho^E_k$ and $p_k$ are the corresponding Eve's states and probabilities.
+Note,
+\begin{align}
+\rho_E = \sum_k p_k \rho^E_k.
+\end{align}
+Let $K$ is a variable of $\vec{k}$ and $e$ is an outcom of a measurement of $\rho^E$, and $E$ is its variable.  From Holevo bound, 
+\begin{align}
+H(K:E) \le S(\rho^E) - \sum_k p_k \rho^E_k \le S(\rho^E) = S(\rho).
+\end{align}

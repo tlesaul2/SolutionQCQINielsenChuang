@@ -1,7 +1,6 @@
 # Solution for Quantum Computation and Quantum Information
 
-[get the PDF](https://docs.google.com/viewer?url=https://github.com/tlesaul2/SolutionQCQINielsenChuang/raw/master/solnQCQI.pdf)
-
+[get the PDF (through google viewer)](https://docs.google.com/viewer?url=https://github.com/tlesaul2/SolutionQCQINielsenChuang/raw/master/solnQCQI.pdf) or [through github viewer)](https://github.com/tlesaul2/SolutionQCQINielsenChuang/blob/master/solnQCQI.pdf)
 
 This is unofficial solution manual for "[Quantum Computation and Quantum Information: 10th Anniversary Edition](http://www.cambridge.org/jp/academic/subjects/physics/quantum-physics-quantum-information-and-quantum-computation/quantum-computation-and-quantum-information-10th-anniversary-edition?format=HB&isbn=9781107002173#BBFv83H3ofgcgG3A.97)" (ISBN-13: 978-1107002173) by Nielsen and Chuang
 
@@ -181,7 +180,7 @@ Second checkboxes correspond to checked and/or extended solutions by the current
 - [x] 11.3
 - [ ] 11.4
 - [x] 11.5
-- [ ] 11.6
+- [x] 11.6
 - [ ] 11.7
 - [ ] 11.8
 - [ ] 11.9
@@ -234,7 +233,7 @@ Second checkboxes correspond to checked and/or extended solutions by the current
 - [ ] 12.28
 - [ ] 12.29
 - [ ] 12.30
-- [ ] 12.31
+- [x] 12.31
 - [ ] 12.32
 - [ ] 12.33
 - [ ] 12.34
