@@ -1,3 +1,5 @@
+%!TeX root=../solnQCQI.tex
+
 \setcounter{chapter}{1}
 \chapter{Introduction to quantum mechanics}
 \Textbf{2.1} Show that $(1, -1), (1,2)$, and $(2,1)$ are linearly dependent.
@@ -112,7 +114,7 @@ I\ket{v_j} := \ket{v_j} &= \sum_i I_{ij} \ket{v_i}, \ \forall j.\\
 	\right)
 	= \sum_{i} y_i^* z_i .
 \end{align*}
-Equation (2.13), linearity in second argument:
+Equation (2.13.1), linearity in second argument:
 \begin{align*}
 	\left((y_1,\cdots,y_n),\sum_i\lambda_i(z_{i1},\cdots,z_{in})\right)
 	&= \left((y_1,\cdots,y_n),\left(\sum_i\lambda_iz_{i1},\cdots,\sum_i\lambda_iz_{in}\right)\right) \tag{definition} \\
@@ -142,54 +144,52 @@ Equation (2.13), linearity in second argument:
 % 													(y_1, \cdots, y_n),  (z_{i1}, \cdots, z_{in})
 % 												\right).
 
-
-Verify (2) of eq (2.13),
+Equation (2.13.2), conjugate symmetry:
 \begin{align}
-	\left(
-		(y_1, \cdots, y_n), (z_1, \cdots, z_n)
-	\right)^*
-	&= \left(\sum_i y_i^* z_i \right)^*\\
-	&= \left(\sum_i y_i  z_i^* \right)\\
-	&= \left(\sum_i z_i^* y_i \right)\\
-	&= \left(
-				(z_1, \cdots, z_n) , (y_1, \cdots, y_n)
-			\right)
+	\bigl((y_1, \cdots, y_n), (z_1, \cdots, z_n)\bigr)^*
+	&= \left(\sum_i y_i^* z_i \right)^* \tag{definition}\\
+	&= \left(\sum_i y_i  z_i^* \right) \tag{conjugate symmetry in $\mathbb{C}^1$}\\
+	&= \left(\sum_i z_i^* y_i \right) \tag{commutativity in $\mathbb{C}^1$}\\
+	&= \bigl((z_1, \cdots, z_n) , (y_1, \cdots, y_n)\bigr) \tag{definition}
 \end{align}.
 
 
-Verify (3) of eq (2.13),
+Equation (2.13.3), positive definiteness:
 \begin{align*}
-	\left(
-		(y_1, \cdots, y_n), (y_1, \cdots, y_n)
-	\right)
-	&= \sum_i y_i^* y_i\\
-	&= \sum_i |y_i|^2
+	\bigl((y_1, \cdots, y_n), (y_1, \cdots, y_n)\bigr)
+	&= \sum_i y_i^* y_i \tag{definition}\\
+	&= \sum_i |y_i|^2 \tag{definition} \\
+	&\geq 0 \tag{positive definiteness of $|\cdot|^2$ over $\mathbb{C}^1$}
+\end{align*}
+Now:
+\begin{align*}
+	\bigl((y_1, \cdots, y_n), (y_1, \cdots, y_n)\bigr) = \sum_i |y_i|^2 &\stackrel{?}{=} 0 \tag{hypothesis}\\ \iff |y_i|^2 &= 0\  \forall i \tag{positivity of $|\cdot|^2$}\\ \iff \ y_i\ \  &= 0\  \forall i \tag{positive definiteness of $|\cdot|^2$ over $\mathbb{C}^1$}\\ \iff (y_1, \cdots, y_n) &=  \textbf{0} \tag{definition}
 \end{align*}
 
-Since $|y_i|^2 \geq 0$ for all $i$. Thus
-$\sum_i |y_i|^2 =
-\left(
-	(y_1, \cdots, y_n), (y_1, \cdots, y_n)
-\right) \geq 0
-$.
-
-From now on,  I will show the following statement,
-\begin{align*}
-	\left(
-		(y_1, \cdots, y_n), (y_1, \cdots, y_n)
-	\right) = 0
-	\text{ iff }  (y_1, \cdots, y_n) = 0.
-\end{align*}
-($\Leftarrow$) This is obvious.\\
-($\Rightarrow$)
-Suppose $\left( (y_1, \cdots, y_n), (y_1, \cdots, y_n) \right) = 0$. Then $\sum_i |y_i|^2 = 0$.
-
-Since $|y_i|^2 \geq 0$ for all $i$, if $\sum_i |y_i|^2 = 0$, then $|y_i|^2 = 0$ for all $i$.
-Therefore $|y_i|^2 = 0 \Leftrightarrow y_i = 0$  for all $i$.
-Thus,
-\begin{align*}
-	(y_1, \cdots, y_n) = 0.
-\end{align*}
+%Since $|y_i|^2 \geq 0$ for all $i$. Thus
+%$\sum_i |y_i|^2 =
+%\left(
+%	(y_1, \cdots, y_n), (y_1, \cdots, y_n)
+%\right) \geq 0
+%$.
+%
+%From now on,  I will show the following statement,
+%\begin{align*}
+%	\left(
+%		(y_1, \cdots, y_n), (y_1, \cdots, y_n)
+%	\right) = 0
+%	\text{ iff }  (y_1, \cdots, y_n) = 0.
+%\end{align*}
+%($\Leftarrow$) This is obvious.\\
+%($\Rightarrow$)
+%Suppose $\left( (y_1, \cdots, y_n), (y_1, \cdots, y_n) \right) = 0$. Then $\sum_i |y_i|^2 = 0$.
+%
+%Since $|y_i|^2 \geq 0$ for all $i$, if $\sum_i |y_i|^2 = 0$, then $|y_i|^2 = 0$ for all $i$.
+%Therefore $|y_i|^2 = 0 \Leftrightarrow y_i = 0$  for all $i$.
+%Thus,
+%\begin{align*}
+%	(y_1, \cdots, y_n) = 0.
+%\end{align*}
 
 \Textbf{2.6}
 \begin{align*}
