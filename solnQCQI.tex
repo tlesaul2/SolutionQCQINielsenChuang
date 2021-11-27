@@ -62,6 +62,8 @@
 \begin{document}
 \maketitle
 \thispagestyle{empty}
+\cleardoublepage
+\thispagestyle{empty}
 \setcounter{page}{1} % 表紙のページを0ページにする
 
 \section*{Copylight Notice:}
@@ -93,8 +95,7 @@ If you find some mistake or have some comments, please feel free to open an issu
 \href{https://github.com/tlesaul2}{tlesaul2}
 \end{flushright}
 
-\tableofcontents
-\newpage
+{\let\cleardoublepage\clearpage\tableofcontents\thispagestyle{empty}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frontmatter
