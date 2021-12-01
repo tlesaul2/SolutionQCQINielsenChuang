@@ -25,8 +25,8 @@ Second checkboxes correspond to checked and/or extended solutions by the current
 
 ### Chapter 1
 
-- [] - [x] 1.1
-- [] - 1.2
+- [ ] - [x] 1.1
+- [ ] - 1.2
 
 ### Chapter 2
 
