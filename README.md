@@ -20,8 +20,13 @@ docker-compose run qcqi
 ```
 
 
-## Solved exercises 
-Second checkboxes correspond to checked and/or extended solutions by the current author.  Single checkboxes indicate no updates from this author.  [x] = fully checked/extended, [p] = partially checked/extended, []/nonexistant = not checked/extended.  Parenthesized comments were added by the original author, or attribute solutions to others. 
+## Solved exercises
+Second checkboxes correspond to checked and/or extended solutions by the current author.  Single checkboxes indicate no updates from this author.  [x] = fully checked/extended, [p] = partially checked/extended, []/nonexistant = not checked/extended.  Parenthesized comments were added by the original author, or attribute solutions to others.
+
+### Chapter 1
+
+- [] - [x] 1.1
+- [] - 1.2
 
 ### Chapter 2
 

@@ -1,0 +1,40 @@
+%!TeX root=../solnQCQI.tex
+
+\chapter{Fundamental Concepts}
+\Textbf{1.1} Probabilistic Classical Deutsch-Jozsa Algorithm: Suppose that the problem is not to distinguish between the constant and balanced functions \textit{with certainty}, but rather, with some probability of error $\epsilon < 1/2$.  What is the performance of the best classical algorithm for this problem?
+\Soln  To a mathematician, this problem is (\textit{slightly}) under-specified.  Missing is the probability that the function $f$ in question is balanced, vice constant.  We assume that both are \textbf{equally} likely, a priori.  The results when all balanced or constant functions are chosen from randomly are significantly different, and likely less interesting.
+We describe \textit{an} algorithm and analyze the error rate, but make no effort to show that it is the \textit{best} algorithm, nor that this is the most effective analysis. Let $C$ be the event that $f$ is constant, and $B$ be the event that it is balanced.  By hypothesis $P(C)=P(B)=\frac12$, a  priori.  Evaluating $f$ provides information which can be used to update these prior probabilities.  Classically evaluating the function once, say at $x_0$, provides no useful information, since comparison of values is at the heart of this problem.  Evaluating $f$ twice, say at $x_0$ and $x_1$, can unambiguously determine if $f$ is balanced when their values disagree.  So, let's assume they agree.  We use Bayesian inference to iteratively update the probability that $f$ is constant, given $k$ successive measurements that agree.  In a convenient abuse of notation, let $P(E\ |\ k) = P\bigl(E\ |\ f(x_0) = \cdots = f(x_{k-1})\bigr)$, $P(k\ |\ E) = P\bigl(f(x_0) = \cdots = f(x_{k-1})\ |\ E\bigr)$, and $P(k) =  P\bigl(f(x_0) = \cdots = f(x_{k-1})\bigr)$, for $E=B,C$, and $k\in\mathbb{N}$.  We have $P(C\ |\ 0)=P(C\ |\ 1)=P(B\ |\ 0)=P(B\ |\ 1)$.  Note also that $P(k\ |\ C) = 1$, since if $f$ is constant, all evaluations (including the $k$ in question) will agree.
+By Baye's theorem, and the Law of Total Probability:
+\begin{align*}
+P(C\ |\  k)&=\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{P(k\ |\  C)\cdot P(C\ |\ k-1)}{P(k)} \\
+&=\frac{P(k\ |\ C)\cdot P(C\ |\ k-1)}{ P(C\ |\ k-1) \cdot P(k\ |\ C) +  P(B\ |\ k-1) \cdot P(k\ |\ B)}
+\end{align*}
+
+The formula above can be used to iteratively update $P(C,k)$, and hence $P(B,k)=1-P(C,k)$, but first we must discuss $P(k\ |\ B)$.  It is important to note that, when this quantity is used to update $P(C\ |\ k)$, it is already known with certainty that $f(x_0) = \cdots = f(x_{k-2})$, \textit{i.e.} $P(k-1) = 1$.  $P(k\ |\ B)$ is the probability that, given this information, evaluating $f$ one more time, at $x_{k-1}$, yields another value in agreement with $f(x_0),\cdots,f(x_{k-2})$.   We evaluate this by separating the two possible outcomes of evaluation and counting the number of balanced functions satisfying the hypotheses that would produce them.   If $f(x_{k-1}) =  f(x_0)$, then $x_{k-1}$ is the $k$-th value on which $f$ agrees.  There are $\binom{n-k}{n/2-k}$ balanced functions which would produce this result, corresponding to the selections of $n/2-k$ more of the remaining $n-k$ values on which $f$ can agree.  If $f(x_{k-1})\neq f(x_0)$, then $f$ must still agree on $n/2-k+1$ of the remaining $n-k$ values.  There are $\binom{n-k}{n/2-k+1}$ balanced functions that would produce this result. So:
+\begin{align*}
+P(k,B)&=\frac{\binom{n-k}{n/2-k}}{\binom{n-k}{n/2-k}+\binom{n-k}{n/2-k+1}} = \frac{\binom{n-k}{n/2-k}}{\binom{n-k+1}{n/2-k+1}} =  \frac{n/2-k+1}{n-k+1} = \frac{n-2k+2}{2n-2k+2}
+\end{align*}
+
+We are finally in a position to calculate $P(C\ |\ k)$.  Unfortunately, for fixed $n$, the machinery above does not produce formulas of bounded complexity as $k$ grows.  Each formula will be a rational function with equal degree in numerator and denomator, but those degrees seem to be $\lfloor k/2\rfloor$.  The coefficients of the leading terms show some structure that can be used for asymptotic analysis.  We illustrate the calculation of $P(C\ |\ 2)$, $P(C\ |\ 3)$, and $P(C\ |\ 4)$ for illustration,  discuss the results and some experimental confirmation.
+
+\begin{align*}
+P(C\ |\  2)&=\frac{P(2\ |\ C)\cdot P(C\ |\ 1)}{ P(C\ |\ 1) \cdot P(2\ |\ C) +  P(B\ |\ 1) \cdot P(2\ |\ B)} \\
+&=\frac{1\cdot\frac12}{\frac12\cdot1+\frac12\cdot\frac{n-2}{2n-2}} \\
+&=\frac{1}{1+\frac{n-2}{2n-2}} \\
+&=\frac{2n-2}{3n-4} \\
+P(C\ |\ 3)&=\frac{P(3\ |\ C)\cdot P(C\ |\ 2)}{ P(C\ |\ 2) \cdot P(3\ |\ C) +  P(B\ |\ 2) \cdot P(3\ |\ B)} \\
+&=\frac{1\cdot\frac{2n-2}{3n-4}}{\frac{2n-2}{3n-4}+\left(1-\frac{2n-2}{3n-4}\right)\cdot\frac{n-4}{2n-4}} \\
+&=\frac{4n-4}{5n-8} \\
+P(C\ |\ 4)&=\frac{P(4\ |\ C)\cdot P(C\ |\ 3)}{ P(C\ |\ 3) \cdot P(4\ |\ C) +  P(B\ |\ 3) \cdot P(4\ |\ B)} \\
+&=\frac{1\cdot\frac{4n-4}{5n-8}}{\frac{4n-4}{5n-8}+\left(1-\frac{4n-4}{5n-8}\right)\cdot\frac{n-6}{2n-6}} \\
+&=\frac{8n^2-32n+24}{9n^2-42n+48} \\
+P(C\ |\ 5)&=\frac{16n^2-64n+48}{17n^2-78n+96} \\
+P(C\ |\ 6)&=\frac{32n^3-288n^2+736n-480}{33n^3-312n^2+924n-960} \\
+P(C\ |\ 7)&=\frac{64n^3-576n^2+1472n-960}{65n^3-606n^2+1768n-1920} \\
+&\mathrel{\makebox[\widthof{=}]{\vdots}}
+\end{align*}
+
+There are clearly patterns, the most striking of which yields $P(C\ |\ k) \xrightarrow[n\to\infty]{}\frac{2^{k-1}}{2^{k-1}+1}$, that is, given $k$ evaluations in agreement, the probability that $f$ is constant is $\sim1-\frac{1}{2^{k-1}+1}$.  In the quantum context, where $n$ is likely to be exponential in the number of qubits, this asymptotic value would be approached rapidly.  To confirm this analysis, a python script is included in the repo which experimentally calculates empirical values of $P(C\ |\ k)$ for specified values of $n$ and $k$.  It also calculates the theoretical values, recursing over $k$, for comparison.  See \texttt{<git repo>/Python/Problem1.1.py}.
+
+To answer the problem most directly, \textit{i.e.}, ``what is the performance of the best classical algorithm for this problem?'', let $n$ be fixed and $0<\epsilon<\frac{1}{2}$ be specified.  The ``performance'' of classically evaluating the function in order to declare the function constant with error less than $\epsilon$  is equivalent to determining the number of evaluations in agreement after which the probability that $f$ is constant is  
+
