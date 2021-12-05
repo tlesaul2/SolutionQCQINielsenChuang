@@ -4,6 +4,9 @@
 import random
 import itertools
 import argparse
+from fractions import Fraction
+from functools import lru_cache
+
 
 def balanced_extension_probability(n, k):
     """
@@ -15,8 +18,9 @@ def balanced_extension_probability(n, k):
         # satisfy the requirements vacuously
         return 1
     else:
-        return (n-2*k+2)/(2*n-2*k+2)
+        return Fraction(n-2*k+2, 2*n-2*k+2)
 
+@lru_cache(maxsize=2)
 def calculate_theoretical(n, k):
     """
     This function calculates the posterior probability that a function uniformly chosen
@@ -29,7 +33,7 @@ def calculate_theoretical(n, k):
         # from.  k==1 corresponds to the initial evaluation, which does not provide enough
         # information to change the probability that the function is constant vice
         # balanced.  So, the a priori prior probability of 1/2 is still valid.
-        return 1/2
+        return Fraction(1, 2)
 
     # Bayeseian updating requires knowning the previous probability, so calculate it
     # (recursively)
@@ -38,9 +42,9 @@ def calculate_theoretical(n, k):
     # use the previous probability and the probability that the k-th evaluation agrees with the
     # previous k-1 to calculate a new posterior probability that the function is constant given
     # k evaluations in agreement
-    return prob_given_one_fewer_evaluations / \
+    return Fraction(prob_given_one_fewer_evaluations,
             (prob_given_one_fewer_evaluations + (1-prob_given_one_fewer_evaluations)*
-                                                (balanced_extension_probability(n, k)))
+                                                (balanced_extension_probability(n, k))))
 
 
 def main(args):
