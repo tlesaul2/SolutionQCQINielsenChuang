@@ -150,7 +150,7 @@ Equation (2.13.2), conjugate symmetry:
 	&= \left(\sum_i y_i  z_i^* \right) \tag{conjugate symmetry in $\mathbb{C}^1$}\\
 	&= \left(\sum_i z_i^* y_i \right) \tag{commutativity in $\mathbb{C}^1$}\\
 	&= \bigl((z_1, \cdots, z_n) , (y_1, \cdots, y_n)\bigr) \tag{definition}
-\end{align}.
+\end{align}
 
 
 Equation (2.13.3), positive definiteness:
@@ -191,89 +191,105 @@ Now:
 %	(y_1, \cdots, y_n) = 0.
 %\end{align*}
 
-\Textbf{2.6}
+\Textbf{2.6} Show that any inner product $(\cdot,\cdot)$ is conjugate-linear in the first argument,
+\[
+\left(\sum_i \lambda_i\ket{w_i}, \ket{v}\right) = \sum_i \lambda_i^{*}(\ket{w_i}, \ket{v}).
+\]
+\Soln
 \begin{align*}
-	\left(\sum_i \lambda_i \ket{w_i},\ \ket{v}\right) &=
-	\left(\ket{v},\ \sum_i \lambda_i \ket{w_i}\right)^*\\
-	&= \left[\sum_i \lambda_i \left(\ket{v},\ \ket{w_i}  \right) \right]^* (\because \text{linearlity in the 2nd arg.})\\
-	&= \sum_i \lambda_i^* \left(\ket{v},\ \ket{w_i} \right)^*\\
-	&= \sum_i \lambda_i^* (\ket{w_i},\ \ket{v})
+	\left(\sum_i \lambda_i \ket{w_i},\ket{v}\right) &=
+	\bigl(\ket{v},\sum_i \lambda_i \ket{w_i}\bigr)^* \tag{conjugate symmetry}\\
+	&= \left(\sum_i \lambda_i \bigl(\ket{v},\ket{w_i}  \bigr) \right)^*\tag{linearlity in the 2nd arg.}\\
+	&= \sum_i \lambda_i^* \bigl(\ket{v},\ket{w_i} \bigr)^* \tag{distributivity of complex conjugate}\\
+	&= \sum_i \lambda_i^* (\ket{w_i},\ket{v}) \tag{conjugate symmetry}
 \end{align*}
 
 
-\Textbf{2.7}
-
+\Textbf{2.7} Verify that $\ket{w} = (1,1)$ and $\ket{v} = (1,-1)$ are orthogonal.  What are the normailized forms of these vectors?
+\Soln
 \begin{align*}
-	\braket{w | v} &= \begin{bmatrix}
-		1 & 1
-	\end{bmatrix}
-	\begin{bmatrix}
-	1 \\
-	-1
-	\end{bmatrix}
-	= 1 - 1 = 0\\
+	 (\ket{w}, \ket{v}) &= 	\braket{w | v} \tag{notation} \\
+	 &= \begin{bmatrix}
+		1^* & 1^*
+		\end{bmatrix}
+		\begin{bmatrix}
+		1 \\
+		-1
+		\end{bmatrix} \tag{definition}\\
+	&= 1^*\cdot1 + 1^*\cdot(-1) \tag{matrix multiplication} \\
+	&= 1\cdot1 - 1\cdot1 = 0 \tag{arithmetic}\\
 %
 	\frac{\ket{w}}{\norm{\ket{w}}} &=
 	\frac{\ket{w}}{\sqrt{\braket{w|w}}} = \frac{1}{\sqrt{2}} \begin{bmatrix}
 	1 \\
 	1
-	\end{bmatrix}\\
+	\end{bmatrix}
+	= \ket{+} \\
 %
 	\frac{\ket{v}}{\norm{\ket{v}}} &=
 	\frac{\ket{v}}{\sqrt{\braket{v|v}}} = \frac{1}{\sqrt{2}} \begin{bmatrix}
 	1 \\
 	-1
 	\end{bmatrix}
+	=\ket{-}
 \end{align*}
 
 
 
-\Textbf{2.8}
+\Textbf{2.8} Prove that the Gram-Schmidt procedure produces an orthonormal basis.
+\Soln
+We prove inductively.  For $d = 1$, the only requirement is that the procecure normalize $\ket{w_d}$, which it does by definition for all $d$.   For $d = 2$, suppose $\ket{v_1}, \cdots,\ket{v_{d-1}}$ is a orthonormal basis for the subspace spanned by  $\ket{w_1},\cdots,\ket{w_{d-1}}$.  Being a basis, the subspace spanned by $\ket{v_1},\cdots,\ket{v_{d-1}}$ is the same.  Linear independence of $\ket{w_1},\cdots,\ket{w_d}$ implies that $\ket{w_d}$ is not in this subspace, so $\ket{v_1},\cdots,\ket{v_{d-1}},\ket{w_d}$ is easily seen to be linearly independent as well.  It remains to be shown that $\ket{v_d}$ is linearly independent of $\ket{v_1},\cdots,\ket{v_{d-1}}$, and is orthogonal to all such vectors.  For independence, note that any dependence relation between $\ket{v_1},\cdots,\ket{v_d}$ immediately induces one between $\ket{v_1},\cdots,\ket{v_{d-1}},\ket{w_d}$, violating their independence.  For orthogonality, let $1\leq j\leq d-1$.  We show $\braket{v_j|v_d} = 0$, completing the proof.
 
-If $k = 1$,
+\begin{comment}
 \begin{align*}
 	\ket{v_2} &= \frac{\ket{w_2} - \braket{v_1 | w_2}\ket{v_1}}{\norm{\ket{w_2} - \braket{v_1 | w_2}\ket{v_1}}}\\
 	\braket{v_1 | v_2} &= \bra{v_1} \left(\frac{\ket{w_2} - \braket{v_1 | w_2}\ket{v_1}}{\norm{\ket{w_2} - \braket{v_1 | w_2}\ket{v_1}}}\right)\\
 		&= \frac{\braket{v_1 | w_2} - \braket{v_1 | w_2}\braket{v_1 | v_1}}{\norm{\ket{w_2} - \braket{v_1 | w_2}\ket{v_1}}}\\
 		&= 0.
 \end{align*}
+\end{comment}
 
-Suppose $\left\{v_1, \cdots v_n \right\}$ $(n \leq d-1)$ is a orthonormal basis. Then
+
 \begin{align*}
-	\braket{v_j | v_{n+1}} &= \bra{v_j} \left(\frac{\ket{w_{n+1}} - \sum_{i=1}^{n}\braket{v_i | w_{n+1}}\ket{v_i}}{\norm{\ket{w_{n+1}} - \sum_{i=1}^{n}\braket{v_i | w_{n+1}}\ket{v_i}}}\right)~~(j \leq n)\\
-	&= \frac{\braket{v_j | w_{n+1}} - \sum_{i=1}^{n}\braket{v_i | w_{n+1}}\braket{v_j | v_i}}{\norm{\ket{w_{n+1}} - \sum_{i=1}^{n}\braket{v_i | w_{n+1}}\ket{v_i}}}\\
-	&= \frac{\braket{v_j | w_{n+1}} - \sum_{i=1}^{n}\braket{v_i | w_{n+1}}\delta_{ij}}{\norm{\ket{w_{n+1}} - \sum_{i=1}^{n}\braket{v_i | w_{n+1}}\ket{v_i}}}\\
-	&= \frac{\braket{v_j | w_{n+1}} - \braket{v_j | w_{n+1}}}{\norm{\ket{w_{n+1}} - \sum_{i=1}^{n}\braket{v_i | w_{n+1}}\ket{v_i}}}\\
-	&= 0.
-\end{align*}
-Thus Gram-Schmidt procedure produces an orthonormal basis.
-
-
-\Textbf{2.9}
-\begin{align*}
-	\sigma_0 &= I = \ket{0}\bra{0} + \ket{1}\bra{1}\\
-	\sigma_1 &= X = \ket{0}\bra{1} + \ket{1}\bra{0}\\
-	\sigma_2 &= Y = -i\ket{0}\bra{1} + i\ket{1}\bra{0}\\
-	\sigma_3 &= Z = \ket{0}\bra{0} - \ket{1}\bra{1}
+	\braket{v_j | v_d} &= \bra{v_j} \left(\frac{\ket{w_d} - \sum_{i=1}^{d-1}\braket{v_i | w_d}\ket{v_i}}{\norm{\ket{w_d} - \sum_{i=1}^{d-1}\braket{v_i | w_d}\ket{v_i}}}\right) \tag{definition}\\
+	&= \frac{\braket{v_j | w_d} - \sum_{i=1}^{d-1}\braket{v_i | w_d}\braket{v_j | v_i}}{\norm{\ket{w_d} - \sum_{i=1}^{d-1}\braket{v_i | w_d}\ket{v_i}}} \tag{linearity in the 2nd argument}\\
+	&= \frac{\braket{v_j | w_d} - \sum_{i=1}^{d-1}\braket{v_i | w_d}\delta_{ij}}{\norm{\ket{w_d} - \sum_{i=1}^{d-1}\braket{v_i | w_d}\ket{v_i}}} \tag{orthonormality of $\ket{v_1},\cdots,\ket{v_{d-1}}$}\\
+	&= \frac{\braket{v_j | w_d} - \braket{v_j | w_d}}{\norm{\ket{w_d} - \sum_{i=1}^{d-1}\braket{v_i | w_d}\ket{v_i}}} \tag{definition of $\delta_{ij}$}\\
+	&= 0 \tag{arithmetic}.
 \end{align*}
 
-
-\Textbf{2.10}
+\Textbf{2.9} (Pauli operators and the outer product) The Pauli matrices can be considered as operators with respect to an orthonormal basis $\ket{0}, \ket{1}$ for a two-dimensional Hilbert space.  Express each of the Pauli operators in the outer product notation.
 \begin{align*}
-	\ket{v_j}\bra{v_k} &= I_V \ket{v_j} \bra{v_k} I_V\\
-	&= \left(\sum_p \ket{v_p}\bra{v_p} \right) \ket{v_j}\bra{v_k} \left(\sum_q \ket{v_q}\bra{v_q} \right)\\
-	&= \sum_{p,q} \ket{v_p} \braket{v_p|v_j}
-	\braket{v_k | v_q} \bra{v_q}\\
-	&= \sum_{p,q} \delta_{pj} \delta_{kq} \ket{v_p} \bra{v_q}
+	\sigma_0 &= I \hspace{4.5pt}= \ket{0}\bra{0} + \ket{1}\bra{1}\\
+	\sigma_x = \sigma_1 &= X = \ket{1}\bra{0} + \ket{0}\bra{1}\\
+	\sigma_y = \sigma_2 &= Y \hspace{1.5pt}=  i\ket{1}\bra{0} - i\ket{0}\bra{1}\\
+	\sigma_z = \sigma_3 &= Z \hspace{1.5pt}= \ket{0}\bra{0} - \ket{1}\bra{1}
+\end{align*}
+
+
+\Textbf{2.10} Suppose $\ket{v_i}$ is an orthonormal basis for an inner product space $V$.  What is the matrix representation for the operator $\ket{v_j}\bra{v_k}$, with respect to the $\ket{v_i}$ basis?
+\Soln \begin{comment} Let $\ket{v}=\sum_i a_i\ket{v_i}$ be a vector in $V$. 
+\begin{align*}
+	(\ket{v_j}\bra{v_k})(\ket{v}) = (\ket{v_j}\bra{v_k})\left(\sum_i a_i\ket{v_i}\right) &= \sum_i\braket{v_k|v_i}\ket{v_j} \tag{definition}\\
+	&= \sum_i\delta_{ki}\ket{v_j}
+\end{align*}
+\end{comment}
+\begin{align*}
+	\ket{v_j}\bra{v_k} &= I_V \ket{v_j} \bra{v_k} I_V \tag{multiply by identity}\\
+	&= \left(\sum_p \ket{v_p}\bra{v_p} \right) \ket{v_j}\bra{v_k} \left(\sum_q \ket{v_q}\bra{v_q} \right) \tag{completeness}\\
+	&= \sum_{p,q} \ket{v_p} \braket{v_p|v_j}\braket{v_k | v_q} \bra{v_q} \tag{linearity and outer product definition}\\
+	&= \sum_{p,q} \delta_{pj} \delta_{kq} \ket{v_p} \bra{v_q} \tag{orthonormality}
 \end{align*}
 Thus
 \begin{align*}
-	\left( \ket{v_j}\bra{v_k} \right)_{pq} = \delta_{pj} \delta_{kq}
+	\left( \ket{v_j}\bra{v_k} \right)_{pq} = \delta_{pj} \delta_{kq} = \left\{\begin{array}{ll}1 & p=j, k=q \\ 0 & o/w\end{array}.\right. 
 \end{align*}
+That is, $\ket{v_j}\bra{v_k}$ is a square matrix with a 1 in row $j$,  column $k$, and 0s everywhere else.
 
+\Textbf{Cauch-Schwartz inequality} A brief expansion from a mathematician: in equation (2.26), other $\ket{i}$-basis vectors appear, but since $\braket{i|v}=\braket{v|i}^*$, $a\cdot a^* = \norm{a} \geq 0$ for all $a\in\mathbb{C}$, and $\braket{\cdot | \cdot}$ is positive definite, all terms but the first constructed in terms of $\ket{w}$ are non-negative and can be removed, leaving the inequality.
 
-
-\Textbf{2.11}
+\Textbf{2.11} Eigendecomposition of the Pauli matrices: Find the eigenvectors, eigenvalues, and diagonal representations of the Pauli matrices $X, Y$, and $Z$.
+\Soln
 \begin{align*}
 	X = \begin{bmatrix}
 	0 & 1 \\
@@ -282,13 +298,176 @@ Thus
 	\det \left(\begin{bmatrix}
 	-\lambda & 1 \\
 	1 & -\lambda
-	\end{bmatrix} \right) = 0 \Rightarrow \lambda = \pm 1
+	\end{bmatrix} \right) = \lambda^2-1 = 0 \Rightarrow \lambda = \pm 1
 \end{align*}
-
+If $\lambda = 1$,
+\begin{align*}
+	\begin{bmatrix}
+		0 & 1 \\
+		1 & 0
+	\end{bmatrix}
+	\begin{bmatrix}
+		c_1 \\
+		c_2
+	\end{bmatrix} =
+	\begin{bmatrix}
+	      c_2 \\
+	      c_1
+	\end{bmatrix} =
+	 1
+	\begin{bmatrix}
+		c_1 \\
+		c_2
+	\end{bmatrix}
+	\Rightarrow c_2 = c_1
+\end{align*}
+The eigenspace corresponding to $\lambda = 1$ is the set of vectors $\begin{bmatrix}c \\ c\end{bmatrix}$.  The vector $\frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 1\end{bmatrix} = \ket{+}$ is such a unit (normalized) vector. 
 If $\lambda = -1$,
 \begin{align*}
 	\begin{bmatrix}
-		1 & 1 \\
+		0 & 1 \\
+		1 & 0
+	\end{bmatrix}
+	\begin{bmatrix}
+		c_1 \\
+		c_2
+	\end{bmatrix} =
+	\begin{bmatrix}
+	      c_2 \\
+	      c_1
+	\end{bmatrix} =
+	 -1
+	\begin{bmatrix}
+		c_1 \\
+		c_2
+	\end{bmatrix}
+	\Rightarrow c_2 = -c_1
+\end{align*}
+The eigenspace corresponding to $\lambda = -1$ is the set of vectors $\begin{bmatrix}c \\ -c\end{bmatrix}$.  The vector $\frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ -1\end{bmatrix} = \ket{-}$ is such a unit (normalized) vector.  So, a diagonal representation of $X$ (when expressed in terms of the computational basis) is $\bigl(\ket{+}\bra{+}\bigr)-\bigl(\ket{-}\bra{-}\bigr) = \begin{bmatrix}\frac{1}{2} & \frac{1}{2} \\ \frac{1}{2} & \frac{1}{2}\end{bmatrix} - \begin{bmatrix} \frac{1}{2} & \frac{-1}{2} \\ \frac{-1}{2} & \frac{1}{2}\end{bmatrix} \bigl( = X\bigr)$.
+
+\begin{align*}
+	Y = \begin{bmatrix}
+	0 & -i \\
+	i & 0
+	\end{bmatrix},\ \det(Y-\lambda I) =
+	\det \left(\begin{bmatrix}
+	-\lambda & -i \\
+	i & -\lambda
+	\end{bmatrix} \right) = \lambda^2-(i)(-i)=\lambda^2 - 1 = 0 \Rightarrow \lambda = \pm 1
+\end{align*}
+If $\lambda = 1$,
+\begin{align*}
+	\begin{bmatrix}
+		0 & -i \\
+		i & 0
+	\end{bmatrix}
+	\begin{bmatrix}
+		c_1 \\
+		c_2
+	\end{bmatrix} =
+	\begin{bmatrix}
+	      -i\cdot c_2 \\
+	      i\cdot c_1
+	\end{bmatrix} =
+	 1
+	\begin{bmatrix}
+		c_1 \\
+		c_2
+	\end{bmatrix}
+	\Rightarrow c_2 = i\cdot c_1
+\end{align*}
+The eigenspace corresponding to $\lambda = 1$ is the set of vectors $\begin{bmatrix}c \\ i\cdot c\end{bmatrix}$.  The vector $\frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ i\end{bmatrix}\equiv\ket{\psi_{y^+}}$ is such a unit (normalized) vector. 
+If $\lambda = -1$,
+\begin{align*}
+	\begin{bmatrix}
+		0 & -i \\
+		i & 0
+	\end{bmatrix}
+	\begin{bmatrix}
+		c_1 \\
+		c_2
+	\end{bmatrix} =
+	\begin{bmatrix}
+	      -i\cdot c_2 \\
+	      i\cdot c_1
+	\end{bmatrix} =
+	 -1
+	\begin{bmatrix}
+		c_1 \\
+		c_2
+	\end{bmatrix}
+	\Rightarrow c_2 = -i\cdot c_1
+\end{align*}
+The eigenspace corresponding to $\lambda = -1$ is the set of vectors $\begin{bmatrix}c \\ -i\cdot c\end{bmatrix}$.  The vector $\frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ -i\end{bmatrix}\equiv\ket{\psi_{y^-}}$ is such a unit (normalized) vector.  So, a diagonal representation of $Y$ (when expressed in terms of the computational basis) is $\bigl(\ket{\psi_{y^+}}\bra{\psi_{y^+}}\bigr) - \bigl(\ket{\psi_{y^-}}\bra{\psi_{y^-}}\bigr) = \begin{bmatrix}\frac{1}{2} & \frac{-i}{2} \\ \frac{i}{2} & \frac{1}{2}\end{bmatrix} - \begin{bmatrix}\frac{1}{2} & \frac{i}{2} \\ \frac{-i}{2} & \frac{1}{2}\end{bmatrix} \bigl( = Y\bigr)$.
+
+\begin{align*}
+	Z = \begin{bmatrix}
+	1 & 0 \\
+	0 & -1
+	\end{bmatrix},\ \det(Z-\lambda I) =
+	\det \left(\begin{bmatrix}
+	1-\lambda & 0 \\
+	0 & -1-\lambda
+	\end{bmatrix} \right) = (\lambda+1)(\lambda- 1) = 0 \Rightarrow \lambda = \pm 1
+\end{align*}
+If $\lambda = 1$,
+\begin{align*}
+	\begin{bmatrix}
+		1 & 0 \\
+		0 & -1
+	\end{bmatrix}
+	\begin{bmatrix}
+		c_1 \\
+		c_2
+	\end{bmatrix} =
+	\begin{bmatrix}
+	      c_1 \\
+	      -c_2
+	\end{bmatrix} =
+	 1
+	\begin{bmatrix}
+		c_1 \\
+		c_2
+	\end{bmatrix}
+	\Rightarrow c_2 = -c_2 \Rightarrow c_2 = 0
+\end{align*}
+The eigenspace corresponding to $\lambda = 1$ is the set of vectors $\begin{bmatrix}c \\ 0\end{bmatrix}$.  The vector $\begin{bmatrix} 1 \\ 0\end{bmatrix}=\ket{0}$ is such a unit (normalized) vector. 
+If $\lambda = -1$,
+\begin{align*}
+	\begin{bmatrix}
+		1 & 0 \\
+		0 & -1
+	\end{bmatrix}
+	\begin{bmatrix}
+		c_1 \\
+		c_2
+	\end{bmatrix} =
+	\begin{bmatrix}
+	      c_1 \\
+	      -c_2
+	\end{bmatrix} =
+	 -1
+	\begin{bmatrix}
+		c_1 \\
+		c_2
+	\end{bmatrix}
+	\Rightarrow c_1 = -c_1
+\end{align*}
+The eigenspace corresponding to $\lambda = -1$ is the set of vectors $\begin{bmatrix}0 \\ c\end{bmatrix}$.  The vector $\begin{bmatrix} 0 \\ 1\end{bmatrix}=\ket{1}$ is such a unit (normalized) vector.  So, the computation basis \textit{is} the eigenbasis for $Z$, and a diagonal representation of $Z$ is $\bigl(\ket{0}\bra{0}\bigr) - \bigl(\ket{1}\bra{1}\bigr) = \begin{bmatrix}1 & 0 \\ 0 & 0\end{bmatrix} - \begin{bmatrix}0 & 0 \\ 0 & -1\end{bmatrix} \bigl( = Z\bigr)$.
+
+
+\Textbf{2.12} Prove that the matrix $\begin{bmatrix}1 & 0 \\ 1 & 1\end{bmatrix} (\equiv A)$ is not diagonalizable.
+\Soln
+\begin{align*}\det(A-\lambda I) = 
+	\det \left(\begin{bmatrix}
+	1 & 0 \\
+	1 & 1
+	\end{bmatrix} - \lambda I \right) = \det \left(\begin{bmatrix}1-\lambda & 0 \\ 1 & 1-\lambda\end{bmatrix}\right)= (1 - \lambda)^2 = 0 \Rightarrow \lambda = 1\ \mathrm{(with\ multiplicity\ 2)}
+\end{align*}
+All eigenvectors $\begin{bmatrix}c_1\\c_2\end{bmatrix}$ satisfy:
+\begin{align*}
+	\begin{bmatrix}
+		1 & 0 \\
 		1 & 1
 	\end{bmatrix}
 	\begin{bmatrix}
@@ -296,94 +475,37 @@ If $\lambda = -1$,
 		c_2
 	\end{bmatrix} =
 	\begin{bmatrix}
-		0 \\
-		0
-	\end{bmatrix}
-\end{align*}
-Thus
-\begin{align*}
-	\ket{\lambda = -1} = \begin{bmatrix}
-	c_1 \\
-	c_2
-	\end{bmatrix} = \frac{1}{\sqrt{2}}
+	      c_1 \\
+	      c_1+c_2
+	\end{bmatrix} =
+	 1
 	\begin{bmatrix}
-	-1 \\
-	1
+		c_1 \\
+		c_2
 	\end{bmatrix}
+	\Rightarrow c_1 = 0
 \end{align*}
+So, the eigenspace corresponding to eigenvalue 1 of $A$ is 1-dimensional, with a single unit (normalized) vector $\begin{bmatrix}0 \\ 1\end{bmatrix}=\ket{1}$. The only possible diagonal representation of $A$ would then be $A = \ket{1}\bra{1}$, but this equality does not hold.  We conclude that $A$ has no diagonal representation and is not diagonalizable.
 
-If $\lambda = 1$
+\Textbf{2.13} If $\ket{w}$ and $\ket{v}$ are any two vectors, show that $\bigl(\ket{w}\bra{v}\bigr)^\dagger = \ket{v}\bra{w}$.
+\Soln We show that $\ket{v}\bra{w}$ has the defining property of $\bigl(\ket{w}\bra{v}\bigr)^\dagger$, \textit{i.e.} if $\ket{\psi},\ \ket{\phi}$ are arbitrary vectors in $V$, then $\Bigl(\ket{\psi}, \bigl(\ket{w}\bra{v}\bigr)\ket{\phi}\Bigr) = \Bigl(\bigl(\ket{v}\bra{w}\bigr)\ket{\psi}, \ket{\phi}\Bigr)$.  We do so by expanding $\Bigl(\ket{\psi}, \bigl(\ket{w}\bra{v}\bigr)\ket{\phi}\Bigr)^*$ in two different ways. 
 \begin{align*}
-	\ket{\lambda = 1} = \frac{1}{\sqrt{2}}
-	\begin{bmatrix}
-	1 \\
-	1
-	\end{bmatrix}
+	\Bigl(\ket{\psi},\ \bigl(\ket{w}\bra{v}\bigr) \ket{\phi}\Bigr)^* &=
+	\Bigl(\bigl(\ket{w}\bra{v}\bigr)^\dagger \ket{\psi},\  \ket{\phi}\Bigr)^* \tag{defintion of $^\dagger$}\\
+	&= \Bigl(\ket{\phi},\bigl(\ket{w}\bra{v}\bigr)^\dagger \ket{\psi} \Bigr) \tag{conjugate symmetry}
 \end{align*}
-
-\begin{align*}
-	X = \begin{bmatrix}
-	-1 & 0 \\
-	0 & 1
-	\end{bmatrix}
-	\text{ w.r.t. } \left\{ \ket{\lambda = -1},\ \ket{\lambda = 1}\right\}
-\end{align*}
-
-
-
-\Textbf{2.12}
-\begin{align*}
-	\det \left(\begin{bmatrix}
-	1 & 0 \\
-	1 & 1
-	\end{bmatrix} - \lambda I \right) = (1 - \lambda)^2 = 0 \Rightarrow \lambda = 1
-\end{align*}
-Therefore the eigenvector associated with eigenvalue $\lambda = 1$ is
-\begin{align*}
-	\ket{\lambda = 1} = \begin{bmatrix}
-	0 \\
-	1
-	\end{bmatrix}
-\end{align*}
-
-Because $\ket{\lambda = 1}\bra{\lambda = 1} = \begin{bmatrix}
-0 & 0 \\
-0 & 1
-\end{bmatrix}$,
-\begin{align*}
-	\begin{bmatrix}
-	1 & 0 \\
-	1 & 1
-	\end{bmatrix} \neq c\ket{\lambda = 1}\bra{\lambda = 1} = \begin{bmatrix}
-	0 & 0 \\
-	0 & c
-	\end{bmatrix}
-\end{align*}
-
-
-
-\Textbf{2.13}
-
-Suppose $\ket{\psi},\ \ket{\phi}$ are arbitrary vectors in $V$.
-\begin{align*}
-	\left(\ket{\psi},\ (\ket{w}\bra{v}) \ket{\phi}\right)^* &=
-	\left((\ket{w}\bra{v})^\dagger \ket{\psi},\  \ket{\phi}\right)^*\\
-	&= \left(\ket{\phi},\ (\ket{w}\bra{v})^\dagger \ket{\psi} \right)\\
-	&= \bra{\phi} (\ket{w}\bra{v})^\dagger \ket{\psi}.
-\end{align*}
-
 On the other hand,
 \begin{align*}
-	\left(\ket{\psi},\ (\ket{w}\bra{v}) \ket{\phi}\right)^*
-	&= (\braket{\psi | w} \braket{v | \phi})^*\\
-	&= \braket{\phi | v} \braket{w | \psi}.
+	\Bigl(\ket{\psi},\bigl(\ket{w}\bra{v}\bigr) \ket{\phi}\Bigr)^*
+	&= \bigl(\braket{\psi | w}, \braket{v | \phi}\bigr)^* \tag{associativity of $\bra{\cdot},\ket{\cdot}, \braket{\cdot|\cdot}$, and $\ket{\cdot}\bra{\cdot}$}\\
+	&= \bigl(\braket{\phi | v}, \braket{w | \psi}\bigr)^* \tag{conjugate symmetry}\\
+	&= \Bigl(\bra{\phi}, \bigl(\ket{v}\bra{w}\bigr)\ket{\psi}\Bigr). \tag{notation}
 \end{align*}
-
 Thus
 \begin{align*}
-	\bra{\phi} (\ket{w}\bra{v})^\dagger \ket{\psi} = \braket{\phi | v} \braket{w | \psi} \text{ for arbitrary vectors } \ket{\psi},\ \ket{\phi}\\
-	\therefore (\ket{w}\bra{v})^\dagger = \ket{v}\bra{w}
+	\Bigl(\ket{\phi},\bigl(\ket{w}\bra{v}\bigr)^\dagger \ket{\psi} \Bigr) = \Bigl(\bra{\phi}, \bigl(\ket{v}\bra{w}\bigr)\ket{\psi}\Bigr) \text{ for arbitrary vectors } \ket{\psi},\ \ket{\phi}
 \end{align*}
+We conclude that $\bigl(\ket{w}\bra{v}\bigr)^\dagger$ and $\ket{v}\bra{w}$ are \underline{the same operator}, so $\bigl(\ket{w}\bra{v}\bigr)^\dagger = \ket{v}\bra{w}$.
 
 
 \Textbf{2.14}

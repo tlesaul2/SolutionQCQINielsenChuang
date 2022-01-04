@@ -38,6 +38,8 @@
 \usepackage{stmaryrd}
 \usepackage{adjustbox}
 \usepackage{lscape}
+\usepackage{tocloft}
+\usepackage{comment}
 
 
 \usepackage{fancyhdr}
@@ -57,6 +59,7 @@
 \newcommand{\Soln}{\textbf{\\Soln: }}
 \newtheorem{thm}{Theorem.}[section]
 \newtheorem{prop}{Proposition.}[section]
+
 
 
 \title{Select Solutions for ``Quantum Computation and Quantum Information: 10th Anniversary Edition" by Nielsen and Chuang}
@@ -104,6 +107,8 @@ If you find some mistake or have some comments, please feel free to open an issu
 \href{https://github.com/tlesaul2}{tlesaul2}
 \end{flushright}
 
+\clearpage
+
 {\let\cleardoublepage\clearpage\tableofcontents\thispagestyle{empty}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -111,7 +116,7 @@ If you find some mistake or have some comments, please feel free to open an issu
 \include{chapter/errata}
 
 \mainmatter
-\input{chapter/chapter1}
+\setcounter{chapter}{1}
 \input{chapter/chapter2}
 \setcounter{chapter}{7}
 \input{chapter/chapter8}
@@ -120,6 +125,11 @@ If you find some mistake or have some comments, please feel free to open an issu
 \input{chapter/chapter11}
 
 \input{chapter/chapter12}
+
+\setcounter{chapter}{0}
+\input{chapter/chapter1}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
