@@ -507,31 +507,32 @@ Thus
 \end{align*}
 We conclude that $\bigl(\ket{w}\bra{v}\bigr)^\dagger$ and $\ket{v}\bra{w}$ are \underline{the same operator}, so $\bigl(\ket{w}\bra{v}\bigr)^\dagger = \ket{v}\bra{w}$.
 
+\Textbf{2.14} Anti-linearity of the adjoint: Show that the adjoint operation is anti-linear,
+\begin{align*}\left(\sum_ia_iA_i\right)^\dagger = \sum_ia_i^*A_i^\dagger\end{align*}
+\Soln It is tempting to assume that $\left(\sum_ia_iA_i\right)^\dagger = \sum_i(a_iA_i)^\dagger$, \textit{i.e.} that the $^\dagger$ transformation is additive, but we don't yet know this. It will follow from the fact that $A^\dagger \equiv (A^*)^T$ given after problem 2.15, and that both $^*$ and $^T$ are linear. This itself is not hard to prove by observing that $(A^*)^T$ has the defining propery of $A^\dagger$, making use of the matrix formulation of the inner product.  Without the assumption though, we must be careful to carry around the full sums until additivity (and in-fact full linearity) is known.
 
-\Textbf{2.14}
 \begin{align*}
-	( (a_i A_i)^\dagger \ket{\phi},\ \ket{\psi} )
-	&= (\ket{\phi},\ a_i A_i \ket{\psi})\\
-	&= a_i (\ket{\phi},\ A_i \ket{\psi})\\
-	&= a_i (A_i^\dagger \ket{\phi},\ \ket{\psi})\\
-	&= (a_i^* A_i^\dagger \ket{\phi},\ \ket{\psi})\\
+	\left(\left(\sum_ia_i A_i\right)^\dagger \ket{\phi},\ \ket{\psi} \right)
+	&= \left(\ket{\phi},\left(\sum_ia_i A_i\right) \ket{\psi}\right) \tag{definition of $\dagger$}\\
+	&= \left(\ket{\phi}, \sum_ia_iA_i\ket{\psi}\right) \tag{distributivity of matrix multiplication}\\
+	&= \sum_ia_i \bigl(\ket{\phi},\ A_i \ket{\psi}\bigr) \tag{linearity in the second argument}\\
+	&= \sum_ia_i \left(A_i^\dagger \ket{\phi},\ \ket{\psi}\right) \tag{definition of $\dagger$}\\
+	&= \sum_i\left(a_i^* A_i^\dagger \ket{\phi},\ \ket{\psi}\right) \tag{conjugate-linearity in the first argument}\\
+	&= \left(\left(\sum_ia_i^* A_i^\dagger\right) \ket{\phi},\ \ket{\psi}\right) \tag{distributivity of matrix multiplication}\\
 %
-	\therefore (a_i A_i)^\dagger = a_i^* A_i^\dagger
+	\text{therefore } \left(\sum_ia_i A_i\right)^\dagger &= \sum_ia_i^* A_i^\dagger \tag*{$\square$}
 \end{align*}
 
-
-
-
-\Textbf{2.15}
+\Textbf{2.15} Show that $\left(A^\dagger\right)^\dagger = A$.
+\Soln We show that $A$ has the defining property of the adjoint of $A^\dagger$. 
 \begin{align*}
-	((A^\dagger)^\dagger\ket{\psi},\ \ket{\phi} )
-	&= (\ket{\psi},\ A^\dagger \ket{\phi})\\
-	&= (A^\dagger \ket{\phi},\ \ket{\psi})^*\\
-	&= (\ket{\phi},\ A\ket{\psi})^*\\
-	&= (A\ket{\psi},\ \ket{\phi})\\
-	\therefore (A^\dagger)^\dagger = A
+	\left(\left(A^\dagger\right)^\dagger\ket{\psi},\ \ket{\phi} \right)
+	&= \left(\ket{\psi},\ A^\dagger \ket{\phi}\right) \tag*{$\left(\text{definition of } \left(A^\dagger\right)^\dagger\right)$}\\
+	&= \left(A^\dagger \ket{\phi},\ \ket{\psi}\right)^* \tag{conjugate symmetry}\\
+	&= (\ket{\phi},\ A\ket{\psi})^* \tag{definition of $A^\dagger$}\\
+	&= (A\ket{\psi},\ \ket{\phi}) \tag{conjugate symmetry}\\
+	\text{therefore } \left(A^\dagger\right)^\dagger &= A \tag*{$\square$}
 \end{align*}
-
 
 \Textbf{2.16}
 \begin{align*}
