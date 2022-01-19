@@ -534,70 +534,71 @@ We conclude that $\bigl(\ket{w}\bra{v}\bigr)^\dagger$ and $\ket{v}\bra{w}$ are \
 	\text{therefore } \left(A^\dagger\right)^\dagger &= A \tag*{$\square$}
 \end{align*}
 
-\Textbf{2.16}
+\Textbf{2.16} Show that any projector $P$ satisfies the equation $P^2 = P$.
 \begin{align*}
-	P &= \sum_i \ket{i}\bra{i}.\\
-	P^2 &= \left(\sum_i \ket{i}\bra{i}\right) \left(\sum_j \ket{j}\bra{j}\right)\\
-	&= \sum_{i,j} \ket{i}\braket{i | j}\bra{j}\\
-	&= \sum_{i,j} \ket{i}\bra{j} \delta_{ij}\\
-	&= \sum_i \ket{i}\bra{i}\\
-	&= P
+	P &= \sum_i \ket{i}\bra{i}. \tag{definition}\\
+	P^2 &= \left(\sum_i \ket{i}\bra{i}\right) \left(\sum_j \ket{j}\bra{j}\right) \tag{square definition}\\
+	&= \sum_{i,j} \ket{i}\braket{i | j}\bra{j} \tag{distributivity}\\
+	&= \sum_{i,j} \ket{i}\bra{j} \delta_{ij} \tag*{$\bigl(\text{evaluate} \braket{i | j}\bigr)$}\\
+	&= \sum_i \ket{i}\bra{i}\tag{evaluate sum over $j$}\\
+	&= P \tag{definition}
 \end{align*}
 
 
-\Textbf{2.17}
+\Textbf{2.17} Show that a normal matrix is Hermitian if and only if it has real eigenvalues.
 \begin{proof}
 	($\Rightarrow$) Suppose $A$ is Hermitian. Then $A=A^\dagger$.
-	Let $\ket{\lambda}$ be eigenvectors of $A$ with eigenvalues $\lambda$, that is,
+	Let $\lambda$ be an eigenvalue of $A$ with unit-eigenvector $\ket{\lambda}$.  We have:
 	\begin{align*}
-		A \ket{\label{text}} = \lambda \ket{\lambda}.
+		A \ket{\lambda} &= \lambda \ket{\lambda} \tag{definition} \\
+		\braket{\lambda | A | \lambda} &= \lambda \braket{\lambda | \lambda} \tag*{$\bigl(\text{multiply by } \bra{\lambda}\bigr)$}\\
+		& = \lambda. \tag{$\lambda$ is a unit-vector}
 	\end{align*}
-	Therefore
+	Now:
 	\begin{align*}
-		\braket{\lambda | A | \lambda} = \lambda \braket{\lambda | \lambda} = \lambda.
+		\lambda^*  &= \braket{\lambda | A | \lambda}^* \tag{conjugate}\\
+		&= \bigl(\ket{\lambda} , A\ket{\lambda}\bigl)^* \tag{change notation}\\
+		&= \bigl(A\ket{\lambda},\lambda\bigr) \tag{conjugate symmetry} \\
+		&= \bigl(A^\dagger\ket{\lambda}, \ket{\lambda}\bigr) \tag{hypothesis} \\
+		&= \bigl(\ket{\lambda}, A\ket{\lambda}\bigr) \tag{definiton of $^\dagger$} \\
+		&= \lambda \tag{from above}
 	\end{align*}
-	On the other hand,
-	\begin{align*}
-		\lambda^*  = \braket{\lambda | A | \lambda}^*
-								= \braket{\lambda | A^\dagger |  \lambda}
-								= \braket{\lambda | A | \lambda}
-								= \lambda \braket{\lambda | \lambda} = \lambda.
-	\end{align*}
-	Hence eigenvalues of Hermitian matrix are real.
-
-	($\Leftarrow$) Suppose eigenvalues of $A$ are real. From spectral theorem, normal matrix $A$ can be written by
+	So the eigenvalue $\lambda$ is real, since only real numbers are equal to their conjugates.
+	
+	\noindent($\Leftarrow$) To prove the converse we make use of the spectral deomposition theorem. It's proof does \textit{not} use the fact that a normal matrix is Hermition if and only if it's eigenvalues are real, so using it here does not make this proof circular.  Suppose the eigenvalues of $A$ are real. From the spectral decomposition theorem there exists a set of eigenvalues $\lambda_i$ and a corresponding orthonormal basis $\ket{\lambda_i}$ such that
 	\begin{align}
-		A= \sum_i \lambda_i \kb{\lambda_i}
+		A = \sum_i \lambda_i \kb{\lambda_i} \tag{spectral decomposition}
 	\end{align}
-	where $\lambda_i$ are  real eigenvalues with eigenvectors $\ket{\lambda_i}$.
-	By taking adjoint, we get
+From this we have:
 	\begin{align*}
-		A^\dagger &= \sum_i \lambda_i^* \kb{\lambda_i}\\
-								&= \sum_i \lambda_i \kb{\lambda_i}~~~(\because \lambda_i \text{ are real})\\
-								&= A
+		A^\dagger &= \left(\sum_i \lambda_i\kb{\lambda_i}\right)^\dagger \tag{apply adjoint}\\
+	&= \sum_i\lambda_i^*\bigl(\kb{\lambda_i}\bigr)^\dagger \tag{anti-linearity}\\
+	&= \sum_i \lambda_i \kb{\lambda_i} \tag{$\lambda_i$ real, projectors are Hermitian}\\
+								&= A \tag{from spectral decomposition}
 	\end{align*}
 	Thus $A$ is Hermitian.
 \end{proof}
 
-\Textbf{2.18}
-
-Suppose $\ket{v}$ is a eigenvector with corresponding eigenvalue $\lambda$.
+\Textbf{2.18} Show that all eigenvalues of a unitary matrix have modulus 1, that is, can be written in the form $e^{i\theta}$ for some real $\theta$.
+\Soln
+Suppose $\lambda$ is an eigenvalue with corresponding unit-eigenvector $\ket{v}$
 \begin{align*}
-	U \ket{v} &= \lambda \ket{v}.\\
-	1 &= \braket{v | v}\\
-	&= \bra{v} I \ket{v}\\
-	&= \bra{v} U^\dagger U \ket{v}\\
-	&= \lambda \lambda^* \braket{v | v}\\
-	&= \norm{\lambda}^2\\
-	\therefore \lambda &= e^{i \theta}
+	1 &= \braket{v | v} \tag{$\ket{v}$ is a unit vector}\\
+	&= \braket{v | I | v} \tag{multiply by identity}\\
+	&= \braket{v | U^\dagger U  | v} \tag{$U$ is unitary}\\
+	&= \bigl(\bra{v}U^\dagger\bigr)\bigl(U\ket{v}\bigr) \tag{associativity of matrix multiplication}\\
+	&= \bigl(U\ket{v}\bigr)^\dagger\bigl(U\ket{v}\bigr) \tag{arithmetic properties of $^\dagger$}\\
+	&= \bigl(\lambda\ket{v}\bigr)^\dagger\bigl(\lambda\ket{v}\bigr) \tag{$\ket{v}$ is an eigenvector} \\
+	&= \lambda^*\lambda\braket{v | v} \tag{re-apply $^\dagger$ and simplify} \\
+	&= \norm{\lambda}^2 \tag{definiton of $\norm{\cdot}$, $\ket{v}$ is a unit-vector}
 \end{align*}
+Now $\norm{\lambda} = 1$, and all complex numbers with modulus 1 are located on the unit-circle in $\mathbb{C}$ and can be expressed as $e^{i\theta}$ for some real $\theta \bigl(\in[0,2\pi)\bigr)$
 
-
-
-
-\Textbf{2.19}
+\Textbf{2.19} Show that the Pauli matrices are Hermitian and unitary
+\Soln
+It is easy to see that the Pauli matrices are Hermitian (self-adjoint) given the conjugate-transpose formula.  We still must show that their squares are the identity:
 \begin{align*}
-	X^2 = \begin{bmatrix}
+	X^\dagger X = X^2 = \begin{bmatrix}
 		0 & 1 \\
 		1 & 0
 	\end{bmatrix}
@@ -611,7 +612,43 @@ Suppose $\ket{v}$ is a eigenvector with corresponding eigenvalue $\lambda$.
 	\end{bmatrix} = I
 \end{align*}
 
+\begin{align*}
+	Y^\dagger Y = Y^2 = \begin{bmatrix}
+		0 & -i \\
+		i & 0
+	\end{bmatrix}
+	\begin{bmatrix}
+		0 & -i \\
+		i & 0
+	\end{bmatrix}
+	= \begin{bmatrix}
+		-i^2 & 0 \\
+		0 & -i^2
+	\end{bmatrix} 
+	= \begin{bmatrix}
+		1 & 0 \\
+		0 & 1
+	\end{bmatrix} = I
+\end{align*}
 
+\begin{align*}
+	Z^\dagger Z = Z^2 = \begin{bmatrix}
+		1 & 0 \\
+		0 & -1
+	\end{bmatrix}
+	\begin{bmatrix}
+		1 & 0 \\
+		0 & -1
+	\end{bmatrix}
+	= \begin{bmatrix}
+		1 & 0 \\
+		0 & (-1)^2
+	\end{bmatrix}
+	= \begin{bmatrix}
+		1 & 0 \\
+		0 & 1
+	\end{bmatrix} = I
+\end{align*}
 
 \Textbf{2.20}
 \begin{align*}

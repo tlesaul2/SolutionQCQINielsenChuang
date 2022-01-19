@@ -45,10 +45,10 @@ Second checkboxes correspond to checked and/or extended solutions by the current
 - [x] - [x] 2.13
 - [x] - [x] 2.14
 - [x] - [x] 2.15
-- [x] 2.16
-- [x] 2.17
-- [x] 2.18
-- [x] 2.19
+- [x] - [x] 2.16
+- [x] - [x] 2.17
+- [x] - [x] 2.18
+- [x] - [x] 2.19
 - [x] 2.20
 - [x] 2.21
 - [x] 2.22
