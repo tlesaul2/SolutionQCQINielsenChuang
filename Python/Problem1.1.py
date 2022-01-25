@@ -20,7 +20,12 @@ def balanced_extension_probability(n, k):
     else:
         return Fraction(n-2*k+2, 2*n-2*k+2)
 
-@lru_cache(maxsize=2)
+# In order to more quickly generate tables of values of theoretical probabilities to
+# include in the texed solution, caching the previous result was useful. In normal use,
+# caching provides no value, since the function is linearly recursive and must be calculated
+# for increasing values of k.  So, we comment out the cache decorator so as to not incur
+# its overhead
+#@lru_cache(maxsize=1)
 def calculate_theoretical(n, k):
     """
     This function calculates the posterior probability that a function uniformly chosen
@@ -32,11 +37,11 @@ def calculate_theoretical(n, k):
         # the function is recursive.  n is fixed, so we need only a value of k to start
         # from.  k==1 corresponds to the initial evaluation, which does not provide enough
         # information to change the probability that the function is constant vice
-        # balanced.  So, the a priori prior probability of 1/2 is still valid.
+        # balanced.  So, the a priori prior probability of 1/2 is still valid and could
+        # be hard-coded, but we allow it to be calculated recursively instead.
         return Fraction(1, 2)
 
-    # Bayeseian updating requires knowning the previous probability, so calculate it
-    # (recursively)
+    # Bayeseian updating requires knowing the previous probability, so calculate it recursively
     prob_given_one_fewer_evaluations = calculate_theoretical(n,k-1)
 
     # use the previous probability and the probability that the k-th evaluation agrees with the
@@ -50,7 +55,7 @@ def calculate_theoretical(n, k):
 def main(args):
     """
     This function runs experiments to empirically determine the probability that chosen
-    function equally likely to be constant or balanced is in-fact constant, given k
+    function, equally likely to be constant or balanced, is in-fact constant given k
     evaluations in agreement.  It compares the empirical value to a theoretically
     calculated value.
     """
@@ -64,15 +69,20 @@ def main(args):
         # To be 100% faithful, we should randomly decide whether the function is balanced
         # or constant, and tally the constant functions separately, but this only doubles
         # the size of the loop.  Instead, we use this loop to choose num_experiments
-        # balanced functions, and *assume* an equal number of experiments which chose
+        # balanced functions and *assume* an equal number of experiments which chose
         # constant functions were also performed.
 
         # select a balanced function, either by randomly sampling range(domain_size), or
-        # from a pre-computed list.
+        # from a pre-computed list.  The chosen "combination" is the set of numbers on
+        # which the function returns 0.
         if args.conserve_memory:
             combination = set(random.sample(range(args.domain_size),args.domain_size//2))
         else:
             combination = set(random.choice(combinations))
+
+        # without loss of generally, we can evaluate the chosen function in sequence, from 0 to
+        # num_evaluations-1.  The function will appear constant if all such numbers are in the
+        # chosen set of numbers on which the function returns 0, or if no such number is in the set.
         if set(range(args.num_evaluations)) <= combination or \
                 (not set(range(args.num_evaluations)) & combination):
             num_experiments_in_which_a_balanced_functions_satisfied_hypotheses+=1
@@ -106,8 +116,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser("This script iteratively calculates the theoretical "
                                      "probability that a chosen function equally likely to be "
                                      "constant or balanced is in-fact constant, given k "
-                                     "evaluations in agreement.  It also simulates the chose and "
-                                     "evaluation to experimentally confirm it's results.  It "
+                                     "evaluations in agreement.  It also simulates the choice and "
+                                     "evaluation to experimentally confirm its results.  It "
                                      "accompanies problem 1.1 of Mike & Ike's 'Quantum Computation "
                                      "and Quantum Information: 10th Anniversary Edition'")
     parser.add_argument("-n","--domain-size",
@@ -135,7 +145,7 @@ if __name__ == "__main__":
                              "of num_evaluations, num_experiments should increase.  The results "
                              "depend on there being a significant number of experiments in which a "
                              "balanced function is selected whose evaluation produces seemingly "
-                             "constant results.  With larger n_evaluations, there are factorially "
+                             "constant results.  With larger num_evaluations, there are factorially "
                              "fewer balanced functions to contribute to the total.")
     parser.add_argument("--conserve-memory",
                         action="store_true",
@@ -152,7 +162,7 @@ if __name__ == "__main__":
 
     # validate arguments
     if args.domain_size < 2:
-        print("ERROR: the domain_size must be a possitive event integer")
+        print("ERROR: the domain_size must be a positive even integer")
         exit(-1)
     if args.domain_size % 2 != 0:
         print("ERROR: the domain_size must be even")
@@ -170,7 +180,7 @@ if __name__ == "__main__":
               "update the prior probability of 1/2 that the function is constant.  We still "
               "perform the experiments and calculate the probability (0.5) theoretically for "
               "completeness and robustness, but the theoretical value in the case of 0 and 1 "
-              "evaluations is essentially hard-coded to be 1/2.  The emprical probability will be "
+              "evaluations is essentially hard-coded to be 1/2.  The empirical probability will be "
               "calculated faithfully, however.")
     if args.num_evaluations > args.domain_size//2:
         # NOTE: validation is not strictly necessary here.  The fact that the function must be
