@@ -650,14 +650,16 @@ It is easy to see that the Pauli matrices are Hermitian (self-adjoint) given the
 	\end{bmatrix} = I
 \end{align*}
 
-\Textbf{2.20}
+\Textbf{2.20} Suppose $A'$ and $A''$ are matrix representations of an operator $A$ on a vector space $V$ with respect to two different orthonormal bases, $\ket{v_i}$ and $\ket{w_i}$.  Then the elements of $A'$ and $A''$ are $A'_{ij} = \braket{v_i | A | v_j}$ and $A''_{ij} = \braket{w_i | A | w_j}$.  Characterize the relationship between $A'$ and $A''$.
+\Soln
 \begin{align*}
-	U &\equiv \sum_i \ket{w_i}\bra{v_i}\\
-	A_{ij}^{'} &= \braket{v_i | A | v_j}\\
-	&= \braket{v_i | UU^\dagger A UU^\dagger | v_j}\\
-	&= \sum_{p,q,r,s} \braket{v_i | w_p} \braket{v_p | v_q} \braket{w_q | A | w_r} \braket{v_r | v_s} \braket{w_s | v_j}\\
-	&= \sum_{p,q,r,s} \braket{v_i | w_p} \delta_{pq} A_{qr}^{''} \delta_{rs}  \braket{w_s | v_j}\\
-	&= \sum_{p,r}  \braket{v_i | w_p}  \braket{w_r | v_j} A_{pr}^{''}
+	U \equiv \sum_i \ket{w_i}\bra{v_i}&,\ \  \ U^\dagger=\sum_j \ket{v_j}\bra{w_j} \tag{construct a unitary operator and its adjoint}\\
+	\\
+	A_{ij}^{'} &= \braket{v_i | A | v_j} \tag{given} \\
+	&= \braket{v_i | UU^\dagger A UU^\dagger | v_j} \tag{$U$ is unitary; $UU^\dagger=I$} \\
+	&= \sum_{p,q,r,s} \braket{v_i | w_p} \braket{v_p | v_q} \braket{w_q | A | w_r} \braket{v_r | v_s} \braket{w_s | v_j} \tag{expand $U,U^\dagger$, apply linearity}\\
+	&= \sum_{p,q,r,s} \braket{v_i | w_p} \delta_{pq} A_{qr}^{''} \delta_{rs}  \braket{w_s | v_j} \tag{$\ket{v_i}$ is orthonormal, apply given for $A''$}\\
+	&= \sum_{p,r}  \braket{v_i | w_p}  \braket{w_r | v_j} A_{pr}^{''} \tag{collect non-zero terms and re-index}
 \end{align*}
 
 
