@@ -258,7 +258,7 @@ We prove inductively.  For $d = 1$, the only requirement is that the procecure n
 	&= 0 \tag{arithmetic}.
 \end{align*}
 
-\Textbf{2.9} (Pauli operators and the outer product) The Pauli matrices can be considered as operators with respect to an orthonormal basis $\ket{0}, \ket{1}$ for a two-dimensional Hilbert space.  Express each of the Pauli operators in the outer product notation.
+\Textbf{2.9} \textbf{(Pauli operators and the outer product)} The Pauli matrices can be considered as operators with respect to an orthonormal basis $\ket{0}, \ket{1}$ for a two-dimensional Hilbert space.  Express each of the Pauli operators in the outer product notation.
 \begin{align*}
 	\sigma_0 &= I \hspace{4.5pt}= \ket{0}\bra{0} + \ket{1}\bra{1}\\
 	\sigma_x = \sigma_1 &= X = \ket{1}\bra{0} + \ket{0}\bra{1}\\
@@ -286,7 +286,7 @@ Thus
 \end{align*}
 That is, $\ket{v_j}\bra{v_k}$ is a square matrix with a 1 in row $j$,  column $k$, and 0s everywhere else.
 
-\Textbf{Cauch-Schwartz inequality} A brief expansion from a mathematician: in equation (2.26), other $\ket{i}$-basis vectors appear, but since $\braket{i|v}=\braket{v|i}^*$, $a\cdot a^* = \norm{a} \geq 0$ for all $a\in\mathbb{C}$, and $\braket{\cdot | \cdot}$ is positive definite, all terms but the first constructed in terms of $\ket{w}$ are non-negative and can be removed, leaving the inequality.
+\Textbf{(Cauchy-Schwartz inequality} A brief expansion from a mathematician: in equation (2.26), other $\ket{i}$-basis vectors appear, but since $\braket{i|v}=\braket{v|i}^*$, $a\cdot a^* = \norm{a} \geq 0$ for all $a\in\mathbb{C}$, and $\braket{\cdot | \cdot}$ is positive definite, all terms but the first constructed in terms of $\ket{w}$ are non-negative and can be removed, leaving the inequality.
 
 \Textbf{2.11} Eigendecomposition of the Pauli matrices: Find the eigenvectors, eigenvalues, and diagonal representations of the Pauli matrices $X, Y$, and $Z$.
 \Soln
@@ -663,129 +663,124 @@ It is easy to see that the Pauli matrices are Hermitian (self-adjoint) given the
 \end{align*}
 
 
-\Textbf{2.21}
+\Textbf{2.21} Repeat the proof of the spectral decomposition in Box 2.2 for the case when $M$ is Hermitian, simplifying the proof wherever possible.
+\\
 
-Suppose $M$ be Hermitian. Then $M = M^\dagger$.
+\noindent\textit{Theorem 2.1} \textbf{(Spectral decomposition)} A \textit{Hermitian} operator $M$ on a vector space $V$ is diagonal with respect to some orthonormal basis for $V$. 
+\begin{proof} We induct on the dimension of $V$, as in the boxed proof.  Let $\lambda$ be an eigenvalue of $M$, $P$ be the projector onto the $\lambda$ eigenspace, and $Q$ the projector onto the orthogonal complement.
 \begin{align*}
-	M &= IMI\\
-		&= (P+Q) M (P+Q)\\
-		&= PMP + QMP + PMQ + QMQ\\
+	M &= IMI \tag{trivial}\\
+		&= (P+Q) M (P+Q)\tag{definition of $Q$}\\
+		&= PMP + QMP + PMQ + QMQ\tag{expand}\\
 \end{align*}
-Now $PMP = \lambda P$, $QMP = 0$, $PMQ = PM^\dagger Q = (QMP)^* = 0$.
-Thus $M = PMP + QMQ$.
-Next prove $QMQ$ is normal.
+Now $PMP = \lambda P$ and $QMP = 0$ as before. To show that $PMQ = 0$ is as easy as substituting $M^\dagger$: 
 \begin{align*}
-	QMQ (QMQ)^\dagger &= QMQ QM^\dagger Q\\
-		&= QM^\dagger Q QMQ ~~~ (M = M^\dagger)\\
-		&= (QM^\dagger Q) QMQ
+PMQ &= PM^\dagger Q \tag{$M$ is Heritian}\\
+&= P(M^{*T}Q) \tag{$^{\dagger}=^{*T}$}\\
+&=(QM^*P)^{T} \tag{properties of $^T$}\\
+&=((QMP)^*)^T \tag{properties of $^*$}\\
+&= 0 \tag{$QMP = 0$}
+\end{align*}
+Thus $M = PMP + QMQ$.
+Next, we prove $QMQ$ is normal.
+\begin{align*}
+	QMQ (QMQ)^\dagger &= QMQ Q^\dagger M^\dagger Q^\dagger \tag{properties of $^\dagger$, and symmetry}\\
+		&= QMQQM^\dagger Q \tag{projectors are Hermitian} \\
+		&= QM^\dagger Q QMQ \tag{$M = M^\dagger$}\\
+		&=Q^\dagger M^\dagger Q^\dagger QMQ \tag{projectors are Hermitian} \\
+		&= (QMQ)^\dagger QMQ  \tag{properties of $^\dagger$, and symmetry}
 \end{align*}
 Therefore $QMQ$ is normal.
-By induction, $QMQ$ is diagonal ... (following is same as Box 2.2)
+By induction, $QMQ$ is diagonal.  The rest follows Box 2.2 identically.
+\end{proof}
 
-\Textbf{2.22}
-
-Suppose $A$ is a Hermitian operator and $\ket{v_i}$ are eigenvectors of $A$ with eigenvalues $\lambda_i$.
+\Textbf{2.22} Prove that two eigenvectors of a Hermitian operator with different eigenvalues are necessarily orthogonal
+\Soln
+Suppose $A$ is a Hermitian operator and $\ket{v_1}, \ket{v_2}$ are eigenvectors of $A$ with eigenvalues $\lambda_1, \lambda_2$, with $\lambda_1\neq\lambda_2$.
 Then
 \begin{align*}
-	\braket{v_i | A | v_j} = \lambda_j \braket{v_i | v_j}.
+	\braket{v_1 | A | v_2} = \lambda_2 \braket{v_1 | v_2}. \tag{definition of $v_1$, linearity of $\braket{\cdot |\cdot}$}
 \end{align*}
 
 On the other hand,
 \begin{align*}
-	\braket{v_i | A | v_j} = \braket{v_i | A^\dagger | v_j}
-	= \braket{v_j | A | v_i}^*
-	= \lambda_i^* \braket{v_j | v_i}^*
-	=  \lambda_i^* \braket{v_i | v_j}
-	=  \lambda_i \braket{v_i | v_j}
+	\braket{v_1 | A | v_2} &= \braket{v_1 | A^\dagger | v_2} \tag{$A$ is Hermitian}\\ 
+	&= \braket{v_2 | A | v_1}^* \tag{properties of $^\dagger$, Hermitian $\Rightarrow$ self-transpose} \\
+	&= \lambda_1\braket{v_2 | v_1}^* \tag{definition of $v_1$, linearity of $\braket{\cdot |\cdot}$}\\
+	&=  \lambda_1\braket{v_1 | v_2} \tag{properties of $^*$}
 \end{align*}
 
 Thus
 \begin{align*}
-	(\lambda_i - \lambda_j) \braket{v_i | v_j}  = 0.
+	(\lambda_1 - \lambda_2) \braket{v_1 | v_2}  = 0.
 \end{align*}
-If $\lambda_i \neq \lambda_j$, then $\braket{v_i | v_j}  = 0$.
+Since $\lambda_1 - \lambda_2 \neq 0$, we must have $\braket{v_1 | v_2}  = 0$, so $v_1$ and $v_2$ are orthogonal.
 
 
-\Textbf{2.23}
-
-Suppose $P$ is projector and $\ket{\lambda}$  are eigenvectors of $P$ with eigenvalues $\lambda$.
-Then $P^2 = P$.
+\Textbf{2.23} Show that the eigenvalues of a projector $P$  are either 0 or 1.
+\Soln Suppose $P$ is projector and $\ket{v}$ is an eigenvector of $P$ with eigenvalue $\lambda$.  By exercise 2.16, $P^2 = P$.  We have $P\ket{v} = \lambda \ket{v}$ by hypothesis.  Alternatively,
 \begin{align*}
-	P \ket{\lambda} = \lambda \ket{\lambda} \text{ and }	P \ket{\lambda} = P^2 \ket{\lambda} = \lambda  P \ket{\lambda} = \lambda^2 \ket{\lambda}.
+	P \ket{v} &= P^2 \ket{\lambda} \tag{exercise 2.16} \\
+ 	&= \lambda  P \ket{v} \tag{hypothesis, linearity} \\
+	&= \lambda^2 \ket{v} \tag{hypothesis}
 \end{align*}
-
 Therefore
 \begin{align*}
 	\lambda = \lambda^2\\
+	\lambda^2-\lambda = 0 \\
 	\lambda (\lambda - 1) = 0\\
 	\lambda = 0 \text{ or } 1.
 \end{align*}
 
 
-\Textbf{2.24}
+\Textbf{2.24} \textbf{(Hermiticity of positive operators)} Show that a positive operator is necessarily Hermitian.
+\Soln Let $A$ be a positive operator, that is, suppose $\braket{v | A | v}$ is real and $\geq 0$ for all $\ket{v}$.  Define $B =\frac{A + A^\dagger}{2}$ and $ C = \frac{A - A^\dagger}{2i}$.  Simple complex arithmetic will show that $A = B+iC$.  $B$ is clearly Hermitian by commutativity of operator addition. $C$ is also Hermitian by linearity of the adjoint, noting that $\left(\frac{1}{2i}\right)^* = -\frac{1}{2i}$.  There are two ways to proceed: one heuristic, and one mathematically rigorous.  We'll start with a heuristic outline of the proof, then provide some mathematically rigorous detail after the fact. 
 
-Def of positive $\braket{v | A | v} \geq 0$ for all $\ket{v}$.
+Let $v$ be a vector and note that it can be proven (below) that $\braket{v | B | v}$ and $\braket{v | C | v}$  are both real numbers.    Now $\braket{v|A|v} = \braket{v|B+iC|v} = \braket{v|B|v} + i\braket{v|C|v}$ by the construction of $B$ and $C$, and the linearity of $\braket{\cdot|\cdot|\cdot}$.  By hypothesis, $\braket{v|A|v}$ is a non-negative real number, so $\braket{v|C|v} = 0$, since both $\braket{v | B | v}$ and $\braket{v | C | v}$  are real.  This will be enough to show that $C=0$ which yields $A=A^\dagger$ by the definition of $C$, that is, $A$ is Hermiitian.
 
-Suppose $A$ is a positive operator. $A$ can be decomposed as follows.
+Now, to complete the proof, we need to rigorously show that both $\braket{v | B | v}$ and $\braket{v | C | v}$ are real numbers, and that if $\braket{v|C|v}=0$ for all $\ket{v}$, then $C = 0$. 
+Let $W$ be Hermitian, thus normal, and note that by exercise 2.17, $W$ has real eigenvalues, say $\omega_i$.  By the spectral decomposition theorem there is an orthnomal basis, say $\ket{w_i}$, such that $W=\sum_i \omega_i\ket{w_i}\bra{w_i}$.  Let $\ket{v}$ be an arbitrary vector, expressed in the orthonormal $\ket{w_i}$-basis as $\sum_i \alpha_i\ket{w_i}$.
 \begin{align*}
-	A &= \frac{A + A^\dagger}{2} + i \frac{A - A^\dagger}{2i}\\
-		&= B + i C  ~~~\text{where } B =\frac{A + A^\dagger}{2}, ~~  C = \frac{A - A^\dagger}{2i}.
+	\braket{v | W | v}  &= \left\langle\sum_j\alpha_j\ket{w_j} \Big\lvert  W \Big\rvert \sum_i\alpha_i\ket{w_i}\right\rangle \tag{by construction}\\
+		&= \sum_i \sum_j \alpha_i\alpha_j^*\braket{w_j|W|w_i} \tag{(conjugate) linearity of $\braket{\cdot|\cdot|\cdot}$} \\
+		&= \sum_i\sum_j \alpha_i\alpha_j^*\left\langle w_j\Big\lvert\sum_k \omega_k\ket{w_k}\bra{w_k}\Big\rvert w_i\right\rangle  \tag{spectral decomposition}\\
+		&= \sum_i\sum_j\sum_k\alpha_i\alpha_j^*\omega_k\braket{w_j|w_k}\braket{w_k|w_i} \tag{linearity of $\braket{\cdot|\cdot|\cdot}$} \\
+		&= \sum_i\sum_j\sum_k\alpha_i\alpha_j^*\omega_k\delta_{jk}\delta_{ki} \tag{orthonomality of the $\ket{w_i}$  basis}  \\
+		&= \sum_k\alpha_k\alpha_k^*\omega_k \tag{collecting non-zero terms}\\
+		&= \sum_k\norm{\alpha_k}^2\omega_k \tag{definition of $\norm{\cdot}$}
 \end{align*}
-Now operators $B$ and $C$ are Hermitian.
+The $\omega_k$ are real numbers by exercise 2.17, and the $\norm{\alpha_k}^2$ are real by the definition of $\norm{\cdot}$, so $\braket{v|W|v|}$ is a sum of real number,  and hence also real itself.  Applying this to $B$ and $C$ above completes the first missing part.  To finally complete the proof we'll require Theorem \ref{diagonalzero} below, more generally applicable to linear operators on complex vector spaces, without the assumption of Hermiticity.  The proof follows an MIT 8.05 Quantum Physics II lecture note  by Prof. Barton Zwiebach (\url{https://ocw.mit.edu/courses/physics/8-05-quantum-physics-ii-fall-2013/lecture-notes/MIT8_05F13_Chap_03.pdf})
 
-\begin{align*}
-	\braket{v | A | v}  &= \braket{v | B + iC | v}\\
-		&= \braket{v | B | v}  + i \braket{v | C | v}\\
-		&= \alpha + i \beta ~~ \text{where } \alpha = \braket{v | B | v}, ~\beta = \braket{v | C | v}.
-\end{align*}
+\begin{prop} \label{fullzero}
+	Let $T$ be a linear operator on a complex vector space $V$. If $\braket{u | T | v } = 0$ for all $\ket{u}, \ket{v} \in V$, then $T = 0$.
+\end{prop}
+\begin{proof}
+	Let $\ket{u} = T\ket{v}$. Then $\Bigl\langle T\ket{v} \Big\vert T | v \Bigr\rangle = \Bigl\langle T\ket{v} \Big\vert  T\ket{v} \Bigr\rangle = \norm{T\ket{v}}^2 = 0$, which implies $T\ket{v} = 0$ for all $v$ by property 3 of the inner product (page 65).  $T$ is identically 0, so is the zero operator, \text{i.e.} $T = 0$.
+\end{proof}
+\begin{thm}\label{diagonalzero}
+	Let $T$ be a linear operator on a complex vector space $V$. If $\braket{v | T | v } = 0$ for all $\ket{v} \in V$, then $T = 0$.
+\end{thm}
+\begin{proof}
+Note that the weakened hypothesis doesn't directly apply if $\ket{u} \neq \ket{v}$.  We show that the ``off-diagonal'', distinct vector hypothesis of Proposition \ref{fullzero} can be derived from the weakened ``diagonal'' hypothesis' of this theorem, that is, if $\braket{v | T | v } = 0$ for all $\ket{v}$, then $\braket{u | T | v } = 0$ for all $\ket{u},\ket{v}$. Then apply proposition \ref{fullzero}
 
-Since $B$ and $C$ are Hermitian, $\alpha,~ \beta \in \mathds{R}$.
-From def of positive operator, $\beta$ should be vanished because $\braket{v | A | v}$ is real.
-Hence $\beta = \braket{v | C | v} =  0$ for all $\ket{v}$, i.e. $C = 0$.
-
-Therefore $A = A^\dagger$.
-
-\begin{screen}
-	Reference: MIT 8.05 Lecture note  by Prof. Barton Zwiebach.\\
-	\url{https://ocw.mit.edu/courses/physics/8-05-quantum-physics-ii-fall-2013/lecture-notes/MIT8_05F13_Chap_03.pdf}
-
-	\begin{prop} \label{prop: zeroop}
-		Let $T$ be a linear operator in a complex vector space $V$.
-
-		If $(u, Tv) = 0$ for all $u, v \in V$, then $T = 0$.
-	\end{prop}
-
-	\begin{proof}
-		Suppose $u = Tv$. Then $(Tv, Tv) = 0$ for all $v$ implies that $Tv = 0$ for all $v$. Therefore $T = 0$.
-	\end{proof}
-
-	\begin{thm}
-		If $(v, Av) = 0$ for all $v \in V$, then $A = 0$. \label{thm:zerooperator}
-	\end{thm}
-
-	\begin{proof}
-		First, we show that $(u, Tv) = 0$ if $(v, Av) = 0$. Then apply proposition \ref{prop: zeroop}\\
-		Suppose $u, v \in V$. Then $(u, Tv)$ is decomposed as
-		\begin{align*}
-			(u, Tv) = \frac{1}{4} \left[ (u+v, T(u+v)) - (u-v, T(u-v)) + \frac{1}{i} (u+iv, T(u+iv)) \right.\\
-			\left. \hspace{4cm} - \frac{1}{i} (u-iv, T(u-iv))  \right].
-		\end{align*}
-		If $(v, Tv) = 0$ for all $v \in V$, the right hand side of above eqn vanishes. Thus $(u, Tv) = 0$ for all $u, v \in V$.
-		Then $T = 0$.
-	\end{proof}
+Suppose $\ket{u}, \ket{v} \in V$. Then note that by ``foiling'' the $\braket{\cdot|\cdot|\cdot}$'s, we can show a ``polarization'' identity, expressing $\braket{u|T|v}$ as follows
+	\begin{align*}
+		\frac{1}{4} \Bigl( \bigl\langle u+v|T|u+v\bigr\rangle - \bigl\langle u-v|T|u-v\bigr\rangle + \frac{1}{i}\bigl\langle u+iv|T|u+iv\bigr\rangle -\frac{1}{i} \bigl\langle u-iv|T|u-iv\bigr\rangle \Bigr) = \\
+		\frac{1}{4}\Bigl( \bigl(\braket{u|T|u} + \braket{u|T|v} + \braket{v|T|u} + \braket{v|T|v}\bigr) - \bigl(\braket{u|T|u} - \braket{u|T|v} - \braket{v|T|u} + \braket{v|T|v}\bigr) + \dots \\
+		  \frac{1}{i}\bigl(\braket{u|T|u}+ i\braket{u|T|v}- i\braket{v|T|u}+ \braket{v|T|v}\bigr) -  \frac{1}{i}\bigl(\braket{u|T|u}- i\braket{u|T|v}+ i\braket{v|T|u} + \braket{v|T|v}\bigr)\Bigr) = \\
+		\frac{1}{4}\bigr(0\braket{u|T|u} + 4\braket{u|T|v} + 0 \braket{v|T|u} + 0\braket{v|T|v}\bigl) = \\
+		\braket{u|T|v} 
+	\end{align*}
+	Applying the diagonal hypothesis to $\ket{u+v}, \ket{u-v}, \ket{u+iv}$, and $\ket{u-iv}$ in the first expression above gives that $\braket{u|T|v} = 0$ for all $\ket{u},\ket{v}$, hence by Proposition \ref{fullzero}, $T = 0$.
+\end{proof}
+Applying Theorem \ref{diagonalzero} to $C$ from above finally completes the proof of the Hermiticity of positive operators.
 
 
-\end{screen}
+\Textbf{2.25} Show that for any operator $A$, $A^\dagger A$ is positive.
+\Soln Its enough to show that $\braket{v | A^\dagger A|v} \geq 0$ for all $v$, but note that $\braket{v| A^\dagger A|v} = \norm{Av}^2$, which is non-negative, so $A^\dagger A$ is a positive operator.
 
-
-\Textbf{2.25}
-\begin{align*}
-	\braket{\psi | A^\dagger A | \psi} = \norm{A \ket{\psi}}^2 \geq 0 \text{ for all } \ket{\psi}.
-\end{align*}
-Thus $A^\dagger A$ is positive.
-
-
-\Textbf{2.26}
+\Textbf{2.26} Let $\ket{\psi}=(\ket{0}+\ket{1})/\sqrt{2}(=\ket{+})$. Write out $\ket{\psi}^{\otimes2}$ and $\ket{\psi}^{\otimes3}$ explicitly, both in terms of tensor products like $\ket{0},\ket{1}$, and using the Kronecker product.
+\Soln
 \begin{align*}
 	\ket{\psi}^{\otimes 2} &= \frac{1}{\sqrt{2}} (\ket{0} + \ket{1}) \otimes \frac{1}{\sqrt{2}} (\ket{0} + \ket{1}\\
 		&= \frac{1}{2} (\ket{00}  + \ket{01} + \ket{10} + \ket{11}  )\\
@@ -813,7 +808,8 @@ Thus $A^\dagger A$ is positive.
 \end{align*}
 
 
-\Textbf{2.27}
+\Textbf{2.27} Calculate the matrix representations of the tensor products of the Pauli operators (a) $X$ and $Z$; (b) $I$ and $X$; (c) $X$ and $I$. Is the tensor product commutative?
+
 \begin{align*}
 	X \otimes Z &= \begin{bmatrix}
 		0 & 1 \\
@@ -825,13 +821,33 @@ Thus $A^\dagger A$ is positive.
 		0 & -1
 	\end{bmatrix} \\
 	&= \begin{bmatrix}
+		0\begin{bmatrix}
+			1 & 0 \\
+			0 & -1
+			\end{bmatrix}
+		&
+		1\begin{bmatrix}
+			1 & 0 \\
+			0 & -1
+			\end{bmatrix}
+		\\ \\
+		1\begin{bmatrix}
+			1 & 0 \\
+			0 & -1
+			\end{bmatrix}
+		&
+		0\begin{bmatrix}
+			1 & 0 \\
+			0 & -1
+			\end{bmatrix}
+	\end{bmatrix} \\
+	&= \begin{bmatrix}
 		0 & 0 & 1 & 0 \\
 		0 & 0 & 0 & -1 \\
 		1 & 0 & 0 & 0 \\
 		0 & -1 & 0 & 0
 	\end{bmatrix}
 \end{align*}
-
 \begin{align*}
 	I \otimes X &= \begin{bmatrix}
 		1 & 0 \\
@@ -842,6 +858,27 @@ Thus $A^\dagger A$ is positive.
 		0 & 1 \\
 		1 & 0
 	\end{bmatrix}\\
+	&=\begin{bmatrix}
+		1\begin{bmatrix}
+		0 & 1 \\
+		1 & 0
+		\end{bmatrix}
+		&
+		0\begin{bmatrix}
+		0 & 1 \\
+		1 & 0
+		\end{bmatrix}
+		\\ \\
+		0\begin{bmatrix}
+		0 & 1 \\
+		1 & 0
+		\end{bmatrix}
+		&
+		1\begin{bmatrix}
+		0 & 1 \\
+		1 & 0
+		\end{bmatrix}
+	\end{bmatrix} \\
 	&=
 	\begin{bmatrix}
 	0 & 1 & 0 & 0 \\
@@ -850,7 +887,6 @@ Thus $A^\dagger A$ is positive.
 	0 & 0 & 1 & 0
 	\end{bmatrix}
 \end{align*}
-
 \begin{align*}
 	X \otimes I &= \begin{bmatrix}
 		0 & 1 \\
@@ -861,6 +897,27 @@ Thus $A^\dagger A$ is positive.
 		1 & 0 \\
 		0 & 1
 	\end{bmatrix}\\
+	&=\begin{bmatrix}
+		0\begin{bmatrix}
+			1 & 0 \\
+			0 & 1
+		\end{bmatrix}
+		&
+		1\begin{bmatrix}
+			1 & 0 \\
+			0 & 1
+		\end{bmatrix}
+		\\ \\
+		0\begin{bmatrix}
+			1 & 0 \\
+			0 & 1
+		\end{bmatrix}
+		&
+		1\begin{bmatrix}
+			1 & 0 \\
+			0 & 1
+		\end{bmatrix}
+	\end{bmatrix} \\
 	&= \begin{bmatrix}
 	0 & 0 & 1 & 0 \\
 	0 & 0 & 0 & 1 \\
@@ -869,29 +926,45 @@ Thus $A^\dagger A$ is positive.
 	\end{bmatrix}
 \end{align*}
 
-In general, tensor product is not commutable.
+In general, the tensor product is not commutative.
 
+\Textbf{2.28} Show that the transpose, complex conjugation, and adjoint operations distribute over the tensor prodoct,
+\begin{align*}(A\otimes B)^* = A^*\otimes B^*; (A\otimes B)^T = A^T\otimes B^T; (A\otimes B)^\dagger = A^\dagger \otimes B^\dagger\end{align*}
+\Soln Let $A$ be $n_1\times m_1$ and $B$ be $n_2\times m_2$, so that $A\otimes B$ is $n\times m$, where $n=n_1n_2$ and $m=m_1m_2$.  The entries in $A\otimes B$ are products of a single entry in $A$ and a single entry in $B$.  Specifically, if $i = i_1n_1+i_2$ and $j = j_1m_1+j_2$, with $0\leq i_2 < n_1$ and $0\leq j_2 <  m_1$, then $(A\otimes B)_{ij}= A_{i_1j_1}B_{i_2j_2}$.
 
-
-\Textbf{2.28}
 \begin{align*}
-	(A \otimes B)^*
-	&=
-	\begin{bmatrix}
-		A_{11} B & \cdots & A_{1n} B \\
-		\vdots & \ddots  & \vdots \\
-		A_{m1}B & \cdots & A_{mn} B
-	\end{bmatrix}^* \\
-	&=
-	\begin{bmatrix}
-		A_{11}^* B^* & \cdots & A_{1n}^* B^* \\
-		\vdots & \ddots  & \vdots \\
-		A_{m1}^* B^* & \cdots & A_{mn}^* B^*
-	\end{bmatrix} \\
-	&= A^* \otimes B^*.
+(A\otimes B)^* &= \left[ A_{i_1j_1}B_{i_2j_2}\right]^* \tag{from above} \\
+&= \left[ A_{i_1j_1}^*B_{i_2j_2}^*\right] \tag{piecewise conjugation} \\
+&= A^*\otimes B^*\tag{consistent indexing}
 \end{align*}
+%
+%\begin{align*}
+%	(A \otimes B)^*
+%
+%	\begin{comment}
+%	\begin{bmatrix}
+%		A_{11} B & \cdots & A_{1n} B \\
+%		\vdots & \ddots  & \vdots \\
+%		A_{m1}B & \cdots & A_{mn} B
+%	\end{bmatrix}^* \\
+%	&=
+%	\begin{bmatrix}
+%		A_{11}^* B^* & \cdots & A_{1n}^* B^* \\
+%		\vdots & \ddots  & \vdots \\
+%		A_{m1}^* B^* & \cdots & A_{mn}^* B^*
+%	\end{bmatrix} \\
+%	&= A^* \otimes B^*.
+%	\end{comment}
+%\end{align*}
+%
+%
+%
+%	(A\otimes B)^T &= \left[ A_{i_1j_1}B_{i_2j_2}\right]^T \tag{from above} \\
+%	&= \left[ A_{j_1i_1}B_{j_2i_2}\right] \tag{definition of $^T$ exchanges $i$ and $j$}
+%\end{align*}
+To see that $(A\otimes B)^T = A^T\otimes B^T$, note that $A^T\otimes B^T$ is $m\times n$, and $(A^T\otimes B^T)_{kl}$ is the product of a single entry in $A^T$ and a single entry in $B^T$.  Specifically, if $k = k_1m_1+k_2$ and $\ell=\ell_1n_1+\ell_2$, with $0\leq k_2 < m_2$ and $0\leq \ell_2 < n_2$, then $(A^T\otimes B^T)_{k\ell} = (A^T)_{k_1\ell_1}(B^T)_{k_2\ell_2} = A_{\ell_1k_1}B_{\ell_2k_2}$.  Now, the hypotheses on $k$ match the hypotheses on $j$ above, and similarly for $\ell$ and $i$.  This implies $(A^T\otimes B^T)_{k\ell} = (A\otimes B)_{\ell k} = (A\otimes B)^T_{k\ell}$.  All entries in $A^T\otimes B^T$ and $ (A\otimes B)^T$ are equal, so $(A\otimes B)^T = A^T\otimes B^T$.
 
-
+\begin{comment}
 \begin{align*}
 	(A\otimes B)^T &=
 	\begin{bmatrix}
@@ -913,66 +986,66 @@ In general, tensor product is not commutable.
 	\end{bmatrix} \\
 	&= A^T \otimes B^T.
 \end{align*}
-
-
+\end{comment}
+Distributivity of $^\dagger$ follows by applying distributivity of $^*$ and $^T$ in turn:
 \begin{align*}
-	(A\otimes B)^\dagger&=((A \otimes B)^*)^T	\\
-		&= (A^* \otimes B^*)^T\\
-		&= (A^*)^T \otimes (B^*)^T\\
-		&= A^\dagger \otimes B^\dagger.
+	(A\otimes B)^\dagger&=((A \otimes B)^*)^T	\tag{definition of $\dagger$}\\
+		&= (A^* \otimes B^*)^T \tag{distribute $^*$}\\
+		&= (A^*)^T \otimes (B^*)^T \tag{distribute $^T$}\\
+		&= A^\dagger \otimes B^\dagger \tag{definition of $^\dagger$}.
 \end{align*}
 
-\Textbf{2.29}
-Suppose $U_1$ and $U_2$ are unitary operators. Then
+\Textbf{2.29} Show that the tensor product of two unitary operators is unitary
+\Soln
+Suppose $U_1$ and $U_2$ are unitary operators. To avoid implicit assumptions on mutliplication of tensor products, let $\ket{v}$ and $\ket{w}$ be vectors in the spaces on which $U_1$ and $U_2$ operate.  Then:
 \begin{align*}
-	(U_1 \otimes U_2) (U_1 \otimes U_2)^\dagger &=U_1 U_1^\dagger \otimes U_2 U_2^\dagger\\
-		&= I \otimes I.
+	(U_1 \otimes U_2) (U_1 \otimes U_2)^\dagger(\ket{v}\otimes\ket{w}) &= (U_1 \otimes U_2) ( U_1^\dagger \otimes  U_2^\dagger)(\ket{v}\otimes\ket{w})\tag{distributivity of $^\dagger$} \\
+	&=(U_1 \otimes U_2)(U_1^\dagger\ket{v}\otimes U_2^\dagger\ket{w}) \tag{definition of tensor product of operators} \\
+	&=U_1U_1^\dagger\ket{v}\otimes U_2U_2^\dagger\ket{w} \tag{definition of tensor product of operators} \\
+	&= I\ket{v} \otimes I\ket{w} \tag{$U_1$ and $U_2$ are unitary} \\
+	&= (I\otimes I)(\ket{v}\otimes\ket{w}) \tag{definition of tensor product of operators} \\
+	&= I(\ket{v}\otimes\ket{w}) \tag{$I\otimes I = I$ by construction}
 \end{align*}
+So, $(U_1\otimes U_2)(U_1\otimes U_2)^\dagger = I$. Similarly, $(U_1 \otimes U_2)^\dagger (U_1 \otimes U_2)  = I \otimes I =  I$, so $U_1\otimes U_2$ is unitary.
 
-Similarly,
+\Textbf{2.30} Show that the tensor product of two Hermitian operators is Hermitian.
+\Soln
+Suppose $A$ and $B$ are Hermitian operators. Then by distributivity of $^\dagger$ and Hermiticity:
 \begin{align*}
-	(U_1 \otimes U_2)^\dagger (U_1 \otimes U_2)  = I \otimes I.
-\end{align*}
-
-\Textbf{2.30}
-Suppose $A$ and $B$ are Hermitian operators. Then
-\begin{align}
 (A \otimes B)^\dagger = A^\dagger \otimes B^\dagger = A \otimes B.
-\end{align}
+\end{align*}
 Thus $A \otimes B$ is Hermitian.
 
-
-
-\Textbf{2.31}
-
-Suppose $A$ and $B$ are positive operators. Then
+\Textbf{2.31} Show that the tensor product of two positive operators is positive.
+\Soln
+Suppose $A$ and $B$ are positive operators.  Then
 \begin{align*}
-	\bra{\psi} \otimes \bra{\phi} (A \otimes B) \ket{\psi} \otimes \ket{\phi} &= \braket{\psi |A| \psi} \braket{\phi | B | \phi}.
+	\Bigl( \ket{\psi} \otimes \ket{\phi} , (A \otimes B) (\ket{\psi} \otimes \ket{\phi})\Bigr) &= \Bigl(\ket{\psi}\otimes\ket{\phi},  A\ket{\psi}\otimes B\ket{\phi}\Bigr) \tag{definition of $A\otimes B$} \\
+	&= (\ket{\psi}\otimes\ket{\phi})^\dagger(A\ket{\psi}\otimes B\ket{\phi}) \tag{definition of inner-product}\\
+	&=(\bra{\psi}\otimes\bra{\phi})(A\ket{\psi}\otimes B\ket{\phi}) \tag{distributivity of $^\dagger$} \\
+	&= \braket{\psi |A| \psi} \braket{\phi | B | \phi}.
 \end{align*}
+Since $A$ and $B$ are positive operators, $\braket{\psi |A| \psi} \geq 0$ and $\braket{\phi | B | \phi} \geq 0$ for all $\ket{\psi}, \ket{\phi}$, so $\braket{\psi |A| \psi} \braket{\phi | B | \phi} \geq 0$, from which we conclude that $A \otimes B$ is positive.
 
-Since $A$ and $B$ are positive operators,
-$\braket{\psi |A| \psi} \geq 0$ and $\braket{\phi | B | \phi} \geq 0$ for all $\ket{\psi}, \ket{\phi} $.
-Then $\braket{\psi |A| \psi} \braket{\phi | B | \phi} \geq 0$.
-Thus $A \otimes B$ is positive if $A$ and $B$ are positive.
-
-
-\Textbf{2.32}
-
-Suppose $P_1$ and $P_2$  are projectors. Then
+\Textbf{2.32} Show that the tensor product of two projectors is a projector.
+\Soln
+Suppose $P_1$ and $P_2$  are projectors. It is tempting to think that by applying exercise 2.16, which yields
 \begin{align*}
-	(P_1 \otimes P_2) ^2 &= P_1^2 \otimes P_2^2\\
-		&= P_1 \otimes P_2.
+	(P_1 \otimes P_2) ^2 &= P_1^2 \otimes P_2^2 \tag{tensor product is multiplicative}\\
+		&= P_1 \otimes P_2 \tag{exercise 2.16},
 \end{align*}
-Thus $ P_1 \otimes P_2.$ is also projector.
+exercise 2.16 would then imply that $ P_1 \otimes P_2$ is also projector. However, this implication is the converse of exercise 2.16, which we have not proven.  Instead, we need to prove that if $P_1 = \sum_{i=0}^k\ket{v_i}\bra{v_i}$ and $P_2=\sum_{j=0}^\ell\ket{w_j}\bra{w_j}$ where $\ket{v_i}_{i=0}^k$ is a subset of an orthonormal basis $\ket{v_i}_i=0^{\kappa}$, and $\ket{w_j}_{j=0}^\ell$ is a subset of an orthonormal basis $\ket{w_j}_{j=0}^\chi$, then $P_1\otimes P_2 = \sum_{p=0}^q \ket{r_p}\bra{r_p}$, where $\ket{r_p}_{p=0}^{q}$ is a subset of an orthonormal basis $\ket{r_p}_{p=0}^\rho$. $\dots$ to be continued.
+
+%Note that $\left\{ \ket{v_i}\otimes\ket{w_j}\mid 0\leq i <\kappa \right\}$
 
 
 \Textbf{2.33}
-\begin{align}
+\begin{align*}
 	H  = \frac{1}{\sqrt{2}} \begin{bmatrix}
 		1 & 1 \\
 		1 & -1
 	\end{bmatrix}
-\end{align}
+\end{align*}
 
 \begin{align*}
 	H^{\otimes 2}
@@ -1915,7 +1988,7 @@ Normalized eigenvalue is $\ket{\lambda_{-1}} = \sqrt{ \frac{1-v_3}{2 }} \begin{b
 		Let $\ket{\lambda_1}$ and $\ket{\lambda_{-1}}$ are eigenvectors with eigenvalues $1$ and $-1$, respectively.
 		I will prove that $P_\pm = \kb{\lambda_{\pm 1}}$.
 
-		In order to prove above equation, all we have to do is prove following condition. (see Theorem \ref{thm:zerooperator})
+		In order to prove above equation, all we have to do is prove following condition. (see Theorem \ref{diagonalzero})
 		\begin{screen}
 			\begin{align}
 				\braket{\psi | (P_\pm - \kb{\lambda_{\pm 1}})| \psi} = 0 \text{ for all } \ket{\psi} \in \mathds{C}^2.
