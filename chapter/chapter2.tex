@@ -1034,19 +1034,32 @@ Suppose $P_1$ and $P_2$  are projectors. It is tempting to think that by applyin
 	(P_1 \otimes P_2) ^2 &= P_1^2 \otimes P_2^2 \tag{tensor product is multiplicative}\\
 		&= P_1 \otimes P_2 \tag{exercise 2.16},
 \end{align*}
-exercise 2.16 would then imply that $ P_1 \otimes P_2$ is also projector. However, this implication is the converse of exercise 2.16, which we have not proven.  Instead, we need to prove that if $P_1 = \sum_{i=0}^k\ket{v_i}\bra{v_i}$ and $P_2=\sum_{j=0}^\ell\ket{w_j}\bra{w_j}$ where $\ket{v_i}_{i=0}^k$ is a subset of an orthonormal basis $\ket{v_i}_i=0^{\kappa}$, and $\ket{w_j}_{j=0}^\ell$ is a subset of an orthonormal basis $\ket{w_j}_{j=0}^\chi$, then $P_1\otimes P_2 = \sum_{p=0}^q \ket{r_p}\bra{r_p}$, where $\ket{r_p}_{p=0}^{q}$ is a subset of an orthonormal basis $\ket{r_p}_{p=0}^\rho$. $\dots$ to be continued.
+exercise 2.16 would then imply that $ P_1 \otimes P_2$ is also projector. However, this implication is the converse of exercise 2.16, which we have not proven.  Instead, we need to prove that if $P_1 = \sum_{i=0}^k\ket{v_i}\bra{v_i}$ and $P_2=\sum_{j=0}^t\ket{w_j}\bra{w_j}$, where $\ket{v_i}_{i=0}^k$ is a subset of an orthonormal basis $\ket{v_i}_{i=0}^{\kappa}$, and $\ket{w_j}_{j=0}^t$ is a subset of an orthonormal basis $\ket{w_j}_{j=0}^\tau$, then $P_1\otimes P_2 = \sum_{q=0}^s \ket{r_q}\bra{r_q}$, where $\ket{r_q}_{q=0}^{s}$ is a subset of an orthonormal basis $\ket{r_q}_{q=0}^\sigma$.  First, the fact that  $P_1\otimes P_2 = \sum\limits_{\substack{0\leq i\leq k\\0\leq j\leq t}} \bigl(\ket{v_i}\bra{v_i}\bigr)\otimes\bigl(\ket{w_j}\bra{w_j}\bigr)$ follows easily from distributivity of operator tensor products, having illustrated how easily that follows from distributivity of tensor products of vectors in exercise 2.29.  We need to show that $\Bigl\{\bigl(\ket{v_i}\bra{v_i}\bigr)\otimes\bigl(\ket{w_j}\bra{w_j}\bigr)\Bigr\}_{\substack{0\leq i\leq k\\0\leq j\leq t}}$ is a subset of an orthonormal basis.  It is automatically a subset of the set of vector tensor products resulting from loosening the restrictions on $i$ and $j$ to $0\leq i \leq \kappa$ and $0\leq j \leq \tau$, which we may assume is a basis, as stated on page 72.  We need only show that the inner product of tensor products is multiplicative so that orthonormality is preserved.  Let $v_1,v_2,w_1$ and $w_2$ be vectors.
+\begin{align*}
+\braket{v_1\otimes w_1 | v_2\otimes w_2} &= \ket{v_1\otimes w_1}^\dagger \ket{v_2\otimes w_2} \tag{definition of $\braket{\cdot | \cdot}$}\\
+&= \bigl(\ket{v_1}^\dagger\otimes\ket{w_1}^\dagger\bigr)\bigl(\ket{v_2}\otimes\ket{w_2}\bigr) \tag{distributivity of $^\dagger$ over $\otimes$} \\
+&= \bigl(\ket{v_1}^\dagger\ket{v_2}\bigr)\otimes\bigl(\ket{w_1}^\dagger\ket{w_2}\bigr) \tag{mixed-product property of kronecker product} \\
+&= \braket{v_1|v_2}\otimes\braket{w_1|w_2} \tag{definition of $\braket{\cdot|\cdot}$}\\
+&= \braket{v_1|v_2}\braket{w_1|w_2} \tag{$\braket{\cdot|\cdot}$ is a scalar}
+\end{align*} 
+So, in the basis $\Bigl\{\bigl(\ket{v_i}\bra{v_i}\bigr)\otimes\bigl(\ket{w_j}\bra{w_j}\bigr)\Bigr\}_{\substack{0\leq i\leq \kappa\\0\leq j\leq \tau}}$, the inner product of two vectors $\ket{v_{i_1}}\otimes\ket{w_{j_1}}$ and $\ket{v_{i_2}}\otimes\ket{w_{j_2}}$ is $\braket{v_{i_1}\otimes w_{j_1} | v_{i_2}\otimes w_{j_2}} = \braket{v_{i_1}|v_{i_2}}\braket{w_{j_1}|w_{j_2}}=\delta_{i_1i_2}\delta_{j_1j_2}$, from which it follows that this basis is orthonormal, completing the proof.
 
-%Note that $\left\{ \ket{v_i}\otimes\ket{w_j}\mid 0\leq i <\kappa \right\}$
-
-
-\Textbf{2.33}
+\Textbf{2.33} The Hadamard operator on one qubit may be written as $$H=\frac{1}{\sqrt{2}}\Bigl[\bigl(\ket{0}+\ket{1}\bigr)\bra{0}+\bigl(\ket{0}-\ket{1}\bigr)\bra{1}\Bigr].$$  Show explicitly that the Hadamard transform on $n$ qubits, $H^{\otimes n}$, may be written as $$H^{\otimes n} = \frac{1}{\sqrt{2^n}}\sum_{x,y}(-1)^{x\cdot y}\ket{x}\bra{y}.$$ Write out an explicit matrix representation for $H^{\otimes 2}$.
+\Soln It is important to note what is meant by $x\cdot y$ in this formula.  Here $\cdot$ does \textbf{not} mean integer multiplcation.  It can be taken to mean popparity of the binary AND of $x$ and $y$. Note that this property is multiplcative across dimensions, when 1 is used for even popparity, and -1 for odd.  We proceed by induction on $n$.  Assume the preceeding formula for $n-1$.  We must prove the formula for $n$.
+\begin{align*}
+H^{\otimes n} &= H\otimes H^{\otimes n-1}\tag{notation} \\
+&=\left(\frac{1}{\sqrt{2}}\Bigl[\bigl(\ket{0}+\ket{1}\bigr)\bra{0}+\bigl(\ket{0}-\ket{1}\bigr)\bra{1}\Bigr]\right) \otimes\left(\frac{1}{\sqrt{2^{n-1}}}\sum_{x,y}(-1)^{x\cdot y}\ket{x}\bra{y}\right)\tag{hypothesis} \\
+&=\frac{1}{\sqrt{2^n}}\sum_{x,y}(-1)^{x\cdot y}\bigl(\ket{0}\bra{0}+\ket{1}\bra{0}+\ket{0}\bra{1}-\ket{1}\bra{1}\bigr) \otimes \ket{x}\bra{y}\tag{rearrange} \\
+&=\frac{1}{\sqrt{2^n}}\sum_{x',y'}(-1)^{x'\cdot y'}\ket{x'}\bra{y'} \tag{multiplicativity of $\cdot$ accross dimensions}
+\end{align*}
+Now, explcitly  
 \begin{align*}
 	H  = \frac{1}{\sqrt{2}} \begin{bmatrix}
 		1 & 1 \\
 		1 & -1
 	\end{bmatrix}
 \end{align*}
-
+and
 \begin{align*}
 	H^{\otimes 2}
 	=
@@ -1060,6 +1073,19 @@ exercise 2.16 would then imply that $ P_1 \otimes P_2$ is also projector. Howeve
 	1 & -1
 	\end{bmatrix}
 	=
+	\frac{1}{2}\begin{bmatrix}
+		1\begin{bmatrix}1 & 1 \\
+	1 & -1
+	\end{bmatrix} & \quad1\begin{bmatrix}1 & 1 \\
+	1 & -1
+	\end{bmatrix} \\
+	1\begin{bmatrix}1 & 1 \\
+	1 & -1
+	\end{bmatrix} &
+	-1\begin{bmatrix}1 & 1 \\
+	1 & -1
+	\end{bmatrix}
+	\end{bmatrix} =
 	\frac{1}{2} \begin{bmatrix}
 		1 & 1 & 1 & 1 \\
 		1 & -1 & 1 & -1 \\
@@ -1068,42 +1094,37 @@ exercise 2.16 would then imply that $ P_1 \otimes P_2$ is also projector. Howeve
 	\end{bmatrix}
 \end{align*}
 
-
-
-\Textbf{2.34}
-
+\Textbf{2.34} Find the square root and logarithm of the matrix $$\begin{bmatrix}4&3\\3&4\end{bmatrix}.$$
+\Soln
 Suppose $A = \begin{bmatrix}
 4 & 3 \\
 3 & 4
-\end{bmatrix} $.
-
+\end{bmatrix} $.  We will need the ``spectral'' decompisition $A$.  First, to find the eigenvalues of $A$:
 \begin{align*}
-	\det (A - \lambda I ) &= (4-\lambda)^2 - 3^2\\
+	0=\det (A - \lambda I ) &= (4-\lambda)^2 - 3^2\\
 		&= \lambda^2 -8\lambda + 7\\
 		&= (\lambda - 1)(\lambda - 7)
 \end{align*}
-
-Eigenvalues of $A$ are $\lambda = 1, ~ 7$.
-Corresponding eigenvectors are
-$
-	\ket{\lambda = 1} = \frac{1}{\sqrt{2}} \begin{bmatrix}
+So, the eigenvalues of $A$ are $\lambda = 1$, and $\lambda = 7$.  The corresponding eigenvectors can easily be seen to be
+$\begin{bmatrix}
 	1 \\
 	-1
 	\end{bmatrix}
-$,
-$
-	\ket{\lambda = 7} = \frac{1}{\sqrt{2}} \begin{bmatrix}
+$, corresponding to $\lambda=1$, and $\begin{bmatrix}
 1 \\
 1
 \end{bmatrix}
-$.
-
-\vspace{5mm}
-Thus
+$, coresponding to $\lambda=7$.  To construct an orthonormal basis from these eigenvenctors, we can scale both by $\frac{1}{\sqrt{2}}$, and denote these scaled vectors by $\ket{\lambda=1}=\frac{1}{\sqrt{2}}\begin{bmatrix}
+	1 \\
+	-1
+	\end{bmatrix}$ and $\ket{\lambda=7}=\frac{1}{2}\begin{bmatrix}
+	1 \\
+	1
+	\end{bmatrix}$. Now, seeing as $A$ is real and self-transpose/adjoint, it is a normal matrix/operator, and as such, $A$ can be ``spectrally decomposed''/diagonalized as:
 \begin{align*}
-	A = \kb{\lambda = 1} + 7 \kb{\lambda = 7}.
-\end{align*}
-
+	A &= \kb{\lambda = 1} + 7 \kb{\lambda = 7}  \\
+	&= \frac{1}{2}\begin{bmatrix}1&-1\\-1&1\end{bmatrix}+7\left(\frac{1}{2}\begin{bmatrix}1&1\\1&1\end{bmatrix}\right).\end{align*}
+The square root of $A$ is ``defined'' as:
 \begin{align*}
 	\sqrt{A} &= \kb{\lambda = 1} + \sqrt{7} \kb{\lambda = 7}\\
 		&= \frac{1}{2} \begin{bmatrix}
@@ -1122,7 +1143,7 @@ Thus
 			-1 + \sqrt{7} & 1+\sqrt{7}
 		\end{bmatrix}
 \end{align*}
-
+and $log(A)$ is defined as
  \begin{align*}
  	\log (A) &=  \log (1) \kb{\lambda = 1} + \log (7) \kb{\lambda = 7}\\
  		&= \frac{\log (7)}{2} \begin{bmatrix}
@@ -1130,12 +1151,13 @@ Thus
 	 		1 & 1
  		\end{bmatrix}
  \end{align*}
+Note that one would hope that operator functions would respect various properties of the functions, such as inverses. To formally prove such a thing, let us consider the diagonal representation $A=\sum_a a\kb{\lambda=a}$ and the induced definition of $f(A)=\sum_a f(a)\kb{\lambda = a}$.  Note that the $f(a)$ are eigenvalues of $f(A)$, with corresponding eigevectors $\ket{\lambda=a}$, since the fact that the $\ket{\lambda=a}$ are orthonormal gives $\bigl(\sum_a f(a) \kb{\lambda=a}\bigr)\ket{\lambda=a'} = f(a')\ket{\lambda=a'}$.  So $\sum_a f(a)\kb{\lambda = a}$ is a diagonal representation of $f(a)$.  Now $f^-1(f(A)) = f^{-1}\bigl(\sum_a f(a)\kb{\lambda=a}\bigr) = \sum_a f^{-1}(f(a))\kb{\lambda=a} = \sum_a a \kb{\lambda=a} = A$.
 
 
-
-\Textbf{2.35}
+\Textbf{2.35} \textbf{(Exponentiaion of Pauli Matrices)} let $\vec{v}$ be any real three-dimensional unit vector and $\theta$ a real number.  Prove that $$\exp (i\theta\vec{v}\cdot\vec{\sigma}) = \cos(\theta)I+i\sin(\theta)\vec{v}\cdot\vec{\sigma},$$ where $\vec{v}\cdot\vec{\sigma} \equiv \sum_{i=1}^3 v_i\sigma_i$.  This exercise is generalized in problem 2.1 on page 117. 
+\Soln To find the eignvalues of $\vec{v}\cdot{\vec{\sigma}}$, we first express in matrix form:
 \begin{align*}
-	\vec{v} \cdot \vec{\sigma} &= \sum_{i=1}^3 v_i \sigma_i\\
+	\vec{v} \cdot \vec{\sigma} &= \sum_{i=1}^3 v_i \sigma_i (= v_1\sigma_x + v_2\sigma_y + v_3\sigma_z = v_1X+v_2Y+v_3Z) \tag{definition}\\
 		&= v_1 \begin{bmatrix}
 		0 & 1 \\
 		1 & 0
@@ -1147,44 +1169,32 @@ Thus
 		+ v_3 \begin{bmatrix}
 		1 & 0 \\
 		0 & -1
-		\end{bmatrix} \\
+		\end{bmatrix} \tag{substitute}\\
 		&= \begin{bmatrix}
 		v_3 & v_1 - i v_2 \\
 		v_1 + iv_2 & -v_3
-		\end{bmatrix}
+		\end{bmatrix} \tag{collect terms} \\
+	0=\det (\vec{v} \cdot \vec{\sigma}  - \lambda I) &= (v_3 - \lambda) (-v_3 - \lambda) - (v_1 - iv_2) (v_1 + iv_2) \tag{characteristic equation}\\
+			&= \lambda^2 - (v_1^2 + v_2^2  + v_3^2) \tag{expand and collect $v$'s}\\
+			&= \lambda^2 - 1 \tag{$v$ is a unit vector}
 \end{align*}
-
+Solving yields that the eigenvalues of $\vec{v}\cdot\vec{\sigma}$ are $\lambda = \pm 1$.
+Let $\ket{\lambda_{ \pm 1 } }$ be eigenvectors with eigenvalues $\pm  1$.  Since $\vec{v}$ is a real valued vector, it is easily seen that $\vec{v} \cdot \vec{\sigma}$ is Hermitian, and so is diagonalizable, and we may take the $\ket{\lambda_{\pm 1}}$ to be orthonormal by Exercise 2.22.   In particular, this gives
 \begin{align*}
-	\det (\vec{v} \cdot \vec{\sigma}  - \lambda I) &= (v_3 - \lambda) (-v_3 - \lambda) - (v_1 - iv_2) (v_1 + iv_2)\\
-			&= \lambda^2 - (v_1^2 + v_2^2  + v_3^2)\\
-			&= \lambda^2 - 1 ~~~ (\because |\vec{v}| = 1)
+	\kb{\lambda_1} + \kb{\lambda_{-1}} &= I \tag{completeness} \\
+	 \kb{\lambda_1} - \kb{\lambda_{-1}} &= \vec{v} \cdot \vec{\sigma} \tag{diagonalization}
 \end{align*}
-Eigenvalues are $\lambda = \pm 1$.
-Let $\ket{\lambda_{ \pm 1 } }$ be eigenvectors with eigenvalues $\pm  1$.
-
-Since $\vec{v} \cdot \vec{\sigma}$ is Hermitian,  $\vec{v} \cdot \vec{\sigma}$ is diagonalizable.
-Then
-\begin{align*}
-	\vec{v} \cdot \vec{\sigma} = \kb{\lambda_1} - \kb{\lambda_{-1}}
-\end{align*}
-
-Thus
+Now
 \begin{align*}
 	\exp \left(i \theta \vec{v} \cdot \vec{\sigma} \right) &=
-	e^{i \theta} \kb{\lambda_1}  + e^{-i \theta} \kb{\lambda_{-1}}\\
-	&= (\cos \theta + i \sin \theta) \kb{\lambda_1} + (\cos \theta - i \sin \theta) \kb{\lambda_{-1}}\\
-	&= \cos \theta (\kb{\lambda_1} + \kb{\lambda_{-1}}) + i \sin \theta (\kb{\lambda_1} - \kb{\lambda_{-1}}) \\
-	&= \cos( \theta) I + i \sin (\theta) \vec{v} \cdot \vec{\sigma}.
+	e^{i \theta} \kb{\lambda_1}  + e^{-i \theta} \kb{\lambda_{-1}} \tag{definition}\\
+	&= (\cos \theta + i \sin \theta) \kb{\lambda_1} + (\cos \theta - i \sin \theta) \kb{\lambda_{-1}} \tag{Euler's formula}\\
+	&= \cos \theta (\kb{\lambda_1} + \kb{\lambda_{-1}}) + i \sin \theta (\kb{\lambda_1} - \kb{\lambda_{-1}}) \tag{group $\cos$ and $\sin$ terms}\\
+	&= \cos( \theta) I + i \sin (\theta) \vec{v} \cdot \vec{\sigma}. \tag{from above}
 \end{align*}
 
-$\because$ Since $\vec{v} \cdot \vec{\sigma}$ is Hermitian, $\ket{\lambda_1}$ and $\ket{\lambda_{-1}}$ are orthogonal.
-Thus
-\begin{align*}
-	\kb{\lambda_1} + \kb{\lambda_{-1}} = I.
-\end{align*}
-
-
-\Textbf{2.36}
+\Textbf{2.36} Show that the Pauli matrices except for $I$ have trace zero.
+\Soln
 \begin{align*}
 	\Tr (\sigma_1) &= \Tr \left(
 		\begin{bmatrix}
@@ -1208,87 +1218,80 @@ Thus
 	\right) = 1 -1 = 0\\
 \end{align*}
 
-
-
-
-\Textbf{2.37}
+\Textbf{2.37} \textbf{(Cyclic property of the trace)} If $A$ and $B$ are two linear operators show that $$\Tr(AB)=\Tr(BA).$$
 \begin{align*}
-	\Tr (AB) &= \sum_i \braket{i | AB | i}\\
-		&=\sum_i \braket{i | A I B | i}\\
-		&= \sum_{i,j} \braket{i | A | j}\braket{j | B | i}\\
-		&= \sum_{i,j} \braket{j | B | i} \braket{i | A | j}\\
-		&= \sum_j \braket{j | BA | j}\\
-		&= \Tr (BA)
+	\Tr (AB) &= \sum_i \braket{i | AB | i} \tag{using matrix representation of $AB$}\\
+		&=\sum_i \braket{i | A I B | i} \tag{insert $I$}\\
+		&= \sum_{i,j} \braket{i | A | j}\braket{j | B | i} \tag{completeness: $I=\sum_j\kb{j}$}\\
+		&= \sum_{i,j} \braket{j | B | i} \braket{i | A | j} \tag{commutativity in $\mathbb{C}$}\\
+		&= \sum_j \braket{j | BA | j} \tag{completeness: $I=\sum_i\kb{i}$}\\
+		&= \Tr (BA) \tag{using matrix representation of $BA$}
 \end{align*}
 
 
 
-\Textbf{2.38}
+\Textbf{2.38} \textbf{(Linearity of the trace)} If $A$ and $B$ are two linear operators, show that $$\Tr(A+B)=\Tr(A)+\Tr(B)$$ and if $z$ is an arbitrary complex number show that $$\Tr(zA) = z\Tr(A).$$
+\Soln
 \begin{align*}
-	\Tr (A + B) &= \sum_i \braket{i | A+B | i}\\
-		&= \sum_i (\braket{i|A|i}  + \braket{i | B | i}  )\\
-		&= \sum_i \braket{i|A|i} + \sum_i \braket{i|B|i}\\
-		&= \Tr (A) + \Tr (B).
+	\Tr (A + B) &= \sum_i \braket{i | A+B | i}  \tag{using matrix representation of $A+B$}\\
+		&= \sum_i (\braket{i|A|i}  + \braket{i | B | i}  ) \tag{llinearity of $\braket{\cdot|\cdot|\cdot}$}\\
+		&= \sum_i \braket{i|A|i} + \sum_i \braket{i|B|i} \tag{separate terms}\\
+		&= \Tr (A) + \Tr (B) \tag{using matrix representation of $A$ and $B$}.
 \end{align*}
 
 \begin{align*}
-	\Tr (z A) &=  \sum_i \braket{i | z A | i}\\
-		&= \sum_i z \braket{i | A | i}\\
-		&= z \sum_i \braket{i | A | i}\\
-		&= z \Tr (A).
+	\Tr (z A) &=  \sum_i \braket{i | z A | i} \tag{matrix representation}\\
+		&= \sum_i z \braket{i | A | i} \tag{linearity}\\
+		&= z \sum_i \braket{i | A | i}\tag{linearity of sum}\\
+		&= z \Tr (A) \tag{matrix representation}.
 \end{align*}
 
-
-
-
-\Textbf{2.39}
-
-(1) $(A, B) \equiv \Tr (A^\dagger B)$.
-
-\vspace{5mm}
-(i)
+\Textbf{2.39} \textbf{(The Hilbert-Schmidt inner product on operators)} The set $L_V$ of linear operators on a Hilbert space $V$ is a vector space.  An important additional result is that the vector space $L_V$ can be given a natural inner product structure, turning it into a Hilbert space.\newline
+(1) Show that the function $(\cdot,\cdot)$ on $L_V\times L_V$ defined by $$(A, B) \equiv \Tr(A^\dagger B)$$ is an inner product function.  This inner product is known as the \textit{Hilbert-Schmidt} or \textit{trace} inner product.\newline
+(2) If $V$ has $d$ dimensions, show that $L_V$ has dimension $d^2$.\newline
+(3) Find an orthonormal bisis of Hermitian matrices for the Hilbert space $L_V$.
+\Soln
+(1) We check the three properties of inner products on page 65:\newline
+\indent(i) linearity in the second argument:
 \begin{align*}
-	\left(A, \sum_i \lambda_i B_i \right) &= \Tr \left[ A^\dagger \left(\sum_i \lambda_i B_i  \right) \right]\\
-		&= \Tr (A^\dagger \lambda_1 B_1) + \cdots +  \Tr (A^\dagger \lambda_n B_n) ~~~ (\because \text{Execise 2.38}) \\
-		&= \lambda_1 \Tr (A^\dagger B_1)  + \cdots  + \lambda_n \Tr (A^\dagger B_n) \\
-		&= \sum_i \lambda_i \Tr (A^\dagger B_i)
+\left(A, \sum_i \lambda_i B_i \right) &= \Tr \left(A^\dagger \left(\sum_i \lambda_i B_i  \right) \right) \tag{definition of $(\cdot,\cdot)$}\\
+&= \Tr\left(\sum_i \lambda_i A^\dagger B_i\right) \tag{linearity in $L_V$} \\
+&= \sum_i \lambda_i \Tr (A^\dagger B_i) \tag{linearity of $\Tr$ from Execise 2.38} \\
+&= \sum_i \lambda_i (A,B_i) \qed\tag{definition of $(\cdot, \cdot)$}
 \end{align*}
-
-
-(ii)
+\indent(ii) conjugate symmetry:
 \begin{align*}
-	(A, B)^* &= \left( \Tr (A^\dagger B) \right)^*\\
-		&= \left(\sum_{i,j} \braket{ i | A^\dagger | j} \braket{j | B | i}  \right)^*\\
-		&= \sum_{i,j} \braket{ i | A^\dagger | j}^* \braket{j | B | i}^*\\
-		&= \sum_{i,j}  \braket{j | B | i}^* \braket{ i | A^\dagger | j}^*\\
-		&=  \sum_{i,j}  \braket{i | B^\dagger | j} \braket{ j | A | i}\\
-		&= \sum_i \braket{i | B^\dagger A | i} \\
-		&= \Tr (B^\dagger A)\\
-		&= (B, A).
+	(A, B)^* &= \left( \Tr (A^\dagger B) \right)^* \tag{definition}\\
+		&= \left(\sum_{i,j} \braket{ i | A^\dagger | j} \braket{j | B | i}  \right)^* \tag{matrix representation, insert $I$, apply completeness}\\
+		&= \sum_{i,j}  \braket{j | B | i}^* \braket{ i | A^\dagger | j}^*\tag{distributitivity and multiplicativity of $^*$, cummutativity in $\mathbb{C}$}\\
+		&= \sum_{i,j}  \ket{j}^{\dagger*} B^* \ket{i}^* \ket{i}^{\dagger*} A^{\dagger*} \ket{j}^*\tag{distribute conjugation and make $^\dagger$s explicit}\\
+		&= \sum_{i,j}   \ket{j}^{T} B^{\dagger T} \ket{i}^{\dagger T} \ket{i}^{T} A^{T} \ket{j}^{\dagger T} \tag{$^{\dagger*} = ^T$, $^*=^{\dagger T}$}\\
+		&= \sum_{i,j}   (\ket{i}^{\dagger}B^{\dagger} \ket{j})^T (\ket{j}^{\dagger} A \ket{i})^T \tag{$^T$ is cyclic} \\
+		&= \sum_{i,j}   \braket{i|B^{\dagger} |j} \braket{j | A | i} \tag{definition of $\braket{\cdot|\cdot|\cdot}$, transpose in $\mathbb{C}$} \\
+		&= \sum_i \braket{i | B^\dagger A | i} \tag{completeness}\\
+		&= \Tr (B^\dagger A) = (B, A) \tag{matrix representation, definiton of $(\cdot, \cdot)$}\\
 \end{align*}
-
-
-(iii)
+\indent(iii) positivity:
 \begin{align*}
-	(A, A) &= \Tr (A^\dagger A)\\
-		&= \sum_i \braket{ i | A^\dagger A | i }
+	(A, A) &= \Tr (A^\dagger A) \tag{definition}\\
+		&= \sum_i \braket{ i | A^\dagger A | i } \tag{matrix representation} \\
+		&\geq 0 \tag{$A^\dagger$ A is positive by Exercise 2.25}
 \end{align*}
-Since $A^\dagger A$ is positive, $\braket{ i | A^\dagger A | i } \geq 0$ for all $\ket{ i }$.
+\begin{adjustwidth}{\parindent}{} We are left only show that if $(A, A) = 0$, then $A = 0$. Note that $(A, A) = 0$ implies that $\braket{i | A^\dagger A | i} = 0$ for all $i$, where here, the $\ket{i}$ are an orthonormal \textit{basis} with respect to which the matrix representation of $A$ is constructed.  Note that $A\ket{i}$ is the $i$-th column of $A$, as constructed on page 64.  Also $\norm{A\ket{i}}^2 = \braket{i | A^\dagger A| i} = 0$, so the $i$-th column of $A$ is $0$, for all $i$.  This gives that $(A, A) = 0$ iff $A=0$, completing the proof of positivity.\end{adjustwidth}
 
+\noindent(2) To show that $L_V$ has dimension $d^2$, note that the elements of $L_V$ are linear operators from $V$ to $V$ and thus have a  matrix represetation by a $d\times d$ matrix.  The vector space of $d\times d$ matrices over $\mathbb{C}$ is clearly $d^2$-dimensional, seeing as the set of matrices populated with all $0$s except for a single 1, where the position of the 1's ranges over all $d^2$ positions, is clearly linearly independent and spans $L_V$.
 
-Let $a_i$ be i-th column of $A$.
-If $\braket{ i | A^\dagger A | i } = 0$, then
-\begin{align*}
-	\braket{ i | A^\dagger A | i } = a^\dagger_i a_i = \norm{a_i}^2 = 0 \text{ iff }a_i = \mathbf{0}.
-\end{align*}
+\noindent(3)  The obvious choice of matrices discussed above is orthonormal, but it is not Hermitian.  Note that for $d=2$, the Pauli matrices are orthonormal with respect to the Hilbert-Schmidt inner prodct, and are Hermitian.  To find such an orthonormal basis for larger $d$, we rely on a generalization called a ``discrete Weyl system''.  See Example 1.6 on page 11 of the lecture notes titled ``Mathematical Introduction to Quantum Information Processing'', from Professor Michael Wolf of the Technical University of Munich (\url{https://www-m5.ma.tum.de/foswiki/pub/M5/Allgemeines/MA5057_2019S/QIPlecture.pdf}), and a convenient diagram incuded in ``Holevo Capacity of Discrete Weyl Channels'', but Rehman et.al (\url{https://www.nature.com/articles/s41598-018-35777-7}).  Unfortunately, neither of those constructions are Hermitian, but a small tweak can be made so.
 
-Therefore $(A, A) = 0$ iff $A = \mathbf{0}$.
+First, let $\{\ket{i}\}_{i=0}^{d-1}$ be a set of orthonormal basis vectors for $V$.  Define $\omega = e^{\frac{2\pi i}{d}}$, and for $ 0\leq n, m < d$, $$U_{n,m} := \sum_{k=0}^{d-1}\omega^{kn}\ket{k-m}\bra{k},$$
+where the subtraction inside the ket is done mod $d$.  Note that $\ket{i}\bra{j}$ is exactly one of the basis matrices discussed above, populated with 0's except for a 1 in positon $i,j$.  To see that these matrices are Hermitian, we must show that for fixed $n,m$, the entry of $U_{n,m}$ in position $i,j$ is the complex conjugate of the entry in position $j,i$.   To be continued.
 
-\vspace{5mm}
-(2)
-
-(3)
-
+%\begin{comment}
+%To isolate the entry in position $i,j$, note that column $j$ consists of $\omega^{jn}\ket{j-m}$, with $i$-th entry equal to $\omega^{jm}$ iff $j-m\equiv i \Mod{d}$, otherwise $0$.  If $j-m\equiv i \Mod(d}$, then i-ji.if $j-i \not\equiv m\Mod{d}$, then this entry is 0, since the only non-zero entry in column $j$ is  .  Seeing that $i-j\not\equiv m \Mod{d}$ iff $j-i\not\equiv m \Mod{d}$, we see that the entries are complex conjugates in this case
+%\begin{align*}
+%U_{\ell,k} &= \sum_{r=0}^{d-1}\omega^{rk}\ket{r+k}\bra{r} \tag{definition}
+%\end{align*}
+%\begin{comment}
 
 %\begin{bmatrix}
 %	0 & 1 \\

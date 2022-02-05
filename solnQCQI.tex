@@ -40,7 +40,22 @@
 \usepackage{lscape}
 \usepackage{tocloft}
 \usepackage{comment}
+\usepackage{changepage}
 
+%\usepackage{xcolor}
+%\definecolor{Pagecolor}{RGB}{35,38,41} % Dark gray
+%\definecolor{Textcolor}{RGB}{255,255,255} % Light gray
+%\pagecolor{Pagecolor}
+%\color{Textcolor}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+%\renewcommand{\familydefault}{\sfdefault}
+%% Only use the math font of mathpazo
+%\let\temp\rmdefault
+%\usepackage{fourier}
+%\let\rmdefault\temp
 
 \usepackage{fancyhdr}
 \setlength{\headheight}{15.2pt}
@@ -51,12 +66,13 @@
 \cfoot{\footnotesize \textcopyright 2018 goropikari, \textcopyright 2021 tlesaul2 - \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License}}
 
 % コマンド定義
-\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Tr}{tr} 
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert} % norm ||x||
 \newcommand{\kb}[1]{\ket{#1}\hspace{-1mm} \bra{#1}} % |x><x|
 \newcommand{\kbt}[2]{\ket{#1}\hspace{-1mm} \bra{#2}} % |x><y|
 \newcommand{\Textbf}[1]{\hspace{3mm}\\\textbf{#1)}}
 \newcommand{\Soln}{\textbf{\\Soln: }}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
 \newtheorem{thm}{Theorem.}[section]
 \newtheorem{prop}{Proposition.}[section]
 
