@@ -68,7 +68,7 @@ Second checkboxes correspond to checked and/or extended solutions by the current
 - [x] - [x] 2.36
 - [x] - [x] 2.37
 - [x] - [x] 2.38
-- [ ] 2.39 partially solved/partially extended
+- [ ] - [x] 2.39 partially solved/extended in it's entirety
 - [x] 2.40
 - [x] 2.41
 - [x] 2.42
