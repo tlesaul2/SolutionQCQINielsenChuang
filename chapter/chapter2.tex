@@ -1610,7 +1610,7 @@ Since $A$ is invertible, multiplying by $A^{-1}$ from the left gives
 \Textbf{2.48} What is the polar decomposition of positive matrix $P$?  Of a unitary matrix $U$? Of a Hermitian matrix $H$?
 \Soln
 
-(Positive )  Since $P$ is positive, it is Hermitian by Exercise 2.24, thus normal, so the spectral decomposition theorem gives that it is diagonalizable. Then $P = \sum_i \lambda_i \kb{i}$,  where $\lambda_i \geq 0$ by positivity. Note that this implies that $\sqrt{\lambda_i^2}=\lambda_i$.
+(Positive)  Since $P$ is positive, it is Hermitian by Exercise 2.24, thus normal, so the spectral decomposition theorem gives that it is diagonalizable. Then $P = \sum_i \lambda_i \kb{i}$,  where $\lambda_i \geq 0$ by positivity. Note that this implies that $\sqrt{\lambda_i^2}=\lambda_i$.
 \begin{align*}
 	J &= \sqrt{P^\dagger P} \tag{uniqueness of $J$}\\
 	&= \sqrt{P^2} \tag{Hermiticity}\\
@@ -1688,7 +1688,7 @@ $A^\dagger A = \begin{bmatrix}1& 1\\ 0&1\end{bmatrix}\begin{bmatrix}1& 0\\ 1&1\e
 \begin{align*}
 	U = AJ^{-1} \tag{$A$ is invertible, $U$ is unique}
 \end{align*}
-It is not worth simplifying $J, J^-1$, or $U$, nor is it worth finding the right polar decomposition.
+It is not worth simplifying $J, J^{-1}$, or $U$, nor is it worth finding the right polar decomposition.
 
 \Textbf{2.51} Verify that the Hadamard gate $H$ is unitary.
 \Soln
@@ -1736,9 +1736,9 @@ the eigenvalues are $\lambda_\pm = \pm 1$. The associated orthonormal eigenvecto
 
 
 
-\Textbf{2.54} Suppose $A$ and $B$ are commuting Hermitian operators.  Prove that $exp(A)exp(B)=exp(A+B)$.
+\Textbf{2.54} Suppose $A$ and $B$ are commuting Hermitian operators.  Prove that $\exp(A)\exp(B)=\exp(A+B)$.
 \Soln
-Since $[A, B] = 0$, $A$ and $B$ are simultaneously diagonalizable. Let $\ket{i}$ be an orthonormal basis such that $A = \sum_i a_i \kb{i}$, $B = \sum_i b_i \kb{i}$.  Note that $A+B$ is also simultaneously diagonalizable, since $A+B = \sum_i (a_i+b_i)\kb{i}$..
+Since $[A, B] = 0$, $A$ and $B$ are simultaneously diagonalizable. Let $\ket{i}$ be an orthonormal basis such that $A = \sum_i a_i \kb{i}$, $B = \sum_i b_i \kb{i}$.  Note that $A+B$ is also simultaneously diagonalizable, since $A+B = \sum_i (a_i+b_i)\kb{i}$.
 \begin{align*}
 	\exp (A) \exp (B) &= \left(\sum_i \exp (a_i) \kb{i}\right) \left(\sum_i \exp (b_i) \kb{i}\right) \tag{from above} \\
 		&= \sum_{i,j} \exp (a_i + b_j) \ket{i} \braket{i | j} \bra{j} \tag{group sum}\\
@@ -1748,77 +1748,111 @@ Since $[A, B] = 0$, $A$ and $B$ are simultaneously diagonalizable. Let $\ket{i}$
 \end{align*}
 
 
-\Textbf{2.55} Prove that $U(t_1,t_2)$ defined in Equation (2.91) is unitary:
-\Soln
+\Textbf{2.55} Prove that $U(t_1,t_2)$ defined in Equation (2.91) is unitary.
+\Soln Some definitions: $H$ is the Hamiltonian of some closed system.  It is Hermitian, and hence has a spectral decomposition: $H = \sum  E \kb{E}$.  Note that $H^\dagger=\left(\sum E \kb{E}\right)^\dagger = \sum E^* \bigl(\kb{E}\bigr)^\dagger = \sum E^* \kb{E}$ by Exercise 2.13.  $U$ is defined as $U(t_1, t_2) \equiv \exp\left[\frac{-iH(t_2-t_1)}{\hbar}\right]$.  To prove $U$ is unitary, we show $UU^\dagger=I$.  Now
 \begin{align*}
-	H = \sum_E E \kb{E}
+ (U(t_1,t_2))^\dagger &= \left(\exp\left[\frac{-iH(t_2-t_1)}{\hbar}\right]\right)^\dagger \tag{definition of $U$}\\
+    &= \left(\sum_E \exp\left(\frac{-iE(t_2-t_2)}{\hbar}\right)\kb{E}\right)^\dagger \tag{definition of $\exp(A)$}\\
+    &= \sum_E \exp\left(\frac{-iE(t_2-t_1)}{\hbar}\right)^*\kb{E}^\dagger \tag{linearity of $^\dagger$} \\
+    &= \sum_E \exp \left(\frac{iE(t_2-t_1)}{\hbar}\right)\kb{E} \tag{complex conjugation, exercise 2.13} \\
+    &= \exp\left(\frac{iH(t_2-t_1)}{\hbar}\right) \tag{definition of $\exp(A)$}
+    \end{align*}
+We have   
+\begin{align*}
+	U(t_2 - t_1) (U(t_2 - t_1))^\dagger &= \exp \left( - \frac{iH(t_2 - t_1)}{\hbar} \right)  \exp \left(  \frac{iH(t_2 - t_1)}{\hbar} \right) \tag{from above}\\
+		&= \sum_{E, E'} \left(\exp \left(\frac{-iE(t_2 - t_1)}{\hbar} \right) \kb{E} \right)
+										\left(\exp \left(\frac{iE'(t_2 - t_1)}{\hbar} \right) \kb{E'} \right) \tag{$E'$ used to distinguish from $E$}\\
+		&= \sum_{E, E'} \exp \left(- \frac{i(E-E')(t_2 - t_1)}{\hbar} \right) \ket{E}\bra{E'} \delta_{E,E'} \tag{orthonormality}\\
+		&= \sum_E \exp(0) \kb{E} \tag{group nonzero terms}\\
+		&= \sum_E \kb{E} \tag{$e^0=1$}\\
+		&= I \tag{completeness}
 \end{align*}
 
-\begin{align*}
-	U(t_2 - t_1) U^\dagger (t_2 - t_1) &= \exp \left( - \frac{iH(t_2 - t_1)}{\hbar} \right)  \exp \left(  \frac{iH(t_2 - t_1)}{\hbar} \right)\\
-		&= \sum_{E, E'} \left(\exp \left(- \frac{iE(t_2 - t_1)}{\hbar} \right) \kb{E} \right)
-										\left(\exp \left(- \frac{iE'(t_2 - t_1)}{\hbar} \right) \kb{E'} \right)\\
-		&= \sum_{E, E'} \left(\exp \left(- \frac{i(E-E')(t_2 - t_1)}{\hbar} \right) \kbt{E}{E'} \delta_{E,E'} \right) \\
-		&= \sum_E \exp(0) \kb{E}\\
-		&= \sum_E \kb{E}\\
-		&= I
-\end{align*}
+Similarly, $(U(t_2 - t_1))^\dagger U (t_2 - t_1) = I$.  So, $U$ is unitary.
 
-Similarly, $U^\dagger (t_2 - t_1) U (t_2 - t_1) = I$.
+\Textbf{2.56} Use the spectral decomposition to show that $K\equiv-i\log(U)$ is Hermitian for any unitary $U$ and thus $U=\exp(iK)$ for some Hermitian $K$.
+\Soln Since $U$ is unitary, it has a spectral decomposition with respect to some orthonormal basis, say $\ket{\lambda}$.  For each eigenvalue $\lambda$, note that exerces 2.18 gives that $\norm{\lambda} = 1$, so express $\lambda=e^{i\theta}$ for some real valued argument $\theta$.  Then $\log(U) = \sum \log(\lambda)\kb{\lambda}=\sum i\theta\kb{\lambda}$.  Now $K \equiv -i\log(U) = \sum \theta \kb{\lambda}$, and $K^\dagger = \left(\sum \theta\kb{\lambda}\right)^\dagger = \sum \theta^*(\kb{\lambda})^\dagger= \sum \theta\kb{\lambda} = K$, since $\theta$ is real and exercise 2.13 gives that $(\kb{\lambda})^\dagger=\kb{\lambda}$.  So, $K$ is Hermitian, and by applying the fact that $\exp$ and $\log$ are inverse complex valued functions, at least for the $\lambda$, we can conclude that $\exp(iK)=\exp(i\cdot(-i\log(U))) = \exp(\log(U)) = U$.
 
-
-
-\Textbf{2.56}
-
-$U = \sum_i \lambda_i \kb{\lambda_i}$~~~ ($|\lambda_i| = 1$).
-\begin{align*}
-	\log (U) &= \sum_j \log (\lambda_j) \kb{\lambda_j} = \sum_j i \theta_j  \kb{\lambda_j} \text{ where } \theta_j = \arg (\lambda_j)\\
-	K &= - i \log(U) = \sum_j \theta_j \kb{\lambda_j}.
-\end{align*}
-
-\begin{align*}
-	K^\dagger = (-i \log U)^\dagger = \left(\sum_j \theta_j \kb{\lambda_j}\right)^\dagger
-	= \sum_j \theta_j^* \kb{\lambda_j} = \sum_j \theta_j \kb{\lambda_j} = K
-\end{align*}
-
-
-
-\Textbf{2.57}
-\begin{align*}
-	&\ket{\phi} \equiv \frac{L_l \ket{\psi}}{\sqrt{\braket{\psi |L_l^\dagger L_l | \psi}}}\\
-	&\braket{\phi | M_m^\dagger M_m | \phi} = \frac{\braket{\psi | L_l^\dagger M_m^\dagger M_m L_l | \psi}}{\braket{\psi | L_l^\dagger L_l | \psi}} \\
+%$U = \sum_i \lambda_i \kb{\lambda_i}$~~~ ($|\lambda_i| = 1$).
+%\begin{align*}
+%	\log (U) &= \sum_j \log (\lambda_j) \kb{\lambda_j} = \sum_j i \theta_j  \kb{\lambda_j} \text{ where } \theta_j = \arg (\lambda_j)\\
+%	K &= - i \log(U) = \sum_j \theta_j \kb{\lambda_j}.
+%\end{align*}
 %
-	&\frac{M_m \ket{\phi}}{\sqrt{\braket{\phi | M_m^\dagger M_m | \phi}}} =
-		\frac{M_m L_l \ket{\psi}}{\sqrt{\braket{\psi |L_l^\dagger L_l | \psi}}}
-		\cdot
-		\frac{ \sqrt{\braket{\psi | L_l^\dagger L_l | \psi}} }{ \sqrt{\braket{\psi | L_l^\dagger M_m^\dagger M_m L_l | \psi}} }
-		=
-		\frac{M_m L_l \ket{\psi}}{ \sqrt{\braket{\psi | L_l^\dagger M_m^\dagger M_m L_l | \psi}} }
-		=
-		\frac{N_{lm} \ket{\psi}}{\sqrt{\braket{\psi |N^\dagger_{lm}  N_{lm}  | \psi}}}
-\end{align*}
+%\begin{align*}
+%	K^\dagger = (-i \log U)^\dagger = \left(\sum_j \theta_j \kb{\lambda_j}\right)^\dagger
+%	= \sum_j \theta_j^* \kb{\lambda_j} = \sum_j \theta_j \kb{\lambda_j} = K
+%\end{align*}
 
 
 
-\Textbf{2.58}
+\Textbf{2.57} \textbf{(Cascaded measurements are  single measurements)} Suppose $\{L_\ell\}$ and $\{M_m\}$ are two sets of measurement operators.  Show that a measurement defined by the measurement operators $\{L_\ell\}$ followed by a measurement defined by the measurement operators $\{M_m\}$ is physically equivalent to a single measurement defined by measurement operators $\{N_{\ell m}\}$ with the representation $N_{\ell m} \equiv M_mL_\ell$.
+\Soln  Let the state of a physical system be $\psi$.  Note that by definition the state after applying measurement operators $\{L_\ell\}$ is $\ket{\phi} \equiv \frac{L_\ell\ket{\psi}}{\sqrt{\braket{\psi|L_\ell^\dagger L_\ell|\psi}}}$ for some $\ell$.  The state after applying measurement operators $\{M_m\}$ is $\xi \equiv \frac{M_m\ket{\phi}}{\sqrt{\braket{\phi|M_m^\dagger M_m|\phi}}}$ for some $m$.  Now
 \begin{align*}
-	\braket{M} &= \braket{ \psi | M | \psi} = \braket{\psi | m | \psi} = m \braket{\psi | \psi} = m\\
-	\braket{M^2} &= \braket{ \psi | M^2 | \psi} = \braket{\psi | m^2 | \psi} = m^2 \braket{\psi | \psi} = m^2\\
-	\text{deviation} &= \braket{M^2} - \braket{M}^2 = m^2 - m^2 = 0.
+    \xi &= \frac{M_m\ket{\phi}}{\sqrt{\braket{\phi|M_m^\dagger M_m|\phi}}} \tag{from above} \\
+    &= \frac{M_m \frac{L_\ell \ket{\psi}}{\sqrt{{\braket{\psi|L_\ell^\dagger L_\ell|\psi}}}}}{\sqrt{\left\langle\frac{L_\ell\ket{\psi}}{\sqrt{\braket{\psi|L_\ell^\dagger L_\ell|\psi}}}\Big\lvert M_m^\dagger M_m\Big\rvert \frac{L_\ell\ket{\psi}}{\sqrt{\braket{\psi|L_\ell^\dagger L_\ell|\psi}}}\right\rangle}} \tag{substitute for $\phi$} \\
+    &= \frac{\frac{M_mL_\ell\ket{\psi}}{\sqrt{\braket{\psi|L_\ell^\dagger L_\ell|\psi}}}}{\sqrt{\frac{\big\langle L_\ell\ket{\psi}\big\lvert M_m^\dagger M_m\big\rvert L_\ell\psi\big\rangle}{\braket{\psi|L_\ell^\dagger L_\ell|\psi}}}} \tag{group internal scalar values} \\
+    &=\frac{\frac{\sqrt{\braket{\psi|L_\ell^\dagger L_\ell|\psi}}}{1}\cdot\frac{M_mL_\ell\ket{\psi}}{\sqrt{\braket{\psi|L_\ell^\dagger L|\psi}}}}{\sqrt{\braket{\psi|L_\ell^\dagger M_m^\dagger M_m L_\ell | \psi}}} \tag{move the scalar to numerator}\\
+    &=\frac{(M_mL_\ell)\psi}{\sqrt{\braket{\psi| (M_mL_\ell)^\dagger(M_mL_\ell)|\psi}}} \tag{cancel scalars, group operators}\\
+    &= \frac{N_{\ell m}\ket{\psi}}{\sqrt{\braket{\psi|N_{\ell m}^\dagger N_{\ell m}|\psi}}} \tag{definition of $N_{\ell m}$}
 \end{align*}
+This gives that the state of the system after applying measurement operators $\{L_\ell\}$ followed by measurement operators $\{M_m\}$ can be expressed in terms of applying measurement operators $N_{\ell m} = M_mL_\ell$.  Note, though, that the state of the system after applying $N_{\ell m}$ is exactly the state of the system after applying $M_m$, for any $\ell$.  In practice, the intermediate measurement result $\ell$ would be unknown, and to find the probability that the system is in state $m$ after application of the measurement operators $\{N_{\ell m}\}$, one would have to sum over the possible intermediate measurement results.  
 
 
-\Textbf{2.59}
+%\begin{align*}
+%	&\ket{\phi} \equiv \frac{L_l \ket{\psi}}{\sqrt{\braket{\psi |L_l^\dagger L_l | \psi}}}\\
+%	&\braket{\phi | M_m^\dagger M_m | \phi} = \frac{\braket{\psi | L_l^\dagger M_m^\dagger M_m L_l | \psi}}{\braket{\psi | L_l^\dagger L_l | \psi}} \\
+%%
+%	&\frac{M_m \ket{\phi}}{\sqrt{\braket{\phi | M_m^\dagger M_m | \phi}}} =
+%		\frac{M_m L_l \ket{\psi}}{\sqrt{\braket{\psi |L_l^\dagger L_l | \psi}}}
+%		\cdot
+%		\frac{ \sqrt{\braket{\psi | L_l^\dagger L_l | \psi}} }{ \sqrt{\braket{\psi | L_l^\dagger M_m^\dagger M_m L_l | \psi}} }
+%		=
+%		\frac{M_m L_l \ket{\psi}}{ \sqrt{\braket{\psi | L_l^\dagger M_m^\dagger M_m L_l | \psi}} }
+%		=
+%		\frac{N_{lm} \ket{\psi}}{\sqrt{\braket{\psi |N^\dagger_{lm}  N_{lm}  | \psi}}}
+%\end{align*}
+
+
+
+\Textbf{2.58} Suppose we prepare a quantum system in an eigenstate $\ket{\psi}$ of some observable $M$, with corresponding eigenvalue $m$.  What is the average observed value of $M$, and the standard deviation?
+\Soln Express $M = \sum_\mu \mu P_\mu$, where the $\ket{\mu}$ are an orthonormal set of eigenvectors each with eigenvalue $\mu$. We may assume $\norm{\ket{\psi}} = 1$, so that $\ket{\psi} = \ket{\mu}$ for some $\ket{\mu}$ (and $m = \mu$ for some $\mu$). 
+
+\begin{align*}
+	\mathbf{E}(M) = \braket{M} &= \braket{\psi|M|\psi} \tag{ definition of $\mathbf{E}(M)$}\\
+	&= \left\langle \psi \Big\lvert \sum_\mu \mu P_\mu\Big\rvert \psi\right\rangle \tag{ spectral decomposition of $M$}\\
+	&=\sum_\mu \mu\braket{\psi|P_\mu|\psi} \tag{linearity}\\
+	&=\sum_\mu \mu\braket{\psi|\mu}\braket{\mu|\psi} \tag{$P_\mu$ is a projector}\\
+	&=\sum_\mu \mu \delta_{\psi,\mu}^2 \tag{orthonormality}\\
+	&=m \tag{collect nonzero terms}
+	\end{align*}
+Similarly, $\braket{M^2} = \braket{ \psi | M^2 | \psi} = m^2$.  Now $\Delta(M) = \sqrt{\braket{M^2}-\braket{M}^2} = \sqrt{m^2-(m)^2} = 0$.
+%\begin{align*}
+%	\braket{M^2} &= \braket{ \psi | M^2 | \psi} = \braket{\psi | m^2 | \psi} = m^2 \braket{\psi | \psi} = m^2\\
+%	\text{deviation} &= \braket{M^2} - \braket{M}^2 = m^2 - m^2 = 0.
+%\end{align*}
+
+
+\Textbf{2.59} Suppose we have (a) qubit in the state $\ket{0}$, and we  measure the observable $X$.  What is the average value of $X$?  What is the standard deviation?
+\Soln There are two ways to proceed.  First, we can apply $X$, noting that $X\ket{0}=\ket{1}$ and $X\ket{1} = \ket{0}$. 
 \begin{align*}
 	\braket{X} &= \braket{0 | X | 0} = \braket{0 | 1} = 0\\
 	\braket{X^2} &= \braket{0 | X^2 | 0} = \braket{0 | X | 1} =\braket{0 | 0} = 1\\
-	\text{standard deviation} &= \sqrt{ \braket{X^2} - \braket{X}^2 } = 1
+	\Delta(X) &= \sqrt{ \braket{X^2} - \braket{X}^2 } = \sqrt{1-0^2} = 1
+\end{align*}
+Alternatively, write $X = (\kb{+})-(\kb{-})$, and note that $X^2 = (\kb{+})+(\kb{-})$ Now
+\begin{align*}
+	\braket{X} &= \braket{0 | X | 0} = \braket{0|+}\braket{+|0} - \braket{0|-}\braket{-|0}=\frac{1}{2}-\frac{1}{2} = 0\\
+	\braket{X^2} &= \braket{0 | X^2 | 0} = \braket{0|+}\braket{+|0} + \braket{0|-}\braket{-|0}=\frac{1}{2}+\frac{1}{2} = 1\\
+	\Delta(X)  &= \sqrt{ \braket{X^2} - \braket{X}^2 } = \sqrt{1 - 0^2} = 1
 \end{align*}
 
 
-\Textbf{2.60}
+
+\Textbf{2.60}  Show that $\vec{v}\cdot\vec{\sigma}$ has eigenvalues $\pm1$, and that the projectors onto the corresponding eigenspaces are given by $P_\pm = (I\pm\vec{v}\cdot\vec{\sigma})/2$.
+\Soln We calculate eigenvalues by expressing $\vec{v}\cdot\vec{\sigma}$ explicitly in terms of $v_1,v_2$, and $v_3$.
 \begin{align*}
-    \vec{v} \cdot \vec{\sigma} &= \sum_{i=1}^3 v_i \sigma_i\\
+    \vec{v} \cdot \vec{\sigma} &= \sum_{i=1}^3 v_i \sigma_i \tag{definition}\\
     &= v_1 \begin{bmatrix}
         0 & 1 \\
         1 & 0
@@ -1830,66 +1864,73 @@ $U = \sum_i \lambda_i \kb{\lambda_i}$~~~ ($|\lambda_i| = 1$).
     + v_3 \begin{bmatrix}
         1 & 0 \\
         0 & -1
-    \end{bmatrix} \\
+    \end{bmatrix} \tag{$\sigma_1=X, \sigma_2=Y, \sigma_3=Z$}\\
     &= \begin{bmatrix}
         v_3 & v_1 - i v_2 \\
         v_1 + iv_2 & -v_3
-    \end{bmatrix}
+    \end{bmatrix} \tag{add corresponding entries}
 \end{align*}
 
 \begin{align*}
-    \det (\vec{v} \cdot \vec{\sigma}  - \lambda I) &= (v_3 - \lambda) (-v_3 - \lambda) - (v_1 - iv_2) (v_1 + iv_2)\\
-    &= \lambda^2 - (v_1^2 + v_2^2  + v_3^2)\\
-    &= \lambda^2 - 1 ~~~ (\because |\vec{v}| = 1)
+    \det (\vec{v} \cdot \vec{\sigma}  - \lambda I) &= (v_3 - \lambda) (-v_3 - \lambda) - (v_1 - iv_2) (v_1 + iv_2) \tag{characteristic equation}\\
+    &= \lambda^2 - (v_1^2 + v_2^2  + v_3^2) \tag{simplify}\\
+    &= \lambda^2 - 1 \tag{$\vec{v}$ is a unit vector}
 \end{align*}
-Eigenvalues are $\lambda = \pm 1$.
+So the eigenvalues of $\vec{v}\cdot\vec{\sigma}$ are $\lambda = \pm 1$.
 
+To calculate the projectors onto the corresponding eigenspaces, note that $\ket{\lambda_1} = \begin{bmatrix}1 \\\frac{1-v_3}{v_1-iv_2}\end{bmatrix}$ can easily be seen to be an eigenvector with eigenvalue $\lambda=1$.  To normalize, we'll use the fact that $1-v_3^2 = v_1^2+v_2^2$, since $\vec{v}$ is a unit vector.  Factoring both sides and dividing yields $\frac{1\pm_1v_3}{v_1\pm_2iv_2} = \frac{v_1\mp_2iv_2}{1\mp_1v_3},$ that is, such rational functions can be flipped by negating both binary operations.
 
-(i) if $\lambda = 1$
-\begin{align*}
-	\vec{v} \cdot \vec{\sigma}  - \lambda I &= \vec{v} \cdot \vec{\sigma}  - I\\
-		&= \begin{bmatrix}
-    		v_3 - 1 & v_1 - i v_2 \\
-    		v_1 + i v_2 & - v_3 - 1
-		\end{bmatrix}
+\begin{align*}\norm{\ket{\lambda_1}}^2 &= 1+\norm{\frac{1-v_3}{v_1-iv_2}}^2 \tag{definition of $\norm{\cdot}^2$}\\
+    &= 1+\left(\frac{v_1+iv_2}{1+v_3}\right)\left(\frac{v_1-iv_2}{1+v_3}\right) \tag{flip, $\norm{c}^2=c\cdot c^*$} \\
+    &= 1+\frac{v_1^2+v_2^2}{(1+v_3)^2} \tag{expand} \\
+    &= \frac{1+2v_3+v_1^2+v_2^2+v_3^2}{(1+v_3)^2} \tag{common denominator} \\
+    &= \frac{2(1+v_3)}{(1+v_3)^2} \tag{$\vec{v}$ is a unit vector} \\
+    &=\frac{2}{1+v_3} \tag{cancel}
 \end{align*}
-
-Normalized eigenvector is $\ket{\lambda_1} = \sqrt{ \frac{1+v_3}{2 }} \begin{bmatrix}
+So $\ket{\lambda_1} = \sqrt{ \frac{1+v_3}{2 }} \begin{bmatrix}
 1 \\
 \frac{1-v_3}{v_1 - iv_2}
-\end{bmatrix} $.
-
+\end{bmatrix} $ is a normalized eigenvector with eigenvalue $1$.  Similarly, $\ket{\lambda_{-1}} = \sqrt{ \frac{1-v_3}{2 }} \begin{bmatrix}
+    1 \\
+    - \frac{1+v_3}{v_1 - iv_2}
+\end{bmatrix} $ is a normalized eigenvector with eigenvalue $-1$.  For convenience, we write $\ket{\lambda_{\pm1}} = \sqrt{\frac{1\pm v_3}{2}}\begin{bmatrix}1 \\ \frac{v_3\mp 1}{v_1-iv_2}\end{bmatrix}$.  Calculating the projectors:
 \begin{align*}
-	\kb{\lambda_1} &= \frac{1+v_3}{2 } \begin{bmatrix}
+	\kb{\lambda_{\pm1}} &= \frac{1\pm v_3}{2 } \begin{bmatrix}
 		1 \\
-		\frac{1-v_3}{v_1 - iv_2}
+		\frac{v_3\mp1}{v_1 - iv_2}
 	\end{bmatrix}
 	\begin{bmatrix}
    		1 &
-   		\frac{1-v_3}{v_1 + iv_2}
-	\end{bmatrix}\\
+   		\left(\frac{v_3\mp1}{v_1 - iv_2}\right)^*
+	\end{bmatrix} \tag{definition}\\
+	&=  \frac{1\pm v_3}{2 } \begin{bmatrix}
+		1 \\
+		\frac{v_1 + iv_2}{v_3\pm1}
+	\end{bmatrix}
+	\begin{bmatrix}
+   		1 &
+   		\left(\frac{v_1 + iv_2}{v_3\pm1}\right)^*
+	\end{bmatrix} \tag{flip}\\
+	&=\frac{1\pm v_3}{2 } \begin{bmatrix}
+		1 \\
+		\frac{v_1 + iv_2}{v_3\pm1}
+	\end{bmatrix}
+	\begin{bmatrix}
+   		1 &
+   		\frac{v_1 - iv_2}{v_3\pm1}
+	\end{bmatrix} \tag{$v_1,v_2$ are real, conjugate}\\
 %
 	&=
-	 \frac{1+v_3}{2 } \begin{bmatrix}
-    	 1 & \frac{v_1 - iv_2}{1 + v_3} \\
-    	 \frac{v_1 + iv_2}{1 + v_3} & \frac{1-v_3}{1+v_3}
-	 \end{bmatrix} \\
-	 &=
-	 \frac{1}{2} \begin{bmatrix}
-    	 1+v_3 & v_1 - iv_2 \\
-    	 v_1 + iv_2 & 1 - v_3
-	 \end{bmatrix} \\
-	 &=
-	  \frac{1}{2} \left( I + \begin{bmatrix}
-    	 v_3 & v_1 - iv_2 \\
-    	 v_1 + iv_2 & - v_3
-	 \end{bmatrix} \right) \\
-	 &=
-	 \frac{1}{2} (I + \vec{v} \cdot \vec{\sigma} )
+	 \frac{1\pm v_3}{2 } \begin{bmatrix}
+    	 1 & \frac{v_1 - iv_2}{1 \pm v_3} \\
+    	 \frac{v_1 + iv_2}{1 \pm v_3} & \frac{v_1^2+v_2^2}{(1 \pm v_3)^2}
+	 \end{bmatrix} \tag{multiply}\\
+	 &= \frac{1}{2}\begin{bmatrix} 1\pm v_3 & v_1-iv_2 \\ v_1+iv_2 & \frac{1-v_3^2}{1\pm v_3}\end{bmatrix} \tag{$v$ is a unit vector, cancel external numerator}\\
+	 &= \frac{1}{2}\begin{bmatrix} 1\pm v_3 & v_1-iv_2 \\ v_1+iv_2 & 1\mp v_3^2 \end{bmatrix} \tag{cancel internal denominator}\\
+	 &= \frac{1}{2}\left(I\pm \begin{bmatrix}v_3 & v_1-iv_2 \\ v_1+iv_2 & -v_3\end{bmatrix}\right) \tag{separate}\\
+	 &= \frac{1}{2}(I\pm\vec{v}\cdot\vec{\sigma}) \tag{definition}
 \end{align*}
-
-
-
+\begin{comment}
 (ii) If $\lambda = -1$.
 \begin{align*}
 	\vec{v} \cdot \vec{\sigma}  - \lambda I &= \vec{v} \cdot \vec{\sigma}  + I\\
@@ -1899,10 +1940,7 @@ Normalized eigenvector is $\ket{\lambda_1} = \sqrt{ \frac{1+v_3}{2 }} \begin{bma
 	\end{bmatrix}
 \end{align*}
 
-Normalized eigenvalue is $\ket{\lambda_{-1}} = \sqrt{ \frac{1-v_3}{2 }} \begin{bmatrix}
-    1 \\
-    - \frac{1+v_3}{v_1 - iv_2}
-\end{bmatrix} $.
+Normalized eigenvalue is 
 
 
 \begin{align*}
@@ -1930,8 +1968,16 @@ Normalized eigenvalue is $\ket{\lambda_{-1}} = \sqrt{ \frac{1-v_3}{2 }} \begin{b
 	\end{bmatrix} \right)\\
 	&= \frac{1}{2} (I - \vec{v} \cdot \vec{\sigma} ).
 \end{align*}
-
-
+\end{comment}
+The first author points out that when $v_1-iv_2 = 0$, or equivalently when $v_3\pm1 = 0$, various expressions above are indeterminant.  The first author attempts to circumvent this by working more generally below, however, the second author is suspicious that the argument is circular.  Some of the details are instructive however, so it is left below.  To deal with the degenerate cases, note that, since $\vec{v}$ is a real-valued vector, $v_1-iv_2=0$ implies $v_1=0, v_2=0$, and $v_3=\pm 1$, in which case $\vec{v}\cdot\vec{\sigma} = \pm Z$.  The normalized eigenvectors are $\ket{\lambda_1} = \pm\ket{0}$ and $\ket{\lambda_{-1}}=\pm\ket{1}$, where here the $\pm$ indicate the sign of $v_3$ instead of the sign of the eigenvalue.  Now
+\begin{align*}
+\kb{\lambda_1} = (\pm1)^2\kb{0} &= \begin{bmatrix}1&0\\0&0\end{bmatrix} = \frac{1}{2}(I+Z)=\frac{1}{2}(I+\vec{v}\cdot{\vec{\sigma}}) \\
+\kb{\lambda_{-1}}=(\pm1)^2\kb{1} &=  \begin{bmatrix}0&0\\0&1\end{bmatrix} = \frac{1}{2}(I-Z)=\frac{1}{2}(I-\vec{v}\cdot{\vec{\sigma}}),
+\end{align*}
+completing the proof.  The first author's attempted resolution follows:
+\vspace{5pt}
+\hrule
+\vspace{5pt}
 	While I review my proof, I notice that my proof has a defect.
 	The case $(v_1,v_2,v_3) = (0,0,1)$, second component of eigenstate, $\frac{1-v_3}{v_1 - iv_2}$, diverges.
 	So I implicitly assume $v_1 - iv_2 \neq 0$. Hence my proof is incomplete.
@@ -1954,7 +2000,7 @@ Normalized eigenvalue is $\ket{\lambda_{-1}} = \sqrt{ \frac{1-v_3}{2 }} \begin{b
 	\begin{align*}
 	(\vec{v} \cdot \vec{\sigma})^2 &= \sum_{j,k=1}^3 (v_j \sigma_j)  (v_k \sigma_k)\\
 	&= \sum_{j,k=1}^3 v_j v_k \sigma_j \sigma_k\\
-	&= \sum_{j,k=1}^3 v_j v_k \left(\delta_{jk}I + i \sum_{l=1}^3 \epsilon_{jkl}\sigma_l \right) ~~~(\because \text{eqn}(2.78)~ \text{page} 78)\\
+	&= \sum_{j,k=1}^3 v_j v_k \left(\delta_{jk}I + i \sum_{l=1}^3 \epsilon_{jkl}\sigma_l \right) ~~~(\because \text{Exercise 2.43, eqn (2.78) page 78})\\
 	&= \sum_{j,k=1}^3 v_j v_k \delta_{jk}I  + i \sum_{j,k,l=1}^3 \epsilon_{jkl} v_j v_k \sigma_l\\
 	&= \sum_{j=1}^3 v_j^2 I\\
 	&= I ~~~\left(\because \sum_j v_j^2 = 1 \right)
@@ -1993,8 +2039,8 @@ Normalized eigenvalue is $\ket{\lambda_{-1}} = \sqrt{ \frac{1-v_3}{2 }} \begin{b
 		\begin{align*}
 		\braket{\psi | (P_{\pm} - \kb{\lambda_\pm})| \psi}
 		%		&= \braket{\psi | \left(\frac{1}{2} (I \pm \vec{v} \cdot \vec{\sigma}) - \kb{\lambda_\pm}\right)| \psi}\\
-		&= \braket{\psi | P_\pm | \psi} - \braket{\psi | \lambda_\pm} \braket{\lambda_\pm | \psi}.\\
-		\braket{\psi | P_\pm | \psi} &= \braket{\psi | \frac{1}{2}(I \pm \vec{v} \cdot \vec{\sigma}) | \psi}\\
+		&= \braket{\psi | P_\pm | \psi} - \braket{\psi | \lambda_\pm} \braket{\lambda_\pm | \psi}.   \\
+		\braket{\psi | P_\pm | \psi} &= \braket{\psi | \frac{1}{2}(I \pm \vec{v} \cdot \vec{\sigma}) | \psi}\tag*{$\Bigl(\Bigr. \begin{array}{r}\text{implicit assumption the above equals 0}\\ \text{and that} \kb{\lambda_{\pm1}}=\frac{1}{2}(I\pm\vec{v}\cdot{\sigma})\end{array} \Bigl.\Bigr)$ }\\
 		&= \frac{1}{2} \pm \frac{1}{2} \braket{\psi | \vec{v} \cdot \vec{\sigma})| \psi}\\
 		&= \frac{1}{2} \pm \frac{1}{2} (|\alpha|^2 - |\beta|^2)\\
 		&= \frac{1}{2} \pm \frac{1}{2} (2|\alpha|^2 - 1) ~~~(\because |\alpha|^2 + |\beta|^2 = 1)\\
@@ -2006,31 +2052,44 @@ Normalized eigenvalue is $\ket{\lambda_{-1}} = \sqrt{ \frac{1-v_3}{2 }} \begin{b
 		Thus $P_\pm = \kb{\lambda_{\pm 1}}$.
 	\end{proof}
 
-\Textbf{2.61}
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+\Textbf{2.61} Calculate the probability of obtaining the result $+1$ for a measurement of $\vec{v}\cdot\vec{\sigma}$, given that the state prior to measurement is $\ket{0}$.  What is the state of the system after the measurement if $+1$ is obtained?
+\Soln 
 \begin{align*}
-	\braket{\lambda_1 | 0} \braket{0 | \lambda_1} &= \braket{0 | \lambda_1} \braket{\lambda_1 | 0}\\
-		&= \braket{0 | \frac{1}{2} ( I + \vec{v} \cdot \vec{\sigma} ) | 0}\\
-		&= \frac{1}{2} (1 + v_3)
+	p(1) = \braket{0|P_1|0} &= \left\langle 0 \Big\lvert \frac{1}{2} ( I + \vec{v} \cdot \vec{\sigma} ) \Big\rvert 0\right\rangle \tag{definition}\\
+	           &= \braket{0|\lambda_1}\braket{\lambda_1|0} \tag{use eigenvector directly}\\
+	           &=\frac{1+v_3}{2}\begin{bmatrix}1&0\end{bmatrix}\begin{bmatrix}1 \\ \frac{1-v_3}{v_1-iv_2}\end{bmatrix}\begin{bmatrix}1 & \frac{1-v_3}{v_1+iv_2}\end{bmatrix}\begin{bmatrix}1\\0\end{bmatrix} \tag{substitute}\\
+	           &= \frac{1+v_3}{2}\begin{bmatrix}1&0\end{bmatrix} \begin{bmatrix}
+    	 1 & \frac{v_1 - iv_2}{1 + v_3} \\
+    	 \frac{v_1 + iv_2}{1 + v_3} & \frac{1-v_3}{1+v_3}
+	 \end{bmatrix}\begin{bmatrix}1\\0\end{bmatrix} \tag{multiply}\\
+		&= \frac{1}{2} (1 + v_3) \tag{extract 0,0 entry}
+\end{align*}
+The post-measurement state is
+\begin{align*} \frac{\ket{\lambda_1}\braket{\lambda_1|0}}{\sqrt{p(1)}} &=\left(\frac{\sqrt{\frac{1+v_3}{2}}}{\sqrt{\frac{1+v_3}{2}}}\begin{bmatrix}1 & \frac{1-v_3}{v_1+iv_2}\end{bmatrix}\begin{bmatrix}1\\0\end{bmatrix}\right) \ket{\lambda_1} \tag*{$\Bigl(\Bigr. \begin{array}{r}\text{numerator from normalization}\\ \text{denominator from above}\end{array} \Bigl.\Bigr)$ } \\
+&= \ket{\lambda_1} \tag{simplify, multiply}
 \end{align*}
 
-Post-measurement state is
-\begin{align*}
-	\frac{\ket{\lambda_1} \braket{\lambda_1 | 0}}{ \sqrt{\braket{0 | \lambda_1} \braket{\lambda_1 | 0}} } &= \frac{1}{\sqrt{\frac{1}{2} (1 + v_3)}}
-	\cdot \frac{1}{2}
-	\begin{bmatrix}
-		1 + v_3 \\
-		v_1 + iv_2
-	\end{bmatrix} \\
-		&= \sqrt{ \frac{1}{2}  (1 + v_3) } \begin{bmatrix}
-		1 \\
-		\frac{v_1 + iv_2}{1+v_3}
-		\end{bmatrix} \\
-		&=  \sqrt{ \frac{1 + v_3}{2} } \begin{bmatrix}
-		1 \\
-		\frac{1 - v_3}{v_1 - iv_2}
-		\end{bmatrix} \\
-		&= \ket{\lambda_1}.
-\end{align*}
+%\begin{align*}
+%	\frac{\ket{\lambda_1} \braket{\lambda_1 | 0}}{ \sqrt{\braket{0 | \lambda_1} \braket{\lambda_1 | 0}} } &= \frac{1}{\sqrt{\frac{1}{2} (1 + v_3)}}
+%	\cdot \frac{1}{2}
+%	\begin{bmatrix}
+%		1 + v_3 \\
+%		v_1 + iv_2
+%	\end{bmatrix} \\
+%		&= \sqrt{ \frac{1}{2}  (1 + v_3) } \begin{bmatrix}
+%		1 \\
+%		\frac{v_1 + iv_2}{1+v_3}
+%		\end{bmatrix} \\
+%		&=  \sqrt{ \frac{1 + v_3}{2} } \begin{bmatrix}
+%		1 \\
+%		\frac{1 - v_3}{v_1 - iv_2}
+%		\end{bmatrix} \\
+%		&= \ket{\lambda_1}.
+%\end{align*}
+
 
 
 
@@ -2079,10 +2138,11 @@ Read following paper:
 \end{itemize}
 
 
-\Textbf{2.65}
-\begin{align*}
-    \ket{+} \equiv \frac{\ket{0} + \ket{1}}{\sqrt{2}}, ~~~ \ket{-} \equiv \frac{\ket{0} - \ket{1}}{\sqrt{2}}
-\end{align*}
+\Textbf{2.65} Express the states $(\ket{0}+\ket{1})/\sqrt{2}$ and $(\ket{0}-\ket{1})/\sqrt{2}$ in a basis in which there are \textit{not} the same up to a relative phase shift.
+\Soln Note that $(\ket{0} + \ket{1})/\sqrt{2} = \ket{+}$ and $(\ket{0}-\ket{1})/\sqrt{2}=\ket{-}$ are an orthonormal basis. Since the amplitude of $\ket{+}$ in the expression $(\ket{0} + \ket{1})/\sqrt{2} = \ket{+}$ is 1, and that in $(\ket{0} - \ket{1})/\sqrt{2} = \ket{-}$ is 0, there is no relative phase $\theta$ such that such that $e^{i\theta}\cdot 1 = 0$, so $\ket{+}$ and $\ket{-}$ do not differ by a relative phase in the basis they comprise.
+%\begin{align*}
+%    \ket{+} \equiv \frac{\ket{0} + \ket{1}}{\sqrt{2}}, ~~~ \ket{-} \equiv \frac{\ket{0} - \ket{1}}{\sqrt{2}}
+%\end{align*}
 
 
 \Textbf{2.66}
