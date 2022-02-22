@@ -68,7 +68,7 @@ Second checkboxes correspond to checked and/or extended solutions by the current
 - [x] - [x] 2.36
 - [x] - [x] 2.37
 - [x] - [x] 2.38
-- [ ] - [x] 2.39 partially solved/extended in it's entirety
+- [ ] - [x] 2.39 (partially solved)/extended in it's entirety
 - [x] - [x] 2.40
 - [x] - [x] 2.41
 - [x] - [x] 2.42
@@ -77,24 +77,24 @@ Second checkboxes correspond to checked and/or extended solutions by the current
 - [x] - [x] 2.45
 - [x] - [x] 2.46
 - [x] - [x] 2.47
-- [x] - [ ] 2.48 requires positive definiteness/invertibility instead of just positivity
+- [x] - [p] 2.48 requires positive definiteness/invertibility instead of just positivity
 - [x] - [x] 2.49
-- [ ] - [x] 2.50 partially solved/simplified, not worth finishing
+- [ ] - [x] 2.50 (partially solved)/simplified, not worth finishing
 - [x] - [x] 2.51
 - [x] - [x] 2.52
 - [x] - [x] 2.53
 - [x] - [x] 2.54
-- [x] 2.55
-- [x] 2.56
-- [x] 2.57
-- [x] 2.58
-- [x] 2.59
-- [x] 2.60
-- [x] 2.61
+- [x] - [x] 2.55
+- [x] - [x] 2.56
+- [x] - [x] 2.57
+- [x] - [x] 2.58
+- [x] - [x] 2.59
+- [x] - [x] 2.60 fixed
+- [x] - [x] 2.61
 - [x] 2.62
 - [x] 2.63
 - [ ] 2.64
-- [x] 2.65
+- [x] - [x] 2.65
 - [x] 2.66
 - [x] 2.67
 - [x] 2.68
@@ -105,7 +105,7 @@ Second checkboxes correspond to checked and/or extended solutions by the current
 - [x] 2.73
 - [x] 2.74
 - [x] 2.75
-- [ ] 2.76 Unsolved
+- [ ] 2.76 (Unsolved)
 - [x] 2.77
 - [x] 2.78
 - [x] 2.79
