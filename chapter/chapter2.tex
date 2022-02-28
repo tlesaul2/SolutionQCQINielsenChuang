@@ -93,8 +93,6 @@ product of the matrix representations for $B$ and $A$ with respect to the approp
 	\therefore & (B\circ A)_{ki} = (B\cdot A)_{ki}
 \end{align*}
 
-
-
 \Textbf{2.4} Show that the identity operator on a vector space $V$ has a matrix representation which is one along the
 diagonal and zero everywhere else, if the matrix representation is taken with respect to the same input and output bases.
 This matrix is known as the \textit{identity matrix}
@@ -103,7 +101,6 @@ This matrix is known as the \textit{identity matrix}
 I\ket{v_j} := \ket{v_j} &= \sum_i I_{ij} \ket{v_i}, \ \forall j.\\
 	&\Rightarrow I_{ij} = \delta_{ij} := \left\{ \begin{array}{cc} 1 & i=j \\ \\ 0 & o/w\end{array}\right.
 \end{align*}
-
 
 \Textbf{2.5} Verify that $(\cdot, \cdot)$ just defined is an inner product on $\mathbb{C}^n$
 \Soln Defined inner product on $\mathbb{C}^n$ is
@@ -142,7 +139,6 @@ Equation (2.13.1), linearity in second argument:
 % 	&= \sum_i \lambda_i \left(
 % 													(y_1, \cdots, y_n),  (z_{i1}, \cdots, z_{in})
 % 												\right).
-
 Equation (2.13.2), conjugate symmetry:
 \begin{align}
 	\bigl((y_1, \cdots, y_n), (z_1, \cdots, z_n)\bigr)^*
@@ -151,8 +147,6 @@ Equation (2.13.2), conjugate symmetry:
 	&= \left(\sum_i z_i^* y_i \right) \tag{commutativity in $\mathbb{C}^1$}\\
 	&= \bigl((z_1, \cdots, z_n) , (y_1, \cdots, y_n)\bigr) \tag{definition}
 \end{align}
-
-
 Equation (2.13.3), positive definiteness:
 \begin{align*}
 	\bigl((y_1, \cdots, y_n), (y_1, \cdots, y_n)\bigr)
@@ -165,7 +159,6 @@ Now:
 \begin{align*}
 	\bigl((y_1, \cdots, y_n), (y_1, \cdots, y_n)\bigr) = \sum_i |y_i|^2 &\stackrel{?}{=} 0 \tag{hypothesis}\\ \iff |y_i|^2 &= 0\  \forall i \tag{positivity of $|\cdot|^2$}\\ \iff \ y_i\ \  &= 0\  \forall i \tag{positive definiteness of $|\cdot|^2$ over $\mathbb{C}^1$}\\ \iff (y_1, \cdots, y_n) &=  \textbf{0} \tag{definition}
 \end{align*}
-
 %Since $|y_i|^2 \geq 0$ for all $i$. Thus
 %$\sum_i |y_i|^2 =
 %\left(
@@ -204,7 +197,6 @@ Now:
 	&= \sum_i \lambda_i^* (\ket{w_i},\ket{v}) \tag{conjugate symmetry}
 \end{align*}
 
-
 \Textbf{2.7} Verify that $\ket{w} = (1,1)$ and $\ket{v} = (1,-1)$ are orthogonal.  What are the normalized forms of these vectors?
 \Soln
 \begin{align*}
@@ -234,12 +226,9 @@ Now:
 	=\ket{-}
 \end{align*}
 
-
-
 \Textbf{2.8} Prove that the Gram-Schmidt procedure produces an orthonormal basis.
 \Soln
 We prove inductively.  For $d = 1$, the only requirement is that the procedure normalize $\ket{w_d}$, which it does by definition for all $d$.   For $d = 2$, suppose $\ket{v_1}, \cdots,\ket{v_{d-1}}$ is a orthonormal basis for the subspace spanned by  $\ket{w_1},\cdots,\ket{w_{d-1}}$.  Being a basis, the subspace spanned by $\ket{v_1},\cdots,\ket{v_{d-1}}$ is the same.  Linear independence of $\ket{w_1},\cdots,\ket{w_d}$ implies that $\ket{w_d}$ is not in this subspace, so $\ket{v_1},\cdots,\ket{v_{d-1}},\ket{w_d}$ is easily seen to be linearly independent as well.  It remains to be shown that $\ket{v_d}$ is linearly independent of $\ket{v_1},\cdots,\ket{v_{d-1}}$, and is orthogonal to all such vectors.  For independence, note that any dependence relation between $\ket{v_1},\cdots,\ket{v_d}$ immediately induces one between $\ket{v_1},\cdots,\ket{v_{d-1}},\ket{w_d}$, violating their independence.  For orthogonality, let $1\leq j\leq d-1$.  We show $\braket{v_j|v_d} = 0$, completing the proof.
-
 \begin{comment}
 \begin{align*}
 	\ket{v_2} &= \frac{\ket{w_2} - \braket{v_1 | w_2}\ket{v_1}}{\norm{\ket{w_2} - \braket{v_1 | w_2}\ket{v_1}}}\\
@@ -248,8 +237,6 @@ We prove inductively.  For $d = 1$, the only requirement is that the procedure n
 		&= 0.
 \end{align*}
 \end{comment}
-
-
 \begin{align*}
 	\braket{v_j | v_d} &= \bra{v_j} \left(\frac{\ket{w_d} - \sum_{i=1}^{d-1}\braket{v_i | w_d}\ket{v_i}}{\norm{\ket{w_d} - \sum_{i=1}^{d-1}\braket{v_i | w_d}\ket{v_i}}}\right) \tag{definition}\\
 	&= \frac{\braket{v_j | w_d} - \sum_{i=1}^{d-1}\braket{v_i | w_d}\braket{v_j | v_i}}{\norm{\ket{w_d} - \sum_{i=1}^{d-1}\braket{v_i | w_d}\ket{v_i}}} \tag{linearity in the 2nd argument}\\
@@ -265,7 +252,6 @@ We prove inductively.  For $d = 1$, the only requirement is that the procedure n
 	\sigma_y = \sigma_2 &= Y \hspace{1.5pt}=  i\ket{1}\bra{0} - i\ket{0}\bra{1}\\
 	\sigma_z = \sigma_3 &= Z \hspace{1.5pt}= \ket{0}\bra{0} - \ket{1}\bra{1}
 \end{align*}
-
 
 \Textbf{2.10} Suppose $\ket{v_i}$ is an orthonormal basis for an inner product space $V$.  What is the matrix representation for the operator $\ket{v_j}\bra{v_k}$, with respect to the $\ket{v_i}$ basis?
 \Soln \begin{comment} Let $\ket{v}=\sum_i a_i\ket{v_i}$ be a vector in $V$. 
@@ -344,7 +330,6 @@ If $\lambda = -1$,
 	\Rightarrow c_2 = -c_1
 \end{align*}
 The eigenspace corresponding to $\lambda = -1$ is the set of vectors $\begin{bmatrix}c \\ -c\end{bmatrix}$.  The vector $\frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ -1\end{bmatrix} = \ket{-}$ is such a unit (normalized) vector.  So, a diagonal representation of $X$ (when expressed in terms of the computational basis) is $\bigl(\ket{+}\bra{+}\bigr)-\bigl(\ket{-}\bra{-}\bigr) = \begin{bmatrix}\frac{1}{2} & \frac{1}{2} \\ \frac{1}{2} & \frac{1}{2}\end{bmatrix} - \begin{bmatrix} \frac{1}{2} & \frac{-1}{2} \\ \frac{-1}{2} & \frac{1}{2}\end{bmatrix} \bigl( = X\bigr)$.
-
 \begin{align*}
 	Y = \begin{bmatrix}
 	0 & -i \\
@@ -399,7 +384,6 @@ If $\lambda = -1$,
 	\Rightarrow c_2 = -i\cdot c_1
 \end{align*}
 The eigenspace corresponding to $\lambda = -1$ is the set of vectors $\begin{bmatrix}c \\ -i\cdot c\end{bmatrix}$.  The vector $\frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ -i\end{bmatrix}\equiv\ket{\psi_{y^-}}$ is such a unit (normalized) vector.  So, a diagonal representation of $Y$ (when expressed in terms of the computational basis) is $\bigl(\ket{\psi_{y^+}}\bra{\psi_{y^+}}\bigr) - \bigl(\ket{\psi_{y^-}}\bra{\psi_{y^-}}\bigr) = \begin{bmatrix}\frac{1}{2} & \frac{-i}{2} \\ \frac{i}{2} & \frac{1}{2}\end{bmatrix} - \begin{bmatrix}\frac{1}{2} & \frac{i}{2} \\ \frac{-i}{2} & \frac{1}{2}\end{bmatrix} \bigl( = Y\bigr)$.
-
 \begin{align*}
 	Z = \begin{bmatrix}
 	1 & 0 \\
@@ -544,7 +528,6 @@ We conclude that $\bigl(\ket{w}\bra{v}\bigr)^\dagger$ and $\ket{v}\bra{w}$ are \
 	&= P \tag{definition}
 \end{align*}
 
-
 \Textbf{2.17} Show that a normal matrix is Hermitian if and only if it has real eigenvalues.
 \begin{proof}
 	($\Rightarrow$) Suppose $A$ is Hermitian. Then $A=A^\dagger$.
@@ -662,9 +645,7 @@ It is easy to see that the Pauli matrices are Hermitian (self-adjoint) given the
 	&= \sum_{p,r}  \braket{v_i | w_p}  \braket{w_r | v_j} A_{pr}^{''} \tag{collect non-zero terms and re-index}
 \end{align*}
 
-
 \Textbf{2.21} Repeat the proof of the spectral decomposition in Box 2.2 for the case when $M$ is Hermitian, simplifying the proof wherever possible.
-\\
 
 \noindent\textit{Theorem 2.1} \textbf{(Spectral decomposition)} A \textit{Hermitian} operator $M$ on a vector space $V$ is diagonal with respect to some orthonormal basis for $V$. 
 \begin{proof} We induct on the dimension of $V$, as in the boxed proof.  Let $\lambda$ be an eigenvalue of $M$, $P$ be the projector onto the $\lambda$ eigenspace, and $Q$ the projector onto the orthogonal complement.
@@ -716,7 +697,6 @@ Thus
 \end{align*}
 Since $\lambda_1 - \lambda_2 \neq 0$, we must have $\braket{v_1 | v_2}  = 0$, so $v_1$ and $v_2$ are orthogonal.
 
-
 \Textbf{2.23} Show that the eigenvalues of a projector $P$  are either 0 or 1.
 \Soln Suppose $P$ is projector and $\ket{v}$ is an eigenvector of $P$ with eigenvalue $\lambda$.  By exercise 2.16, $P^2 = P$.  We have $P\ket{v} = \lambda \ket{v}$ by hypothesis.  Alternatively,
 \begin{align*}
@@ -731,7 +711,6 @@ Therefore
 	\lambda (\lambda - 1) = 0\\
 	\lambda = 0 \text{ or } 1.
 \end{align*}
-
 
 \Textbf{2.24} \textbf{(Hermiticity of positive operators)} Show that a positive operator is necessarily Hermitian.
 \Soln Let $A$ be a positive operator, that is, suppose $\braket{v | A | v}$ is real and $\geq 0$ for all $\ket{v}$.  Define $B =\frac{A + A^\dagger}{2}$ and $ C = \frac{A - A^\dagger}{2i}$.  Simple complex arithmetic will show that $A = B+iC$.  $B$ is clearly Hermitian by commutativity of operator addition. $C$ is also Hermitian by linearity of the adjoint, noting that $\left(\frac{1}{2i}\right)^* = -\frac{1}{2i}$.  There are two ways to proceed: one heuristic, and one mathematically rigorous.  We'll start with a heuristic outline of the proof, then provide some mathematically rigorous detail after the fact. 
@@ -775,7 +754,6 @@ Suppose $\ket{u}, \ket{v} \in V$. Then note that by ``foiling'' the $\braket{\cd
 \end{proof}
 Applying Theorem \ref{diagonalzero} to $C$ from above finally completes the proof of the Hermiticity of positive operators.
 
-
 \Textbf{2.25} Show that for any operator $A$, $A^\dagger A$ is positive.
 \Soln Its enough to show that $\braket{v | A^\dagger A|v} \geq 0$ for all $v$, but note that $\braket{v| A^\dagger A|v} = \norm{Av}^2$, which is non-negative, so $A^\dagger A$ is a positive operator.
 
@@ -791,7 +769,6 @@ Applying Theorem \ref{diagonalzero} to $C$ from above finally completes the proo
 			1
 		\end{bmatrix}
 \end{align*}
-
 \begin{align*}
 	\ket{\psi}^{\otimes 3} &= \frac{1}{\sqrt{2}} (\ket{0} + \ket{1}) \otimes \frac{1}{\sqrt{2}} (\ket{0} + \ket{1}  \otimes \frac{1}{\sqrt{2}} (\ket{0} + \ket{1}\\
 		&= \frac{1}{2\sqrt{2}} (\ket{000}  + \ket{001} + \ket{010} + \ket{011} +  \ket{100}  + \ket{101} + \ket{110} + \ket{111})\\
@@ -807,9 +784,8 @@ Applying Theorem \ref{diagonalzero} to $C$ from above finally completes the proo
 		\end{bmatrix}
 \end{align*}
 
-
 \Textbf{2.27} Calculate the matrix representations of the tensor products of the Pauli operators (a) $X$ and $Z$; (b) $I$ and $X$; (c) $X$ and $I$. Is the tensor product commutative?
-
+\Soln
 \begin{align*}
 	X \otimes Z &= \begin{bmatrix}
 		0 & 1 \\
@@ -925,7 +901,6 @@ Applying Theorem \ref{diagonalzero} to $C$ from above finally completes the proo
 	0 & 1 & 0 & 0
 	\end{bmatrix}
 \end{align*}
-
 In general, the tensor product is not commutative.
 
 \Textbf{2.28} Show that the transpose, complex conjugation, and adjoint operations distribute over the tensor prodoct,
@@ -1153,7 +1128,6 @@ and $log(A)$ is defined as
  \end{align*}
 Note that one would hope that operator functions would respect various properties of the functions, such as inverses. To formally prove such a thing, let us consider the diagonal representation $A=\sum_a a\kb{\lambda=a}$ and the induced definition of $f(A)=\sum_a f(a)\kb{\lambda = a}$.  Note that the $f(a)$ are eigenvalues of $f(A)$, with corresponding eigenvectors $\ket{\lambda=a}$, since the fact that the $\ket{\lambda=a}$ are orthonormal gives $\bigl(\sum_a f(a) \kb{\lambda=a}\bigr)\ket{\lambda=a'} = f(a')\ket{\lambda=a'}$.  So $\sum_a f(a)\kb{\lambda = a}$ is a diagonal representation of $f(a)$.  Now $f^-1(f(A)) = f^{-1}\bigl(\sum_a f(a)\kb{\lambda=a}\bigr) = \sum_a f^{-1}(f(a))\kb{\lambda=a} = \sum_a a \kb{\lambda=a} = A$.
 
-
 \Textbf{2.35} \textbf{(Exponentiation of Pauli Matrices)} let $\vec{v}$ be any real three-dimensional unit vector and $\theta$ a real number.  Prove that $$\exp (i\theta\vec{v}\cdot\vec{\sigma}) = \cos(\theta)I+i\sin(\theta)\vec{v}\cdot\vec{\sigma},$$ where $\vec{v}\cdot\vec{\sigma} \equiv \sum_{i=1}^3 v_i\sigma_i$.  This exercise is generalized in problem 2.1 on page 117. 
 \Soln To find the eigenvalues of $\vec{v}\cdot{\vec{\sigma}}$, we first express in matrix form:
 \begin{align*}
@@ -1228,8 +1202,6 @@ Now
 		&= \Tr (BA) \tag{using matrix representation of $BA$}
 \end{align*}
 
-
-
 \Textbf{2.38} \textbf{(Linearity of the trace)} If $A$ and $B$ are two linear operators, show that $$\Tr(A+B)=\Tr(A)+\Tr(B)$$ and if $z$ is an arbitrary complex number show that $$\Tr(zA) = z\Tr(A).$$
 \Soln
 \begin{align*}
@@ -1238,7 +1210,6 @@ Now
 		&= \sum_i \braket{i|A|i} + \sum_i \braket{i|B|i} \tag{separate terms}\\
 		&= \Tr (A) + \Tr (B) \tag{using matrix representation of $A$ and $B$}.
 \end{align*}
-
 \begin{align*}
 	\Tr (z A) &=  \sum_i \braket{i | z A | i} \tag{matrix representation}\\
 		&= \sum_i z \braket{i | A | i} \tag{linearity}\\
@@ -1311,7 +1282,6 @@ so each $U_{k,\ell}$ is Hermitian.  To show they are orthonormal, consider the i
 \endgroup
 \noindent When $k\neq n$ or $\ell \neq m$ only the first term contributes, so $(U_{k,\ell}, U_{n, m}) = 2\Re(\alpha_{k,\ell}\alpha_{n,m})\delta_{k,m}\delta_{\ell,n}$.  This can only be nonzero if $m=k$ and $n=\ell$, in which case  $(U_{k,\ell}, U_{n, m}) = (U_{k,\ell}, U_{\ell, k}) =  2\Re(\alpha_{k,\ell}\alpha_{\ell,k}) = 2\Re(\frac{i}{2}) = 0$, since $k\neq n = \ell$ implies one of the $\alpha_{k,\ell}$ and $\alpha_{\ell,k}$ is $\frac{1}{\sqrt{2}}$, and the other 
 $\frac{i}{\sqrt{2}}$.  Hence, the $U_{k,\ell}$ are orthogonal.  If $k=n$ and $\ell=m$, then $(U_{k,\ell}, U_{k,\ell}) = 2\Re(\alpha_{k,\ell}\alpha_{k,\ell})\delta_{k,\ell}^2 + 2\Re(\alpha_{k,\ell}\alpha_{k,\ell}^*)$.  There are two cases.  If $k=\ell$, then $\alpha_{k,\ell} = \alpha_{k,\ell}^* =\frac{1}{2}$, so $(U_{k,\ell}, U_{k,\ell}) = 2(\frac{1}{4})+2(\frac{1}{4}) = 1$.  When $k\neq\ell$, $(U_{k,\ell}, U_{k,\ell}) = 2\Re(\alpha_{k,\ell}\alpha_{k,\ell}^*) = 2\Re(\norm{\alpha_{k,\ell}}^2) = 2(\frac{1}{2}) = 1$.  So in all cases $(U_{k,\ell}, U_{k,\ell}) = 1$ and thus the $U_{k,\ell}$ are a set of $d^2$ Hermitian matrices which are orthonormal.  Orthonormality implies linear independence, in which case the subspace spanned by the $U_{k,\ell}$ has dimension $d^2$ and so must be $L_V$ itself, making $U_{k,\ell}$ a basis.
-
 %First, let $\{\ket{i}\}_{i=0}^{d-1}$ be a set of orthonormal basis vectors for $V$.  Define $\omega = e^{\frac{2\pi i}{d}}$, and for $ 0\leq n, m < d$, $$U_{n,m} := \sum_{k=0}^{d-1}\omega^{kn}\ket{k-m}\bra{k},$$
 %where the subtraction inside the ket is done mod $d$.  Note that $\ket{i}\bra{j}$ is exactly one of the basis matrices discussed above, populated with 0's except for a 1 in positon $i,j$.  To see that these matrices are Hermitian, we must show that for fixed $n,m$, the entry of $U_{n,m}$ in position $i,j$ is the complex conjugate of the entry in position $j,i$.   To be continued.
 
@@ -1321,7 +1291,6 @@ $\frac{i}{\sqrt{2}}$.  Hence, the $U_{k,\ell}$ are orthogonal.  If $k=n$ and $\e
 %U_{\ell,k} &= \sum_{r=0}^{d-1}\omega^{rk}\ket{r+k}\bra{r} \tag{definition}
 %\end{align*}
 %\begin{comment}
-
 %\begin{bmatrix}
 %	0 & 1 \\
 %	1 & 0
@@ -1381,8 +1350,6 @@ $\frac{i}{\sqrt{2}}$.  Hence, the $U_{k,\ell}$ are orthogonal.  If $k=n$ and $\e
 		&=	2i Z = 2i\epsilon_{12}\sigma_3
 \end{align*}
 
-
-
 \begin{align*}
 	[\sigma_2,\sigma_3] = \left[Y, Z \right] &= \begin{bmatrix}
 		0 & -i \\
@@ -1408,8 +1375,6 @@ $\frac{i}{\sqrt{2}}$.  Hence, the $U_{k,\ell}$ are orthogonal.  If $k=n$ and $\e
 	\end{bmatrix}\\
 	&= 2iX = 2i\epsilon_{231}\sigma_1
 \end{align*}
-
-
 
 \begin{align*}
 	[\sigma_3,\sigma_1] = \left[Z, X\right] &= \begin{bmatrix}
@@ -1440,8 +1405,6 @@ $\frac{i}{\sqrt{2}}$.  Hence, the $U_{k,\ell}$ are orthogonal.  If $k=n$ and $\e
 	\end{bmatrix}\\
 	&= 2iY = 2i\epsilon_{312}\sigma_2
 \end{align*}
-
-
 
 \Textbf{2.41} \textbf{(Anti-commutation relations for the Pauli Matrices)}  Verify that the anticommutation relations $${\sigma_i,\sigma_j}=0$$ where $i\neq j$ are both chosen from the set $1,2,3$.  Also verify that  ($i=0,1,2,3$) $$\sigma_i^2 = I.$$
 \Soln
@@ -1480,8 +1443,6 @@ i & 0 \\
 &= 0
 \end{align*}
 
-
-
 \begin{align*}
 \{Y, Z\}=\left\{\sigma_2, \sigma_3 \right\} &= \begin{bmatrix}
 0 & -i \\
@@ -1502,8 +1463,6 @@ i & 0
 \end{bmatrix}\\
 &=0
 \end{align*}
-
-
 
 \begin{align*}
 \{Z, X\} = \left\{\sigma_3, \sigma_1 \right\} &= \begin{bmatrix}
@@ -1545,15 +1504,11 @@ i & 0
 	\end{bmatrix} ^2 = I
 \end{align*}
 
-
-
 \Textbf{2.42} Verify that $$AB = \frac{[A,B]+\{A,B\}}{2}.$$
 \Soln
 \begin{align*}
 	\frac{\left[A, B \right] + \left\{A, B\right\}}{2} = \frac{AB - BA + AB + BA}{2} = AB \tag{definition of $[\cdot,\cdot]$ and $\{\cdot,\cdot\}$}
 \end{align*}
-
-
 
 \Textbf{2.43} Show that for $j,k=1,2,3$, $$\sigma_j\sigma_k = \delta_{jk}I+i\sum_{\ell=1}^3\epsilon_{jk\ell}\sigma_\ell.$$
 
@@ -1584,8 +1539,6 @@ Since $A$ is invertible, multiplying by $A^{-1}$ from the left gives
 		&= \left[B^\dagger, A^\dagger \right] \tag{definition of $[\cdot,\cdot]$}
 \end{align*}
 
-
-
 \Textbf{2.46} Show that $[A,B] = -[B,A]$.
 \Soln
 \begin{align*}
@@ -1593,8 +1546,6 @@ Since $A$ is invertible, multiplying by $A^{-1}$ from the left gives
 		&= - (BA - AB) \tag{reverse signs}\\
 		&= -\left[B, A\right] \tag{definition of $[\cdot, \cdot]$}
 \end{align*}
-
-
 
 \Textbf{2.47} Suppose $A$ and $B$ are Hermitian.  Show the $i[A,B]$ is Hermitian.
 \Soln
@@ -1604,8 +1555,6 @@ Since $A$ is invertible, multiplying by $A^{-1}$ from the left gives
 		&= -i \left[B, A \right] \tag{$A$ and $B$ are Hermitian}\\
 		&= i \left[A, B\right] \tag{Exercise 2.46}
 \end{align*}
-
-
 
 \Textbf{2.48} What is the polar decomposition of positive matrix $P$?  Of a unitary matrix $U$? Of a Hermitian matrix $H$?
 \Soln
@@ -1655,7 +1604,6 @@ Thus $H = U\sqrt{H^2}$.
 unless $H$ is positive.
 \end{screen}
 
-
 \Textbf{2.49} Express the polar decomposition of a normal matrix in the outer product representation.
 \Soln
 Let $A$ be a normal matrix, which by the spectral decomposition theorem we may write $A = \sum_i \lambda_i \kb{i}$ for an orthonormal basis $\ket{i}$.  As in the proof of the polar decomposition theorem, define $\ket{e_i} = A\ket{i}$ for those $\ket{i}$  for which $\lambda_i\neq 0$, and extend via Graham-Schmidt to find $\ket{e_i}$ for those $\ket{i}$ for which $\lambda_i=0$.    
@@ -1666,8 +1614,6 @@ Let $A$ be a normal matrix, which by the spectral decomposition theorem we may w
 	  &= \left(\sum_i \ket{e_j}\bra{j}\right)\left(\sum_j |\lambda_j|\kb{j}\right) \tag{defined above} \\ 
 	  &= \sum_i |\lambda_i| \kbt{e_i}{i}. \tag{orthonormality}
 \end{align*}
-
-
 
 \Textbf{2.50} Find the left and right polar decomposition of the matrix $$A=\begin{bmatrix}1& 0\\ 1&1\end{bmatrix}.$$
 \Soln We have
@@ -1733,9 +1679,6 @@ the eigenvalues are $\lambda_\pm = \pm 1$. The associated orthonormal eigenvecto
 -1 \pm \sqrt{2}
 \end{bmatrix} $.
 
-
-
-
 \Textbf{2.54} Suppose $A$ and $B$ are commuting Hermitian operators.  Prove that $\exp(A)\exp(B)=\exp(A+B)$.
 \Soln
 Since $[A, B] = 0$, $A$ and $B$ are simultaneously diagonalizable. Let $\ket{i}$ be an orthonormal basis such that $A = \sum_i a_i \kb{i}$, $B = \sum_i b_i \kb{i}$.  Note that $A+B$ is also simultaneously diagonalizable, since $A+B = \sum_i (a_i+b_i)\kb{i}$.
@@ -1746,7 +1689,6 @@ Since $[A, B] = 0$, $A$ and $B$ are simultaneously diagonalizable. Let $\ket{i}$
 		&= \sum_i \exp (a_i +  b_i) \kb{i}\tag{group non-zero terms}\\
 		&= \exp (A+B) \tag{definition of $\exp(\cdot)$}.
 \end{align*}
-
 
 \Textbf{2.55} Prove that $U(t_1,t_2)$ defined in Equation (2.91) is unitary.
 \Soln Some definitions: $H$ is the Hamiltonian of some closed system.  It is Hermitian, and hence has a spectral decomposition: $H = \sum  E \kb{E}$.  Note that $H^\dagger=\left(\sum E \kb{E}\right)^\dagger = \sum E^* \bigl(\kb{E}\bigr)^\dagger = \sum E^* \kb{E}$ by Exercise 2.13.  $U$ is defined as $U(t_1, t_2) \equiv \exp\left[\frac{-iH(t_2-t_1)}{\hbar}\right]$.  To prove $U$ is unitary, we show $UU^\dagger=I$.  Now
@@ -1783,8 +1725,6 @@ Similarly, $(U(t_2 - t_1))^\dagger U (t_2 - t_1) = I$.  So, $U$ is unitary.
 %	K^\dagger = (-i \log U)^\dagger = \left(\sum_j \theta_j \kb{\lambda_j}\right)^\dagger
 %	= \sum_j \theta_j^* \kb{\lambda_j} = \sum_j \theta_j \kb{\lambda_j} = K
 %\end{align*}
-
-
 
 \Textbf{2.57} \textbf{(Cascaded measurements are  single measurements)} Suppose $\{L_\ell\}$ and $\{M_m\}$ are two sets of measurement operators.  Show that a measurement defined by the measurement operators $\{L_\ell\}$ followed by a measurement defined by the measurement operators $\{M_m\}$ is physically equivalent to a single measurement defined by measurement operators $\{N_{\ell m}\}$ with the representation $N_{\ell m} \equiv M_mL_\ell$.
 \Soln  Let the state of a physical system be $\psi$.  Note that by definition the state after applying measurement operators $\{L_\ell\}$ is $\ket{\phi} \equiv \frac{L_\ell\ket{\psi}}{\sqrt{\braket{\psi|L_\ell^\dagger L_\ell|\psi}}}$ for some $\ell$.  The state after applying measurement operators $\{M_m\}$ is $\xi \equiv \frac{M_m\ket{\phi}}{\sqrt{\braket{\phi|M_m^\dagger M_m|\phi}}}$ for some $m$.  Now
@@ -2068,7 +2008,7 @@ completing the proof.  The first author's attempted resolution follows:
 		&= \frac{1}{2} (1 + v_3) \tag{extract 0,0 entry}
 \end{align*}
 The post-measurement state is
-\begin{align*} \frac{\ket{\lambda_1}\braket{\lambda_1|0}}{\sqrt{p(1)}} &=\left(\frac{\sqrt{\frac{1+v_3}{2}}}{\sqrt{\frac{1+v_3}{2}}}\begin{bmatrix}1 & \frac{1-v_3}{v_1+iv_2}\end{bmatrix}\begin{bmatrix}1\\0\end{bmatrix}\right) \ket{\lambda_1} \tag*{$\Bigl(\Bigr. \begin{array}{r}\text{numerator from normalization}\\ \text{denominator from above}\end{array} \Bigl.\Bigr)$ } \\
+\begin{align*} \frac{\ket{\lambda_1}\braket{\lambda_1|0}}{\sqrt{p(1)}} &=\left(\frac{\sqrt{\frac{1+v_3}{2}}}{\sqrt{\frac{1+v_3}{2}}}\begin{bmatrix}1 & \left(\frac{1-v_3}{v_1-iv_2}\right)^*\end{bmatrix}\begin{bmatrix}1\\0\end{bmatrix}\right) \ket{\lambda_1} \tag*{$\Bigl(\Bigr. \begin{array}{r}\text{numerator from normalization}\\ \text{denominator from above}\end{array} \Bigl.\Bigr)$ } \\
 &= \ket{\lambda_1} \tag{simplify, multiply}
 \end{align*}
 
@@ -2111,22 +2051,38 @@ Therefore,
 \end{align*}
 
 Thus the measurement is a projective measurement.
+\hrule
 
-
-
-\Textbf{2.63}
+\Textbf{2.63} Suppose a measurement is described by measurement operators $M_m$.  Show that there exist unitary operators $U_m$ such that $M_m=U_m\sqrt{E_m}$, where $E_m$ is the POVM associated to the measurement.
+\Soln By the singular value decomposition (Corrolary 2.4, eq 2.80, p 79), there exists unitary $U, V$, and real-valued diagonal $D$  such that $M_m = UDV$.  Now
+\begin{align*} \sqrt{E_m} &= \sqrt{M_m^\dagger M_m} \tag{definition}\\
+                                          &= \sqrt{V^\dagger D^\dagger U^\dagger UDV} \tag{properties of $^\dagger$} \\
+                                          &= \sqrt{V^\dagger D^2 V} \tag{$U$ unitary, $D$ real-valued diagonal} \\
+                                          &= V^\dagger D V \tag{$V$ unitary$\rightarrow (V^\dagger DV)^2=V^\dagger D^2 V$} \\
+                                          &= V^\dagger(U^\dagger U)DV \tag{$U$ unitary, $U^\dagger U=I$} \\
+                    UV\sqrt{E_m}&= M_m \tag{$U,V$ unitary, solve for $M_m$}
+\end{align*}
+Define $U_m \equiv UV$ so that $M_m = U_m\sqrt{E_m}$, completing the solution.
+\begin{comment}
 \begin{align*}
     M_m^\dagger M_m &= \sqrt{E_m} U_m^\dagger U_m \sqrt{E_m}\\
         &= \sqrt{E_m} I \sqrt{E_m}\\
         &= E_m.
 \end{align*}
-
 Since $E_m$ is POVM,  for arbitrary  unitary $U$, $M_m^\dagger M_m$ is POVM.
+\end{comment}
 
-
-
-\Textbf{2.64}
-Read following paper:
+\Textbf{2.64} Suppose Bob is given a quantum state chosen from a set $\ket{\psi_1}, \ldots, \ket{\psi_m}$ of linearly independent states.  Construct a POVM $\{E_1, \ldots, E_{m+1}\}$ such that if outcome $E_i$ occurs, $1 \leq i \leq m$, then Bob knows with certainty that he was given the state $\ket{\psi_i}$.
+\Soln Being linearly independent, $S$ forms a basis for the subspace it spans. Consider the subspaces spanned by $S_i' = \{\ket{\psi_j}\}_{i\neq j}$.  Let $\ket{\psi_i'}$ be a non-zero unit vector in the orthogonal complement.  Note that if $i\neq j$, then $\braket{\psi_i|\psi_j'} = 0$, since $\psi_j'$ is in the orthogonal complement of a subspace containing $\psi_i$.  Also note that $\braket{\psi_i | \psi_i'} \neq 0$, since if it were, then $\psi_i$ would be in the subspace spanned by $S_i'$, violating linear independence.   Combining, we write $\braket{\psi_i|\psi_j'} = \delta_{i,j}\cdot p_i$, for some non-zero $p_i$.  We may scale the $\psi_i'$ so that $ p_i = 1$.  For, $1\leq i\leq m$, define $E_i = \kb{\psi_i'}$, then, to cover the  define $E_{m+1} = I-\sum_m E_i$.  Now, for $1\leq i,j\leq m$,
+\begin{align*}
+p_i(j) &\equiv \braket{\psi_i|E_j^\dagger E_j|\psi_i} \tag{definition} \\
+    &= \braket{\psi_i\bigl\lvert (\kb{\psi_j'})^\dagger \kb{\psi_j'}\bigr\rvert \psi_i} \tag{definition of $E_j$}\\
+    &= \braket{\psi_i|\psi_j'}\braket{\psi_j'|\psi_j'}\braket{\psi_j'|\psi_i} \tag{Exercise 2.13: $(\kb{\phi})^\dagger=\kb{\phi}$} \\
+    &= \delta_{i,j}\cdot 1\cdot \delta_{i,j} \tag{construction}\\
+    &= \delta_{i,j} \tag{simplify}
+\end{align*}
+That is, $E_1,\ldots , E_{m+1}$ is a  POVM such that state $\ket{\psi_i}$ and outcome $E_i$ correspond exactly, for $1\leq i\leq m$.  Outcome $E_{m+1}$ will result from measuring any state outside of the span of $S$, that is, in their orthogonal complement, with probability 1 as well
+The first author included links to several relevant journal articles.  The second author has not evaluated them, but they are include below.
 \begin{itemize}
     \item Lu-Ming Duan, Guang-Can Guo.  Probabilistic cloning and identification of linearly independent quantum states. Phys. Rev. Lett.,80:4999-5002, 1998. arXiv:quant-ph/9804064\\
     \url{https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.80.4999}\\
@@ -2136,114 +2092,90 @@ Read following paper:
     \url{https://arxiv.org/abs/0810.1970}\\
     \url{https://www.osapublishing.org/DirectPDFAccess/67EF4200-CBD2-8E68-1979E37886263936_176580/aop-1-2-238.pdf}
 \end{itemize}
-
-
 \Textbf{2.65} Express the states $(\ket{0}+\ket{1})/\sqrt{2}$ and $(\ket{0}-\ket{1})/\sqrt{2}$ in a basis in which there are \textit{not} the same up to a relative phase shift.
 \Soln Note that $(\ket{0} + \ket{1})/\sqrt{2} = \ket{+}$ and $(\ket{0}-\ket{1})/\sqrt{2}=\ket{-}$ are an orthonormal basis. Since the amplitude of $\ket{+}$ in the expression $(\ket{0} + \ket{1})/\sqrt{2} = \ket{+}$ is 1, and that in $(\ket{0} - \ket{1})/\sqrt{2} = \ket{-}$ is 0, there is no relative phase $\theta$ such that such that $e^{i\theta}\cdot 1 = 0$, so $\ket{+}$ and $\ket{-}$ do not differ by a relative phase in the basis they comprise.
 %\begin{align*}
 %    \ket{+} \equiv \frac{\ket{0} + \ket{1}}{\sqrt{2}}, ~~~ \ket{-} \equiv \frac{\ket{0} - \ket{1}}{\sqrt{2}}
 %\end{align*}
-
-
-\Textbf{2.66}
+\Textbf{2.66}Show that the average value of the observable $X_1Z_2$ for a two qubit system measured in the state $(\ket{00}+\ket{11})/\sqrt{2}$ is zero.
+\Soln Let $\ket{\Phi^+} = (\ket{00}+\ket{11})/\sqrt{2}$.
 \begin{align*}
-     X_1 Z_2 \left(\frac{\ket{00} + \ket{11}}{\sqrt{2}} \right) = \frac{\ket{10} - \ket{01}}{\sqrt{2}}
+    \mathbf{E}(X_1 Z_2) = \braket{X_1 Z_2} &= \braket{ \Phi^+|X_1 Z_2|\Phi^+} \\
+    &=  \frac{\bra{00}+\bra{11}}{\sqrt{2}} \cdot \frac{X_1Z_2(\ket{00}+\ket{11})}{\sqrt{2}} \\
+    &=  \frac{\bra{00}+\bra{11}}{\sqrt{2}}\cdot \frac{\ket{10}-\ket{01}}{\sqrt{2}} \\
+    &= \frac{\braket{00|10} - \braket{00|01} + \braket{11|10} - \braket{11|01}}{2} \\
+    &= \frac{0-0+0-0}{2} \\
+    &= 0
 \end{align*}
-
-
-\begin{align*}
-     \braket{X_1 Z_2} = \left(\frac{\bra{00} + \bra{11}}{\sqrt{2}} \right) X_1 Z_2 \left(\frac{\ket{00} + \ket{11}}{\sqrt{2}} \right)
-    = \frac{\bra{00} + \bra{11}}{\sqrt{2}}  \cdot \frac{\ket{10} - \ket{01}}{\sqrt{2}}
-    = 0
-\end{align*}
-
-
-
-\Textbf{2.67}
-
-Suppose $W^\perp$ is the orthogonal complement of $W$. Then $V = W \oplus W^\perp$.
-Let $\ket{w_i},\ket{w_j'},\ket{u_j'}$ be orthonormal bases for $W$, $W^\perp$, $\left( \mathrm{image}(U) \right)^\perp$, respectively.
-
+\Textbf{2.67} Suppose $V$ is a Hilbert space with a subspace $W$.  Suppose $U : W\rightarrow V$ is a linear operator which preserves inner products, that is, for any $\ket{w_1}$ and $\ket{w_2}$ in $W$, $$\braket{w_1|U^\dagger U|w_2} = \braket{w_1|w_2}.$$  Prove that there exists a unitary operator $U': V\rightarrow V$ which \textit{extends} $U$.  That is, $U'\ket{w} = U\ket{w}$ for all $\ket{w}$ in $W$, but $U'$ is defined on the entire space $V$.  Usually we omit the prime symbol $'$ and just write $U$ to denote the extension.
+\Soln
+ Let $\ket{w_i}$ be an orthonormal basis for $W$.  Since $U$ preserves inner products in $W$, $\ket{u_i}\equiv U\ket{w_i}$ is an orthonormal basis for $\text{image}(U)$, hence $\braket{u_i|u_j} = \delta_{i,j}$.  Consider the orthogonal complement, $W^\perp$.  By definition $V = W \oplus W^\perp$.  Let $\ket{w_j'}$ and $\ket{u_j'}$ be orthonormal bases for $W^\perp$ and $\left( \mathrm{image}(U) \right)^\perp$.  Note that, as provided, $U$ is not defined on the $\ket{w_j'}$, so we may not state that \sout{$\ket{u_j'} = U\ket{w_j'}$}, where here we  strike the statement not because it is necessarily false, but because it is not assumed.  We can, however, state that $\braket{u_i'|u_j'} = \delta{i,j}$, since the $\ket{u_j}$ are orthonormal, and that $\braket{u_i|u_j'} = 0$, since the $\ket{u_j'}$ are in a space orthogonal to the $\ket{u_i}$.
 % Define $U'$ as $U'|_W\ket{w_i} = U\ket{w_i} (= \ket{u_i})$ and $U'|_{W^\perp}\ket{w_j'} = \ket{u_j'}$
-Define $U': V \rightarrow V$ as $U' = \sum_i \kbt{u_i}{w_i} + \sum_j \kbt{u_j'}{w_j'}$,
-where $\ket{u_i} = U \ket{w_i}$.
-
-
-Now
+Define $U': V \rightarrow V$ as $U' = \sum_i \kbt{u_i}{w_i} + \sum_j \kbt{u_j'}{w_j'}$.  First, we prove unitarity:
 \begin{align*}
-    (U')^\dagger U' &= \left( \sum_{i = 1}^{\dim W} \kbt{w_i}{u_i} + \sum_{j = 1}^{\dim W^\perp} \kbt{w_j'}{u_j'} \right)  \left( \sum_i \kbt{u_i}{w_i} + \sum_j \kbt{u_j'}{w_j'} \right)\\
-                    &= \sum_i \kb{w_i} + \sum_j \kb{w_j'} = I
+    (U')^\dagger U' &= \Biggl( \sum_{i} \kbt{w_i}{u_i} + \sum_{j} \kbt{w_j'}{u_j'} \Biggr)  \Biggl( \sum_k \kbt{u_k}{w_k} + \sum_\ell \kbt{u_\ell'}{w_\ell'} \Biggr)\tag{definition, linearity, Exercise 2.13}\\
+    &=\sum_{i,k}\ket{w_i}\braket{u_i|u_k}\bra{w_k} + \sum_{i,\ell} \ket{w_i}\braket{u_i|u_\ell'}\bra{w_\ell'}+  \sum_{j,k} \ket{w_j'}\braket{u_j'|u_k}\bra{w_k'} + \sum_{j,\ell}  \ket{w_j'}\braket{u_j'|u_\ell'}\bra{w_\ell'} \tag{F.O.I.L., linearity} \\
+    &= \sum_{i,k}\delta_{i,k}\kbt{w_i}{w_k} + \sum_{j,\ell}\delta_{j,\ell}\kbt{w_j'}{w_\ell'} \tag{orthonormality, orthogonality} \\
+                    &= \sum_i \kb{w_i} + \sum_j \kb{w_j'} \tag{collect non-zero term} \\
+                    &= I \tag{completeness}
 \end{align*}
-%
-and
-%
+where the last equality holds because $\{\ket{w_i}\}\bigcup\{\ket{w_j'}\}$ forms a basis for the entire space $V$.  Similarly $U'(U')^\dagger = I$,  so $U'$ is unitary. It is left only to show that $U'$ is an extension of $U$, that is $U'\ket{w} = U\ket{w}$ for all $w$ in $W$.
 \begin{align*}
-    U' (U')^\dagger &= \left( \sum_i \kbt{u_i}{w_i} + \sum_j \kbt{u_j'}{w_j'} \right) \left( \sum_i \kbt{w_i}{u_i} + \sum_j \kbt{w_j'}{u_j'} \right)\\
-                    &= \sum_i \kb{u_i} + \sum_j \kb{u_j'} = I.
+    U' \ket{w} &= \left( \sum_i \kbt{u_i}{w_i} + \sum_j \kbt{u_j'}{w_j'} \right) \ket{w} \tag{definition of $U'$} \\
+               &= \left(\sum_i \ket{u_i} \bra{w_i}\right) \ket{w} + \sum_j \ket{u_j'} \braket{w_j' | w} \tag{linearity}\\
+			   &=  \left(\sum_i \ket{u_i} \bra{w_i}\right) \ket{w}  \tag{$\ket{w}\in W$, $\ket{w_j'} \in W^\perp$}\\
+			   &= \left(\sum_i U \ket{w_i} \bra{w_i}\right) \ket{w}\tag{definition of $u_i$}\\
+			   &= U\left(\sum_i \kb{w_i}\right)\ket{w} \tag{linearity}\\
+			   &= U \ket{w}. \tag{completeness}
 \end{align*}
-%
-Thus $U'$ is an unitary operator.
-Moreover, for all $\ket{w} \in W$,
+where the last inequality holds only when applied to vectors in the subspace $W$, as is being done.
+
+\Textbf{2.68}  Prove that $(\ket{\Psi^+} =)\ket{\psi}\equiv (\ket{00}+\ket{11})/\sqrt{2} \neq \ket{a}\ket{b}$ for all single qubit states $\ket{a}$ and $\ket{b}$.
+\Soln
+Suppose $\ket{a} = a_0 \ket{0}  + a_1\ket{1}$ and $\ket{b} = b_0 \ket{0}  + b_1\ket{1}$.  Then
 \begin{align*}
-    U' \ket{w} &= \left( \sum_i \kbt{u_i}{w_i} + \sum_j \kbt{u_j'}{w_j'} \right) \ket{w}\\
-               &= \sum_i \ket{u_i} \braket{w_i | w} + \sum_j \ket{u_j'} \braket{w_j' | w}\\
-			   &= \sum_i \ket{u_i} \braket{w_i | w}  ~~~(\because \ket{w_j'} \perp \ket{w})\\
-			   &= \sum_i U \ket{w_i} \braket{w_i | w}\\
-			   &= U \ket{w}.
+    \ket{a} \ket{b} =\ket{a}\otimes\ket{b} = a_0 b_0 \ket{00} + a_0 b_1 \ket{01} + a_1 b_0 \ket{10} + a_1 b_1 \ket{11}.
 \end{align*}
-%
-Therefore $U'$ is an extension of $U$.
+If $\ket{\psi} = \ket{a} \ket{b}$, then $a_0 b_0 = 1,~ a_0 b_1=0,~ a_1 b_0 = 0,~ a_1 b_1 = 1$ since $\{\ket{ij}\}$ is an orthonormal basis. Since $a_0 b_1 = 0$, either $a_0 = 0$ or $b_1 = 0$, however, $a_0 = 0$ contradicts $a_0 b_0 = 1$, and $b_1 = 0$ contradicts $a_1 b_1 = 1$. Thus $\ket{\psi} \neq \ket{a} \ket{b}$.
 
 
-\Textbf{2.68}
-
-$\ket{\psi} = \frac{\ket{00} + \ket{11}}{\sqrt{2}}$.
-
-Suppose $\ket{a} = a_0 \ket{0}  + a_1\ket{1}$ and $\ket{b} = b_0 \ket{0}  + b_1\ket{1}$.
-%
+\Textbf{2.69} Verify that the Bell basis forms an orthonormal basis for the two qubit state space.
+Define Bell states and the Bell Matrix as follows.
 \begin{align*}
-    \ket{a} \ket{b} = a_0 b_0 \ket{00} + a_0 b_1 \ket{01} + a_1 b_0 \ket{10} + a_1 b_1 \ket{11}.
-\end{align*}
-
-If $\ket{\psi} = \ket{a} \ket{b}$, then $a_0 b_0 = 1,~ a_0 b_1=0,~ a_1 b_0 = 0,~ a_1 b_1 = 1$ since $\{\ket{ij}\}$ is an orthonormal basis.
-
-If $a_0 b_1 = 0$, then $a_0 = 0$ or $b_1 = 0$.
-
-When $a_0 = 0$ , this is contradiction to $a_0 b_0 = 1$.
-When $b_1 = 0$ , this is contradiction to $a_1 b_1 = 1$.
-
-Thus $\ket{\psi} \neq \ket{a} \ket{b}$.
-
-
-\Textbf{2.69}
-Define Bell states as follows.
-\begin{align*}
-    \ket{\psi_1} &\equiv \frac{\ket{00} + \ket{11}}{\sqrt{2}} = \frac{1}{\sqrt{2}} \begin{bmatrix}
+    \ket{\Phi^+}=\ket{\psi_0} \equiv \frac{\ket{00} + \ket{11}}{\sqrt{2}} = \frac{1}{\sqrt{2}} \begin{bmatrix}
     1 \\
     0 \\
     0 \\
     1
-    \end{bmatrix} \\
-    \ket{\psi_2} &\equiv \frac{\ket{00} - \ket{11}}{\sqrt{2}} = \frac{1}{\sqrt{2}} \begin{bmatrix}
+    \end{bmatrix} &~~~& 
+    \ket{\Phi^-}=\ket{\psi_1} \equiv \frac{\ket{00} - \ket{11}}{\sqrt{2}} = \frac{1}{\sqrt{2}} \begin{bmatrix}
     1 \\
     0 \\
     0 \\
     -1
     \end{bmatrix} \\
-    \ket{\psi_3} &\equiv \frac{\ket{01} + \ket{10}}{\sqrt{2}} = \frac{1}{\sqrt{2}} \begin{bmatrix}
+    \ket{\Psi^+}=\ket{\psi_2} \equiv \frac{\ket{01} + \ket{10}}{\sqrt{2}} = \frac{1}{\sqrt{2}} \begin{bmatrix}
     0 \\
     1 \\
     1 \\
     0
-    \end{bmatrix} \\
-    \ket{\psi_4} &\equiv \frac{\ket{01} - \ket{10}}{\sqrt{2}} = \frac{1}{\sqrt{2}} \begin{bmatrix}
+    \end{bmatrix} &~~~& 
+    \ket{\Psi^-}=\ket{\psi_3} \equiv \frac{\ket{01} - \ket{10}}{\sqrt{2}} = \frac{1}{\sqrt{2}} \begin{bmatrix}
     0 \\
     1 \\
     -1 \\
     0
-    \end{bmatrix} \\
+    \end{bmatrix}
+    \end{align*}
+    \begin{align*}
+    B = \begin{bmatrix}\ket{\Phi^+} & \ket{\Phi^-} &  \ket{\Psi^+} &  \ket{\Psi^-}\end{bmatrix} &&
 \end{align*}
-
+Note that $\braket{\psi_i|\psi_j}$ is the $i,j$-entry in $B^\dagger B$, so orthonormality will follow if $B^\dagger B = I$.
+\begin{align*}
+ B^\dagger B &= \frac{1}{2}\begin{bmatrix}1 & 0 & 0 & 1 \\ 1 & 0 & 0& -1 \\ 0 & 1 & 1 & 0 \\ 0 & 1 & -1 & 0\end{bmatrix}\begin{bmatrix} 1 & 1 & 0 & 0 \\ 0 & 0 & 1 & 1 \\ 0 & 0 & 1 & -1 \\ 1 & -1 & 0 & 0\end{bmatrix} = \frac{1}{2}\begin{bmatrix}2 & 0 & 0 & 0\\ 0 & 2 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 &2\end{bmatrix} = I
+ \end{align*}
+ Linear independence follows from orthogonality.  Being 4 linearly independent vectors in a 4-dimensional vector space, the Bell states form a basis.
+\begin{comment}
 First, we prove $\{\ket{\psi_i} \}$ is a linearly independent basis.
 \begin{align*}
     &a_1 \ket{\psi_1} + a_2 \ket{\psi_2} + a_3 \ket{\psi_3} + a_4 \ket{\psi_4} = 0\\
@@ -2268,27 +2200,26 @@ Thus $\{\ket{\psi_i}\}$ is a linearly independent basis.
 
 Moreover $\norm{\ket{\psi_i}} = 1$ and $\braket{\psi_i | \psi_j} = \delta_{ij}$ for $i,j = 1, 2, 3, 4$.
 Therefore $\{\ket{\psi_i}\}$ forms an orthonormal basis.
-
-
-
-
-\Textbf{2.70}
-
-For any Bell states we get $\braket{\psi_i | E \otimes I | \psi_i} = \frac{1}{2} (\braket{0|E|0} + \braket{1|E|1})$.
-
+\end{comment}
+\\
+\Textbf{2.70} Suppose $E$ is any positive operator acting on Alice's qubit.  Show that $\braket{\psi|E\otimes I|\psi}$ \textit{takes the same value} when $\ket{\psi}$ is any of the four Bell states.  Suppose some malevolent third party (`Eve') intercepts Alice's qubit on the way to Bob in the superdense coding protocol.  Can Eve infer anything about which of the four possible bit strings $00, 01, 10, 11$ Alice is trying to send?  If so, how, or if not, why not?
+\Soln
+For any of the Bell states we get $\braket{\psi_i | E \otimes I | \psi_i} = \frac{1}{2} (\braket{0|E|0} + \braket{1|E|1})$.  We exhibit the calculation for $\ket{\psi_0}$.  Others are similar.
+\begin{align*}
+\braket{\psi_0 | E \otimes I | \psi_0} &= \frac{1}{2}\Bigl(\bigl(\bra{00}+\bra{11}\bigr)\cdot (E\otimes I)\bigl(\ket{00}+\ket{11}\bigr)\Bigr) \tag{definition} \\
+&=  \frac{1}{2}\biggl(\bigl(\bra{00}+\bra{11}\bigr)\cdot  \Bigl(\bigl((E\ket{0}\bigr)\otimes\ket{0} + \bigl(E\ket{1}\bigr)\otimes\ket{1}\Bigr)\biggr) \tag{$E$ and $I$ act independently} \\
+&= \frac{1}{2}\Bigl(\braket{0|E|0}\cdot\braket{0|0} + \braket{0|E|1}\cdot\braket{0|1} + \braket{1|E|0}\cdot\braket{1|0}+\braket{1|E|1}\cdot\braket{1|1}\Bigr) \tag{F.O.I.L.} \\
+&=\frac{1}{2}\bigl(\braket{0|E|0} + \braket{1|E|1}\bigr) \tag{collect non-zero terms}
+\end{align*}
 Suppose Eve measures the qubit Alice sent by measurement operators $M_m$.
 The probability that Eve gets result $m$ is $p_i(m) = \braket{\psi_i | M_m^\dagger M_m \otimes I | \psi_i}$.
-Since $M ^\dagger_m M_m$ is positive, $p_i(m)$ are same values for all $\ket{\psi_i}$.
-Thus Eve can't distinguish Bell states.
+Since $M ^\dagger_m M_m$ is positive, the result above applies, in which case the $p_i(m)$ take on the same values for all $\ket{\psi_i}$, that is, for all $i$ and $m$, $p_i(m) = 1/4$.  In other words, no matter the outcome $m$, the probability that $\psi$ was in any of the Bell states is uniform.   So Eve can't distinguish Bell states given only access to a single qubit.  [Note, the exercise above only proves Eve can't distinguish Bell states given only access to the first qubit, but the only difference from Bob's perspective is that Eve's Bell basis uses $-\ket{\psi_3}=-\ket{\Psi^-}$.  This negative does not change the result of any of the calculations, so Eve can't distinguish the Bell states given access to Bob's qubit either.]  
 
-
-
-
-\Textbf{2.71}
-
-From spectral decomposition,
+\Textbf{2.71} \textbf{(Criterion to decide if a state is mixed or pure)} Let $\rho$ be a density operator.  Show that $\Tr(\rho^2) \leq 1$, with equality if and only if $\rho$ is a pure state.
+\Soln
+By definition, there exists an ensemble of pure states $\{p_i,\ket{\psi_i}\}$, where $0\leq p_i\leq 1$ and $\sum_i p_i = 1$ such that $\rho = \sum_i p_i \kb{\psi_i}$.  Note that on this range  $0\leq p_i^2 \leq p_i$. Also, $\rho = \sum_i \lambda_i \kb{i}$ for some orthonormal basis $\kb{i}$, by the spectral decomposition theorem.  Express $\ket{\psi_i} = \sum_j \alpha_j \ket{i}$ ... I believe the first author's proof below assumes that $\ket{\psi_i} = \ket{i}$, i.e. that the $\ket{\psi_i}$ are orthonormal, but this is not guaranteed, and in fact, very much not assumed.
+\hrule
 \begin{align*}
-    \rho &= \sum_i p_i \kb{\psi_i}, ~~ p_i \geq 0, ~~ \sum_i p_i = 1.\\
     \rho^2 &= \sum_{i,j} p_i p_j \ket{i}\braket{i|j}\bra{j}\\
         &= \sum_{i,j} p_i p_j \kbt{i}{j}\delta_{ij}\\
         &= \sum_i p_i^2 \kb{i}
@@ -2311,21 +2242,18 @@ Conversely if $\rho$ is pure, then $\rho = \kb{\psi}$.
 \begin{align*}
     \Tr (\rho^2) = \Tr (\ket{\psi}\braket{\psi | \psi} \bra{\psi}) = \Tr (\kb{\psi}) = \braket{\psi | \psi} = 1.
 \end{align*}
+\hrule
 
-
-
-\Textbf{2.72}
-
-(1) Since density matrix is Hermitian, matrix representation is
-$\rho = \begin{bmatrix}
+\Textbf{2.72} \textbf{(Bloch sphere for mixed states)}  The Bloch sphere picture for pure states of a single qubit was introduced in Section 1.2.  This description has an important generalization to mixed states as follows.\newline
+(1) Show that an arbitrary density matrix for a mixed state qubit may be written as $$\rho=\frac{I+\vec{r}\cdot\vec{\sigma}}{2},$$ where $\vec{r}$ is a real three-dimensional vector such that $\norm{\vec{r}}\leq 1$.  This vector is known as the \textit{Bloch vector} for the state $\rho$. \newline
+(2) What is the Bloch vector representation for the state $\rho = I/2$?\newline
+(3) Show that a state $\rho$ is pure if and only if $\norm{\vec{r}}= 1$.\newline
+(4) Show that for pure states the description of the Bloch vector we have given coincides with that in Section 1.2.
+\Soln Note, even though the topic of this problem includes mixed states, the representation we are constructing is a representation of a single qubit.  That qubit could be entangled with others, but these other qubits are not explicitly represented in the Bloch sphere representation of the qubit of interest.  The level of entanglement of the qubit of interest with other qubits is represented, though.\newline
+(1) Let $\rho$ be an arbitrary density matrix for a single complex-dimensional state.  $\rho$ is Hermitian, so we may set $\rho = \begin{bmatrix}
     a & b \\ b^* & d
-\end{bmatrix}$,
-$a, d \in \mathds{R}$ and $b \in \mathds{C}$ w.r.t. standard basis.
-Because $\rho$ is density matrix, $\Tr (\rho) = a+d = 1$.
-
-Define $a = (1+r_3)/2$, $d = (1-r_3)/2$ and $b = (r_1 - ir_2)/2$, $(r_i \in \mathds{R})$.
-
-In this case,
+\end{bmatrix}$, where $a, d \in \mathds{R}$ and $b \in \mathds{C}$.
+Because $\rho$ is density matrix, $\Tr (\rho) = a+d = 1$.   Define $r_1 = \Re(b)/2$, $r_2=-\Im(b)/2$, $r_3 = a-d$, and finally $\vec{r}=(r_1,r_2,r_3)$.  Expressing $a,b,$ and $d$ in terms of $\vec{r}$, we have $a=\frac{1+r_3}{2}$, $b = \frac{r_1-ir_2}{2}$, and $d=\frac{1-r_3}{2}$.  Now
 \begin{align*}
     \rho = \begin{bmatrix}
         a & b \\ b^* & d
@@ -2338,49 +2266,36 @@ In this case,
     =
     \frac{1}{2} (I + \vec{r} \cdot \vec{\sigma}).
 \end{align*}
-Thus for arbitrary density matrix $\rho$ can be written as $\rho = \frac{1}{2} (I + \vec{r} \cdot \vec{\sigma})$.
-
-Next, we derive the condition that $\rho$ is positive.
-
-If $\rho$ is positive, all eigenvalues of $\rho$ should be non-negative.
+Thus an arbitrary density matrix $\rho$ can be written as $\rho = \frac{1}{2} (I + \vec{r} \cdot \vec{\sigma})$ for some real-valued three-dimensional vector $\vec{r}$.  It remains to show that $\norm{\vec{r}} \leq 1$. To do so, note that Theorem 2.5 gives that $\rho$ is positive. Being positive, the eigenvalues of $\rho$ must be non-negaive.  So, let's find the eigenvalues:
+%\begin{align*}
+%\norm{r}^2 &= \norm{r_1}^2+\norm{r_2|}^2+\norm{r_3}^2 \tag{definition of $\norm{\cdot}$ in $\mathbb{R}^3$} \\
+%    &= \frac{\Re(b)^2 + \Im(b)^2}{4} +  (a-d)^2  \tag{definitions of $a,b,d$} \\
+%    &= \frac{\norm{b}^2}{4} + (a+d)^2-4ad \tag{simplify} \\
+%    &= \frac{\norm{b}^2}{4} + 1 - 4ad \tag{$\Tr(\rho)=1$}
+%\end{align*}
 \begin{align*}
-    \det (\rho - \lambda I) &= (a-  \lambda) (b - \lambda) - |b|^2 = \lambda^2 - (a+d)\lambda + ad - |b^2| = 0\\
-    \lambda &= \frac{(a+d) \pm \sqrt{(a+d)^2 - 4 (ad - |b|^2)}}{2}\\
-        &= \frac{1 \pm \sqrt{1 - 4 \left(\frac{1 - r_3^2}{4} - \frac{r_1^2 + r_2^2}{4} \right)}}{2}\\
-        &= \frac{1 \pm \sqrt{1 - (1 - r_1^2 - r_2^2 - r_3^2)}}{2}\\
-        &= \frac{1 \pm \sqrt{|\vec{r}|^2}}{2}\\
-        &= \frac{1 \pm |\vec{r}|}{2}
+    \det (\rho - \lambda I) &= (a-  \lambda) (d - \lambda) - \norm{b}^2 \tag{characteristic equation} \\
+    &= \lambda^2 - (a+d)\lambda + ad - \norm{b}^2 = 0 \tag{simplify}\\
+    &= \lambda^2 -\lambda + \left(\frac{1-r_3^2}{4}-\frac{r_1^2+r_2^2}{4}\right) \tag{$\Tr(\rho)=1$, express in terms of $\vec{r}$}\\
+    &= \lambda^2 - \lambda +\left(\frac{1-\norm{r}^2}{4}\right) \tag{definition of $\norm{\cdot}$ in $\mathbb{R}^3$}\\
+        \lambda  &= \frac{1 \pm \sqrt{1 - (1 -\norm{r}^2)}}{2}\tag{quadratic formula}\\
+        &= \frac{1 \pm \norm{\vec{r}}^2}{2} \tag{simplify}
 \end{align*}
+Now $\frac{1 - \norm{\vec{r}}^2}{2} \geq 0 \rightarrow \norm{\vec{r}} \leq 1$.\newline
 
-Since $\rho$ is positive, $\frac{1 - |\vec{r}|}{2} \geq 0 \rightarrow |\vec{r}| \leq 1$.
+\noindent(2) If $\rho = I / 2$, then $a=d=1/2$ and $b=0$.  So $\vec{v} = (0,0,0)$, and $\rho = I / 2$ corresponds to the origin of Bloch sphere.
 
-Therefore an arbitrary density matrix for a mixed state qubit is written as $\rho = \frac{1}{2} (I + \vec{r} \cdot \vec{\sigma})$.
-
-\vspace{5mm}
-(2)
-
-$\rho = I / 2 \rightarrow \vec{r}  = 0$. Thus  $\rho = I / 2$ corresponds to the origin of Bloch sphere.
-
-\vspace{5mm}
-(3)
+\noindent(3)  By exercise 2.71, $\rho$ is a pure state if and only if $\Tr(\rho^2)=1$. Let's calculate $\Tr(\rho^2)$.
 
 \begin{align*}
-    \rho^2 &= \frac{1}{2} (I + \vec{r} \cdot \vec{\sigma})~ \frac{1}{2} (I + \vec{r} \cdot \vec{\sigma})\\
-        &= \frac{1}{4} \left[ I + 2 \vec{r}\cdot \vec{\sigma} + \sum_{j,k}r_j r_k \left(\delta_{jk} I + i \sum_{l=1}^3 \epsilon_{jkl}\sigma_l \right)  \right]\\
-        &= \frac{1}{4} \left(I + 2 \vec{r}\cdot \vec{\sigma} + |\vec{r}|^2 I \right)\\
-    \Tr (\rho^2) &= \frac{1}{4} (2 + 2|\vec{r}|^2)
+    \rho^2 &= \frac{1}{2} (I + \vec{r} \cdot \vec{\sigma})~ \frac{1}{2} (I + \vec{r} \cdot \vec{\sigma}) \tag{part (1) above}\\
+        &= \frac{1}{4} \left[ I + 2 \vec{r}\cdot \vec{\sigma} + \norm{r}^2\left(\frac{\vec{r}\cdot\vec{\sigma}}{\norm{r}}\right)^2\right] \tag{F.O.I.L., normalize}\\
+        &= \frac{1}{4} \left(I + 2 \vec{r}\cdot \vec{\sigma} + \norm{\vec{r}}^2 I \right) \tag*{$\Bigl(\Bigr. \begin{array}{r}\text{see the first author's attempted resolution}\\ \text{ of the special case of Exercise 2.60}\end{array} \Bigl.\Bigr)$ }\\
+    \Tr(\rho^2) &= \frac{1}{4}\left[\Tr(I)+2\Tr(\vec{r}\cdot\vec{\sigma}) + \norm{\vec{r}}^2\Tr(I)\right] \tag{linearity of $\Tr(\cdot)$} \\
+    &=\frac{2+2\norm{\vec{r}}^2}{4} \tag{$\Tr(I)=2$ in $\mathbb{C}^2$, $\Tr(\vec{r}\cdot\vec{\sigma})=r_3-r_3 = 0$}.
 \end{align*}
-
-If $\rho$ is pure, then $\Tr (\rho^2) = 1$.
-\begin{align*}
-   1 =  \Tr (\rho^2) = \frac{1}{4} (2 + 2|\vec{r}|^2)\\
-   \therefore |\vec{r}| = 1.
-\end{align*}
-
-Conversely, if $|\vec{r}| = 1$, then $\Tr (\rho^2) = \frac{1}{4} (2 + 2|\vec{r}|^2) = 1$. Therefore $\rho$ is pure.
-
-
-
+Now $\rho$ is a pure state if and only if $\Tr(\rho^2) = \frac{2+2\norm{\vec{r}}^2}{4} = 1$, which occurs if and only if $\norm{\vec{r}} = 1$.\newline
+\noindent(4) TODO
 
 \Textbf{2.73}
 \begin{screen}
