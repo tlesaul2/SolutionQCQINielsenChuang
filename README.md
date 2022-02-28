@@ -91,17 +91,17 @@ Second checkboxes correspond to checked and/or extended solutions by the current
 - [x] - [x] 2.59
 - [x] - [x] 2.60 fixed
 - [x] - [x] 2.61
-- [x] 2.62
-- [x] 2.63
-- [ ] 2.64
+- [x] - [ ] 2.62 will return
+- [x] - [x] 2.63
+- [ ] - [x] 2.64 solution imported from farice.github.io
 - [x] - [x] 2.65
-- [x] 2.66
-- [x] 2.67
-- [x] 2.68
-- [x] 2.69
-- [x] 2.70
-- [x] 2.71
-- [x] 2.72
+- [x] - [x] 2.66
+- [x] - [x] 2.67
+- [x] - [x] 2.68
+- [x] - [x] 2.69
+- [x] - [x] 2.70
+- [x] - [ ] 2.71 will return
+- [x] - [x] 2.72
 - [x] 2.73
 - [x] 2.74
 - [x] 2.75
