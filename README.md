@@ -91,7 +91,7 @@ Second checkboxes correspond to checked and/or extended solutions by the current
 - [x] - [x] 2.59
 - [x] - [x] 2.60 fixed
 - [x] - [x] 2.61
-- [x] - [ ] 2.62 will return
+- [x] - [x] 2.62 including converse of 2.16
 - [x] - [x] 2.63
 - [ ] - [x] 2.64 solution imported from farice.github.io
 - [x] - [x] 2.65
@@ -112,6 +112,15 @@ Second checkboxes correspond to checked and/or extended solutions by the current
 - [x] 2.80
 - [x] 2.81
 - [x] 2.82
+
+### Chapter 3
+
+- [] - [x] 3.1
+- [] - [x] 3.2
+- [] - [x] 3.3
+.
+.
+.
 
 ### Chapter 8
 

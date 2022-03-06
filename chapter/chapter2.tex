@@ -2011,7 +2011,6 @@ The post-measurement state is
 \begin{align*} \frac{\ket{\lambda_1}\braket{\lambda_1|0}}{\sqrt{p(1)}} &=\left(\frac{\sqrt{\frac{1+v_3}{2}}}{\sqrt{\frac{1+v_3}{2}}}\begin{bmatrix}1 & \left(\frac{1-v_3}{v_1-iv_2}\right)^*\end{bmatrix}\begin{bmatrix}1\\0\end{bmatrix}\right) \ket{\lambda_1} \tag*{$\Bigl(\Bigr. \begin{array}{r}\text{numerator from normalization}\\ \text{denominator from above}\end{array} \Bigl.\Bigr)$ } \\
 &= \ket{\lambda_1} \tag{simplify, multiply}
 \end{align*}
-
 %\begin{align*}
 %	\frac{\ket{\lambda_1} \braket{\lambda_1 | 0}}{ \sqrt{\braket{0 | \lambda_1} \braket{\lambda_1 | 0}} } &= \frac{1}{\sqrt{\frac{1}{2} (1 + v_3)}}
 %	\cdot \frac{1}{2}
@@ -2029,29 +2028,18 @@ The post-measurement state is
 %		\end{bmatrix} \\
 %		&= \ket{\lambda_1}.
 %\end{align*}
+\Textbf{2.62} Show that any measurement where the measurement operators and the POVM elements coincide is a projective measurement. 
+\Soln We can no longer avoid the converse of Exercise 2.16.  Before we prove it, we quibble about semantics.  The assumption in the exercise is that the POVM elements ``coincide'' with the measurement operators.  This can be taken to mean one of two things.  Let $\{M_m\}$ be the set of measurement operators.  One interpretation is that $M_m = E_m = M_m^\dagger M_m$ for all $m$.  We'll call this direct coincidence.  Another interpretation is that they coincide as sets, i.e., that $\{M_m\} = \{E_m\}$, without requiring $M_m = E_m$ for each $m$.  A mathematician may argue that what is to be assumed is set-wise coincidence, but we'll show that this is not the case.  We'll argue for the assumption of direct coincidence by contradiction.  If it were the case that POVM measurements which satisfied the setwise coincidence assumption but {\em not} the direct coincidence assumption were projective measurements, then there would exist $M_m=E_\mu = M_\mu^\dagger M_\mu$, where $M_m \neq M_\mu$.  However, being a projective measurement, $M_\mu$ must be Hermitian, in which case $M_m = M_\mu^2 =M_\mu$, by Exercise 2.16 (not the converse).  This is a contradiction, but it is important to note what we can conclude from it.  Our assumption was that setwise coincidence of measurement operators and POVM measurements was enough to prove the measurement projective.  Having contradicted this, we conclude that the exercise must assume direct coincidence instead.  We have {\em not} proven that setwise coincidence without direct coincidence is impossible.
+\begin{screen}
+\begin{thm}\label{idempotent}
+	Let $P$ be a {\em normal} linear operator.  If $P^2 = P$, then $P$ is a projector, that is $P=\sum_i \kb{i}$ for some orthonormal basis $\ket{i}$.
+\end{thm}
+\begin{proof} Having assumed normality (the statement is not true in general if we do not), we may apply the Structural Decomposition Theorem to write $P=\sum_i\lambda_i \kb{i}$.  Note, we may assume $\lambda_i \neq 0$.  Being idempotent, $\sum_i\lambda_i \kb{i} = P = P^2 = \left(\sum_i\lambda_i \kb{i}\right)^2 = \sum_i \lambda_i^2 \kb{i}$ by orthonormality.  The $\kb{i}$ are linearly independent (see Exercise 2.10), from which we conclude that all $\lambda_i$ satisfy $\lambda_i = \lambda_i^2$, from which $\lambda_i(\lambda_i-1) = 0$, or that $\lambda_i = 1$, since $\lambda_i\neq 0$.  Now $P = \sum_i \kb{i}$, as required.
 
-
-
-
-\Textbf{2.62}
-
-Suppose $M_m$ is a measurement operator.
-From the assumption, $E_m = M_m^\dagger M_m = M_m$.
-
-Then
-\begin{align*}
-    \braket{\psi | E_m | \psi} = \braket{\psi | M_m | \psi} \geq 0.
-\end{align*}
-for all $\ket{\psi}$.
-
-Since $M_m$ is positive operator, $M_m$ is Hermitian.
-Therefore,
-\begin{align*}
-    E_m = M_m^\dagger M_m = M_m M_m = M_m^2 = M_m.
-\end{align*}
-
-Thus the measurement is a projective measurement.
-\hrule
+Note: Some definitions of projectors define them in terms of relations between their kernels and images as opposed to the formulaic definition given in Equation 2.35.  They are equivalent (at least for normal matrices).  With the set theoretic definition, Exercise 2.16 and it's converse Theorem \ref{idempotent} follow by definition.
+\end{proof}
+\end{screen}
+On to the exercise:  Suppose $M_m$ is a measurement operator such that $E_m = M_m^\dagger M_m = M_m$.  Note that $M_m = M_m^\dagger M_m$ is positive by exercise 2.25, thus Hermitian, so  $M_m =  E_m = M_m^\dagger M_m = M_m^2$.  Being Hermitian, $M_m$ is normal, in which case Theorem \ref{idempotent} above applies, giving that $M_m$ is a projector.  Thus the measurement is a projective measurement.
 
 \Textbf{2.63} Suppose a measurement is described by measurement operators $M_m$.  Show that there exist unitary operators $U_m$ such that $M_m=U_m\sqrt{E_m}$, where $E_m$ is the POVM associated to the measurement.
 \Soln By the singular value decomposition (Corrolary 2.4, eq 2.80, p 79), there exists unitary $U, V$, and real-valued diagonal $D$  such that $M_m = UDV$.  Now
