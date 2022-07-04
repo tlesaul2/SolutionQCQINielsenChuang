@@ -45,3 +45,168 @@ Execution of the Turing machine begins by executing line 1 of P, which moves tap
 \end{align*}
 Here, line 7 reverses the direction of tape-head 2. Lines 8 and 9 allow it to retreat to the start of tape 2 in line 10, at which point tape-head 1 and 2 are advanced in tandem and the blank in tape 1 is swapped with the bit in tape 2, one bit at a time, by executing lines 11 and 12.  Once tape-head 2 is at the end of the reversed bit-string, line 13 is reached, explicitly halting the program.
         
+\Textbf{3.4} \textbf{(Turing machine to add modulo 2)} Describe a Turing machine to add two binary numbers $x$ and $y$ modulo 2.  The numbers are input on the Turing machine tape in binary, in the form $x$, followed by a single blank, followed by $y$.  If one number is not as long as the other then you may assume that it has been padded with leading 0's to make the two numbers the same length.
+\Soln The specification that $x$ and $y$ can be padded so that they have the same length clouds the interpretation of the exercise.   If adding $x$ and $y$ modulo 2 means finding the parity of $x+y$, the more natural interpretation to a mathematician, then a rather natural machine achieves this without padding.  Alternatively, adding $x$ and $y$ modulo 2 could mean $x\wedge y$.  Here, padding would be convenient.  We'll start with the first interpretation, the parity of $x+y$, that is $x+y\pmod{2}$. Here, only the last bits of $x$ and $y$ matter.
+
+We define a single-tape machine, using the standard alphabet $\Gamma=\{\triangleright, 0, 1, b\}$.  For convenience, define a set of states $S=\{s, 0, 1, h\}$ and let the finite state control consist of (a subset of) $S\bigoplus S$, the Cartesian product of $S$ with itself, with $q_s\equiv (s,s)$ and $q_h\equiv (h,h)$.  This will allow the state to represent a bit from $x$ and a bit from $y$ simultaneously.  For convenience, let a $*$ in a state contained within a program line be a wildcard, where a $*$ will only occur in an output state if one also occurred in the input state in the same coordinate, in which case the coordinate state is left unchanged in the output state.  For added convenience, let the $\#$ wildcard represent a 0 or 1 character read from the tape, and a corresponding 0 or 1 state in a coordinate of the output state.  The $\#$ character will never be used as an output character to be written to the tape.  The program below could be specified without wildcards by replicating the program lines containing them, producing a fully specified program line for each value the wildcards could represent.  If multiple wildcards occur in a line, the result would be distinct fully specified program lines, one for each pair of state, character pair in $S\bigoplus\{0,1\}$.
+\begin{align*}
+P=\left\{
+\begin{array}{cccccrrr}     1: &\langle&(s,s),&\triangleright,&(s,s),&\triangleright,&+1&\rangle\\
+       2: &\langle&(*,s),&\#,&(\#,s),&b,&+1&\rangle \\
+       3: &\langle&(*,s),&b,&(*,b),&b,&+1&\rangle \\
+       4: &\langle&(*,b),&\#,&(*,\#),&b,&+1&\rangle \\
+       5: &\langle&(*,0),&\#,&(*,\#),&b,&+1&\rangle \\
+       6: &\langle&(*,1),&\#,&(*,\#),&b,&+1&\rangle \\
+       7: &\langle&(*,0),&b,&(*,0),&b,&-1&\rangle \\
+       8: &\langle&(*,1),&b,&(*,1),&b,&-1&\rangle \\
+       9: &\langle&(0,0),&\triangleright,&(0,h),&\triangleright,&+1&\rangle \\
+       10: &\langle&(0,1),&\triangleright,&(1,h),&\triangleright,&+1&\rangle \\
+       11: &\langle&(1,0),&\triangleright,&(1,h),&\triangleright,&+1&\rangle \\
+       12: &\langle&(1,1),&\triangleright,&(0,h),&\triangleright,&+1&\rangle \\
+       13: &\langle&(0,h),&b,&(h,h),&0,&0&\rangle \\
+       14: &\langle&(1,h),&b,&(h,h),&1,&0&\rangle \\
+       \end{array}\right.
+\end{align*}
+Line 1 initializes the program, advancing the tape head to the first bit of $x$.  Line 2 iteratively stores the last bit of $x$ read from the tape in the first coordinate of the state and erases the bit from the tape, advancing the tape head to the next bit of $x$.  Line 3 identifies the end of $x$ and advances to the first bit of $y$.  Lines 4-6 iteratively store the last bit of $y$ read from the tape in the second coordinate of the state and erases the bit from the tape, advancing the tape head to the next bit of $y$.  Lines 7 and 8 identify the end of $y$, then iteratively returns the tape head to the start of the tape, since the tape has been erased entirely except for the starting $\triangleright$ character, which triggers one of lines 9-12 when read.  While the tape head is returning to the start of the tape, and in particular, when it reaches it, the current state contains the last bit of $x$ and the last bit of $y$ by construction.  In lines 9-12, these bits are XORed, the tape head is advanced to the first position (which holds the blank character), and the output state is set equal to the XOR paired with $h$ in the second coordinate indicating halting is in progress.  The XOR is the parity of $x+y$ that needs to be output onto the tape.  Once the second state-coordinate indicates halting, the XOR is written to the tape in the current/first character, replacing the blank that was there, and the output state is explicitly set to $(h, h)\equiv q_h$, the halting state of the Cartesian product finite state control. 
+
+To compute $x\wedge y$ we use a two-tape machine.  The finite state control will consist of the states $\{q_s, s, m, r, w, q_h\}$, which we'll refer to as begin, search, move, return, write, and halt.  The standard alphabet $\Gamma=\{\triangleright, 0, 1, b\}$ will be sufficient.  Once again, we use $\#$ wildcards, where now a subscript will indicate which tape the character was read from, and $\#_1\wedge\#_2$ is the XOR of the binary integers represented by the characters $\#_1$ and $\#_2$ read from the respective tapes.  Consider the program:
+\begin{align*}
+P=\left\{
+\begin{array}{ccccccccrrr}     1: &\langle&q_s,&\triangleright,&\triangleright,&s,&\triangleright,&\triangleright,&+1,&0&\rangle\\
+       2: &\langle&s,&\#_1,&\triangleright,&s,&\#_1,&\triangleright,&+1,&0&\rangle\\
+       3: &\langle&s,&b,&\triangleright,&m,&b,&\triangleright,&+1,&+1&\rangle\\
+       4: &\langle&m,&\#_1,&b,&m,&b,&\#_1,&+1,&+1&\rangle\\
+       5: &\langle&m,&b,&b,&r,&b,&b,&-1,&-1&\rangle\\
+       6: &\langle&r,&b,&\#_2,&r,&b,&\#2,&-1,&-1&\rangle\\
+       7: &\langle&r,&b,&\triangleright,&r,&b,&\triangleright,&-1,&0&\rangle\\
+       8: &\langle&r,&\#_1,&\triangleright,&r,&\#_1,&\triangleright,&-1,&0&\rangle\\
+       9: &\langle&r,&\triangleright,&\triangleright,&w,&\triangleright,&\triangleright,&+1,&+1&\rangle\\
+       10: &\langle&w,&\#_1,&\#_2,&w,&\#_1\wedge\#_2,&b,&+1,&+1&\rangle\\
+       11: &\langle&w,&b,&b,&q_h,&b,&b,&0,&0&\rangle\\
+       \end{array}\right.
+\end{align*}
+Line 1 starts the program, transitioning the machine to the search state, advancing the first tape to the first bit of $x$.  Here, ``search'' is searching for the start of $y$.  While in the search state, line 2 causes tape head 2 to stay in place, advances tape head 1, and leaves the contents of $x$ unchanged on tape 1.  Once tape head 1 reaches the end of $x$, line 3 transitions the finite state control to the move state, and advances both tape heads. In the move state, the bits of $y$ are iteratively moved from tape 1 to tape 2, erasing tape 1, by executing line 4.  Since $x$ and $y$ have the same length, this aligns $x$ and $y$ in their respective tapes, with corresponding bits in tape squares with equal indices.  When tape head 1 reaches the end of $y$, line 5 sets the state to return, and retreats both tapes.  Line 6 is then executed iteratively, retreating tape head 1 across the erased portion of tape 1 which previously held $y$, and tape head 2 across the portion of tape 2 that \textit{now}  holds $y$, leaving $y$ in place.  Since $x$ and $y$ have the same length, we reach the blank which previously separated $x$ and $y$ on tape 1 and the $\triangleright$ on tape 2 at the same time.  This executes line 7, which transitions the machine to only retreating tape head 1, while leaving tape head 2 in place on the starting $\triangleright$ character.  Then line 8 is executed iteratively, continuing to retreat tape head 1 to its start.  When both tape heads have returned to their starts, we execute line 9, transitioning into the write state and move both tape heads forward: tape head 1 to the first bit of $x$ and tape head 2 to the first bit of $y$.  While in the write state,executing  line 10 writes the bitwise XOR of $x$ and $y$ onto tape 1 and erases tape 2, advancing both tape heads in turn.  Since $x$ and $y$ have the same length, we are guaranteed to reach the blank characters at the ends of $x$ and $y$ at the same time, causing line 11 to be executed, explicitly halting the program, leaving tape 1 containing $x\wedge y$ and tape 2 blank.
+
+\begin{comment}
+\Textbf{3.5} \textbf{(Halting problem with no inputs)} Show that given a Turing machine $M$ there is no algorithm to determine whether $M$ halts when the input to the machine is a blank tape.
+\Soln There is a minor sticking point in the way this question is asked.  It does not ask us to show that there is no \textit{Turing machine} with this capability.  It asks us to show that there is no \textit{algorithm}.  Let us assume for a contradiction that such an algorithm did exist.  To answer the question as asked, we must think of the algorithm in a general sense and not assume it is Turing computable.  Let $f$ be a function that takes a Turing machine with no input, $M$, and returns $1$ if $M$ halts and $0$ if not.  This function is well-defined by hypothesis, and for any fixed Turing machine can be determined.  Now, consider a Turing machine (which will tak If allowed to assume by contradiction that the algorithm takes the form of a Turing machine, say $\mathcal{M}$, which takes $M$ as input like in a universal Turing machine,  then define the function  , then 
+
+To that end, let us assume such an algorithm to determine whether a Turing machine $M$ halted when given no input existed.  By exercise 3.2, each Turing machine can be assigned a unique Turing number, $\tau(M)$.  For $n\in\mathbb{N}$, define $\mathcal{M}_n$ to be the set of all Turing machines $M$ such that $\log_2(\tau(M)) \leq n$, and $M$ halts when given no input.  The existence of the hypothesized algorithm guarantees that $\mathcal{M}_n$ is well-defined, and nothing more.  When $M\in\mathcal{M}_n$ halts (when given no input), it will have calculated a number as output, say $\nu(M)$.  Let $f:\mathbb{N}\rightarrow\mathbb{N}$ be a function that calculates the smallest integer not computed by any Turing machine in $\mathcal{M}_n$.  That is, $f(n) \equiv \min(\mathbb{N}\setminus\{\nu(M)|M\in\mathcal{M}_n\})$.  $f$ is Turing computable, for instance by a universal Turing machine. 
+
+
+\end{comment}
+
+\Textbf{3.8} \textbf{(Universality of} \NAND\textbf{)} Show that the \NAND{} gate can be used to simulate \AND, \XOR, and \NOT{} gates, provided wires, ancilla bits and \FANOUT{} are available
+
+NOT:
+\begin{circuitikz}
+    \draw
+    (1.5,0) node[nand port] (mynand){}
+    (0,0) |- (mynand.in 1)
+    (0,0) |- (mynand.in 2)
+    (-0.25,0) to[short, -*] (0,0);
+\end{circuitikz}
+
+AND:
+\begin{circuitikz}
+\draw
+    (1,0) node[nand port] (mynand1){}
+
+    (2.60,0) node[nand port] (mynand2){}
+    (1.20,0) |- (mynand2.in 1)
+    (1.20,0) |- (mynand2.in 2)
+    (1.25,0) to[short, -*] (1.20,0);
+    
+%    \draw
+%    (1,0) node[nand port] (mynand1){}
+%    (3,0) node[nand port] (mynand2){}
+%    (mynand2.in 1) -- ++ (-2,0) |- (mynand.in 2) coordinate (a) to[short, *-] (0.5,0.5|-a);
+%    (2,0) node[circ port] (fanout){}
+%    (mynand1.out 1) |- (fanout.in)
+%    (fanout.out 1) |- (mynand2.in 1)
+%    (fanout.out 2) |- (mynand2.in 2);
+%    (mynand2.in 1) |- (mynand1.out)
+%    (mynand2.in 2) |- (mynand1.out);
+%%     (mynand2.in 1) |- coordinate[pos=1] (a)
+%     (mynand2.in 2) |- coordinate[pos=1](a)
+%     (mynand1.out) to[short, *-] (a);
+%    (0,1) to[short, -*] (2,0);
+    \end{circuitikz}
+    
+%XOR:
+%\begin{circuitikz}
+%\draw
+
+
+\Textbf{(Landau Big-O notation} A brief note about wording:  Section 3.2.1 says that $f(n)$ \textit{is} $O(g(n))$, but this leads to a temptation to write equations like $f(n) = O(g(n))$.  Such equations aren't reflexive though; writing$O(g(n)) = f(n)$ doesn't make sense.  We'll say that$f(n)$ is \textit{in} $O(g(n))$, where $O(g(n))$ is taken to be a \textit{class} of functions, as originally presented. So, \textit{in} refers to class membership and may be written $f(n)\in O(g(n))$.  Also, when a parameter is used inside the $O, \Omega,$ or $\Theta$, it is unnecessary to include the parameter in statements about function's membership in such a class.  For example, if $f(n)\equiv n$, then $f\in\Theta(n)$ is unambiguous.
+
+\Textbf{3.9} Prove that $f(n)$ is $O(g(n))$ if and only if $g(n)$ is $\Omega(f(n))$. Deduce that $f(n)$ is $\Theta(g(n))$ if and only if $g(n)$ is $\Theta(f(n))$.
+\Soln Let us assume that $f(n)\in O(g(n))$.  By definition there exists $c$ and $n_0$ such that for all $n>n_0$, $f(n) \leq c\cdot g(n)$.  Dividing by $c$ and setting $c'=\frac{1}{c}$ yields that there exists $c'$ and (the same) $n_0$ such that for all $n > n_0$, $c'\cdot f(n) \leq g(n)$.  This is exactly the defining property of the statement: $g(n)\in\Omega(f(n))$, so $f(n)\in O(g(n))$ implies $g(n)\in\Omega(f(n))$.  to prove the converse, assume that $g(n)\in\Omega(f(n))$, divide by $c'$ to re-recover $c$, and recognize the definition of $f(n)\in O(g(n))$.
+
+Now, to show that $f(n)\in\Theta(g(n))$ if and only if $g(n)\in\Theta(f(n))$, note that by definition$f(n)\in\Theta(g(n))$ means that $f(n)\in O(g(n))$ and $f(n)\in\Omega(g(n))$, which by the first part of the exercise means that $g(n)\in \Omega(f(n))$ and $g(n)\in O(f(n))$, which is exactly the definition of $g(n)\in\Omega(f(n))$.
+
+\Textbf{3.10} Suppose $g(n)$ is a polynomial of degree $k$.  Show that $g(n)$ is $O(n^\ell)$ for any $\ell\geq k$.
+\Soln Let $k$ be fixed and $\ell\geq k$ be given.  Let $g(n) \equiv \sum_{i=0}^k c_i n^i$, define $c \equiv 2\cdot\sum_{j=0}^k \abs{c_j}$ and let $n > 2 \equiv n_0$.
+\begin{align*}
+g(n) &= \sum_{i=0}^k c_i n^i \tag{definition} \\
+ & \leq \sum_{i=0}^k \abs{c_i} n^i  \tag{$c_i \leq \abs{c_i}$}\\
+ & \leq \sum_{i=0}^k \left(\sum_{j=0}^k \abs{c_j}\right) n^i \tag{$\abs{c_i} \leq \abs{c_0} + \ldots + \abs{c_i} +\ldots +\abs{c_k}$}\\
+ & = \left(\frac{c}{2}\right) \sum_{i=0}^k n^i \tag{definition of $c$}\\
+ &= \left(\frac{c}{2}\right)\left(n^k + \sum_{i=0}^{k-1}n^i\right) \tag{separate leading term}\\
+ &= \left(\frac{c}{2}\right)\left(n^k + \frac{n^k-1}{n-1}\right) \tag{finitie geometric series}\\
+ &< \left(\frac{c}{2}\right)\left(n^k + \frac{n^k}{1}\right) \tag{denominator > 1, numerator smaller}\\
+ & = c\cdot n^k \tag{simplify} \\
+ & \leq c \cdot n^\ell \tag{ $n > 1$}
+\end{align*}
+By definition, $g\in O(n^\ell)$.
+
+\Textbf{3.11} Show that $\log n$ is $O(n^k)$ for any $k > 0$.
+\Soln We prove the exercise using the \textit{natural} log.  Logarithms in other bases differ from the natural log by constant multiplicative factors which can be absorbed into the constant $c$, so the result will hold for logarithms in any base. Let $k > 0$ be given and define $\kappa = \ceil{\frac{1}{k}}$.  Note that $\kappa$ is an integer with value at least 1.  Define $c = (\kappa!)^{1/\kappa}$, $n_0 = 1$, and let $n > n_0$.  Now, consider the Taylor series expansion of $\displaystyle e^x=\sum_{i=0}^{\infty} \frac{x^i}{i!}$, which converges and is valid for all $x\in \mathbb{R}$.  In particular, this series is valid for $x = (\kappa! n)^{1/\kappa}$.
+
+\begin{align*}
+  e^{(\kappa! n) ^{1/\kappa}} &= \sum_{i=0}^{\infty}\frac{(\kappa! n)^{i/\kappa}}{i!} \tag{Taylor series} \\
+  &> \frac{(\kappa!n)^{\kappa/\kappa}}{\kappa!} \tag{all terms positive, take only the $\kappa$ term} \\
+  &= n \tag{simplify} \\
+  \log n &< (\kappa!)^{1/\kappa}n^{1/\kappa} \tag*{$\Bigl(\Bigr. \begin{array}{r}\text{take logarithm, increasing functions preserve}\\ \text{inequalities, but we've switch sides}\end{array} \Bigl.\Bigr)$ }\\
+    &= c n^{1/\kappa} \tag{definition of $c$} \\
+    &< c n^k \tag{$n>1$, $\kappa = \ceil{1/k}\geq 1/k \implies k \geq 1/\kappa$  }
+\end{align*}
+So $\log \in O(n^k)$.
+
+\Textbf{3.12} \textbf{(}$n^{\log n}$ \textbf{is super-polynomial)}  Show that $n^k$ is $O(n^{\log n})$ for any $k$, but that $n^{\log n}$ is never $O(n^k)$.
+\Soln To avoid assumptions about behavior of constant exponents and asymptotic functions (as opposed to constant multiples), in this problem we allow the logarithm base, say $a$, be arbitrary, but we must assume $a > 1$.  For $a \leq 1$, the result is not true.  Let $k$ be given, define $c\equiv1$, $n_0\equiv \max(1,a^k)$, and let $n>n_0$.
+\begin{align*}
+  c\cdot n^{\log_a n} &= n^{\log_a n} \tag{definition of $c$} \\
+  & \geq n^{\log_a a^k} \tag*{$\Bigl(\Bigr. \begin{array}{r}n>1, a>1 \Rightarrow n^t \text{ and } \log_a t \text{ increasing} \\ n>a^k \text{ by construction} \end{array} \Bigl.\Bigr)$ }\\
+  &= n^k \tag{simplify}
+\end{align*}
+So $n^k\in O(n^{\log_a n})$.  To show that $n^{\log_a n} \not\in O(n_k)$, we again let $k$ be given, $c>0$ be any fixed constant, and let $n_0$ be a fixed positive integer.  We show there exists $n > n_0$ such that $n^{\log_a n} > c\cdot n^k$.  Consider, for example, $n=log_{n_0} a + k$ ... to be continued
+%\begin{align*}We do so by arguing that $\displaystyle \lim_{n\rightarrow \infty} n^{log_a n} - c\cdot n^k = \infty$.  Note that $\log_n$ is a continuous increasing function such that $\displaystyle \lim_{m\rightarrow\infty}\log_n m = \infty$, so we may apply $\log_n$ to the expression inside the limit, that is, we may show $\displaystyle \lim_{n\rightarrow\infty} \log_n\left(n^{\log_a n}- c\cdot n^k\right) = \infty$.  
+
+\Textbf{3.13}
+\Textbf{3.14}
+
+\Textbf{3.15} \textbf{(Lower bound for compare-and-swap based sorts)} Suppose an $n$ element list is sorted by applying some sequence of compare-and-swap operations to the list.  There are $n!$ possible initial orderings of the list.  Show that after $k$ of the compare-and-swap operations have been applied, at most $2^k$ of the possible initial orderings will have been sorted into the correct order.  Conclude that $\Omega(n\log n)$ compare-and-swap operations are required to sort all posible initial orderings into the correct order.
+\Soln In each compare-and-swap operation there are two choices, either swap or do not swap according to the result of the comparison.  After each comparison-based decision, no matter how the next pair of entries to compare is decided, there are still only two options, swap or do not swap.  The resulting logical control flow can be modeled with a binary tree with depth at most $k$.  Each leaf of this binary tree corresponds to a sequence of compare-and-swap operations, where we've decided to swap after some comparisons and not after others.  Swaps apply transpositions to the original permuted list.  At a leaf, the original list will be sorted if and only if the product of transpositions applied is equal to the inverse of the permutation representing the original order of the list.  Importantly, this can only be true for a single ordering of the original list. So, each leaf corresponds to having sorted a single ordering of the list, so after $k$ compare-and-swap operations at most $2^k$ initial orderings can be sorted.
+
+In order for a compare-and-swap based sorting algorithm to sort all possible orderings of an $n$-long list, we need there to be at least $n!$ leaves in the binary tree.  As there are at most $2^k$ leaves, we need $k$ to be such that $2^k \geq n!$ .  It can easily be show that $n! > \left(\frac{n}{2}\right)^\frac{n}{2}$, so we need $2^k \geq  \left(\frac{n}{2}\right)^\frac{n}{2}$.  Applying $\log_2$ to both sides yields $k \geq \left(\frac{n}{2}\right)(\log_2 n-1)$.  This is easily seen to imply that $k\in\Omega(n\log_2 n)$.
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

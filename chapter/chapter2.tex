@@ -437,7 +437,7 @@ If $\lambda = -1$,
 	\end{bmatrix}
 	\Rightarrow c_1 = -c_1
 \end{align*}
-The eigenspace corresponding to $\lambda = -1$ is the set of vectors $\begin{bmatrix}0 \\ c\end{bmatrix}$.  The vector $\begin{bmatrix} 0 \\ 1\end{bmatrix}=\ket{1}$ is such a unit (normalized) vector.  So, the computation basis \textit{is} the eigenbasis for $Z$, and a diagonal representation of $Z$ is $\bigl(\ket{0}\bra{0}\bigr) - \bigl(\ket{1}\bra{1}\bigr) = \begin{bmatrix}1 & 0 \\ 0 & 0\end{bmatrix} - \begin{bmatrix}0 & 0 \\ 0 & -1\end{bmatrix} \bigl( = Z\bigr)$.
+The eigenspace corresponding to $\lambda = -1$ is the set of vectors $\begin{bmatrix}0 \\ c\end{bmatrix}$.  The vector $\begin{bmatrix} 0 \\ 1\end{bmatrix}=\ket{1}$ is such a unit (normalized) vector.  So, the computation basis \textit{is} the eigenbasis for $Z$, and a diagonal representation of $Z$ is $\bigl(\ket{0}\bra{0}\bigr) - \bigl(\ket{1}\bra{1}\bigr) = \begin{bmatrix}1 & 0 \\ 0 & 0\end{bmatrix} - \begin{bmatrix}0 & 0 \\ 0 & 1\end{bmatrix} \bigl( = Z\bigr)$.
 
 
 \Textbf{2.12} Prove that the matrix $\begin{bmatrix}1 & 0 \\ 1 & 1\end{bmatrix} (\equiv A)$ is not diagonalizable.
@@ -2284,8 +2284,10 @@ Now $\frac{1 - \norm{\vec{r}}^2}{2} \geq 0 \rightarrow \norm{\vec{r}} \leq 1$.\n
 \end{align*}
 Now $\rho$ is a pure state if and only if $\Tr(\rho^2) = \frac{2+2\norm{\vec{r}}^2}{4} = 1$, which occurs if and only if $\norm{\vec{r}} = 1$.\newline
 \noindent(4) TODO
+%Let$\ket{\rho}$ be a pure state of a single qubit system (and the corresponding density matrix).  Being in a pure state, say $\We must prove that if as matrices $\rho = \frac{I+\vec{r}\cdot\vec{\sigma}}{2}$, then as vectors $\rho = \vec{r}$.  Being a density matrix, $\rho = p_0\kb{0} + p_1\lkb{1}$, with $p_0 + p_1 = 1$.
 
-\Textbf{2.73}
+\Textbf{2.73}  Let $\rho$ be a density operator.  A \textit{minimal ensemble} for $\rho$ is an ensemble $\{p_i|\ket{\psi_i}\}$ containing a number of elements equal to the rank of $\rho$.  Let $\ket{\psi}$ be any state in the support of $\rho$.  (The \textit{support} of a Hermitian operator $A$ is the vector space spanned by the eigenvectors of $A$ with non-zero eigenvalues.)  Show that there is a minimal ensemble for $\rho$ that contains $\psi$, and moreover that in any such ensemble $\ket{\psi}$ must appear with probability $$p_i=\frac{1}{\braket{\psi_i|\rho^-1|\psi_i}},$$ where $\rho^{-1}$ is defined to be the inverse of $\rho$, when $\rho$ is considered as an operator acting only on the support of $\rho$.  (This definition removes the problem that $\rho$ may not have an inverse.)
+\Soln
 \begin{screen}
     \Textbf{Theorem 2.6}
 %
@@ -2372,7 +2374,8 @@ Moreover since $\rho^{-1} = \sum_k \frac{1}{\lambda_k} \kb{k}$,
 Hence, $ \frac{1}{\braket{\psi_i | \rho^{-1} | \psi_i}} = p_i $.
 
 
-\Textbf{2.74}
+\Textbf{2.74} Suppose a composite of system $A$ and $B$ is in the state $\ket{a}\ket{b}$, where $\ket{a}$ is a pure state of system $A$, and $ket{b}$ is a pure state of system $B$.  Show that the reduced density operator of a system $A$ alone is a pure state.
+\Soln 
 \begin{align*}
 	\rho_{AB} &= \kb{a}_A \otimes \kb{b}_B\\
 	\rho_A &= \Tr_{B} \rho_{AB} = \kb{a} \Tr (\kb{b}) = \kb{a}\\

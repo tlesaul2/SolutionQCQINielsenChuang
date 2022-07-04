@@ -1,7 +1,8 @@
 %!TeX root=../solnQCQI.tex
 
 \chapter{Distance measures for quantum information}
-\Textbf{9.1}
+\Textbf{9.1} What is the trace distance between the probability distribution $(1, 0)$ and the probability distribution $(1/2, 1/2)$?  Between $(1/2,1/3,1/6)$ and $(3/4, 1/8, 1/8)$?
+\Soln
 \begin{align*}
 	D((1,0), (1/2,1/2)) &= \frac{1}{2} \left( |1 - 1/2| + |0 - 1/2| \right)\\
 		&= \frac{1}{2} \left(\frac{1}{2} +  \frac{1}{2} \right)\\
@@ -16,27 +17,51 @@
 
 
 
-\Textbf{9.2}
+\Textbf{9.2} Show that the trace distance between probability distributions $(p, 1-p)$ and $(q, 1-q)$ is $\abs{p-q}$.
+\Soln
 \begin{align*}
-	D\left((p,1-p), (q, 1-q)\right) &= \frac{1}{2} \left( |p-q| + |(1-p) - (1-q)| \right)\\
-		&= \frac{1}{2} \left( |p-q| + |-p + q| \right)\\
-		&= |p-q|
+	D\left((p,1-p), (q, 1-q)\right) &= \frac{1}{2} \left( \abs{p-q} + \abs{(1-p) - (1-q)} \right)\\
+		&= \frac{1}{2} \left( \abs{p-q} + \abs{-p + q} \right)\\
+		&= \frac{1}{2} \left( \abs{p-q} + \abs{-(p-q)}\right) \\
+		&= \abs{p-q}
 \end{align*}
 
 
-\Textbf{9.3}
+\Textbf{9.3} What is the fidelity of the probability distributions $(1, 0)$ and $(1/2, 1/2)$?  Of $(1/2,1/3,1/6)$ and $(3/4, 1/8, 1/8)$?
+\Soln
 \begin{align*}
-	F((1,0), (1/2,1/2)) = \sqrt{1 \cdot 1/2} + \sqrt{0 \cdot 1/2} = \frac{1}{\sqrt{2}}
+	F((1,0), (1/2,1/2)) = \sqrt{1 \cdot 1/2} + \sqrt{0 \cdot 1/2} = \frac{1}{\sqrt{2}}\simeq 0.707
 \end{align*}
 
 \begin{align*}
 	F\left( (1/2,1/3,1/6), (3/4, 1/8, 1/8)  \right) &= \sqrt{1/2 \cdot 3/4} + \sqrt{1/3 \cdot 1/8} + \sqrt{1/6 \cdot 1/8}\\
-		&= \frac{4 \sqrt{6} + \sqrt{3}}{12}
+		&= \frac{4 \sqrt{6} + \sqrt{3}}{12} \simeq 0.961
 \end{align*}
 
 
 
-\Textbf{9.4}
+\Textbf{9.4} Prove (9.3): $$D(p_x,q_x) = \max_{S}\abs{p(S)-q(S)} \equiv \max_{S}\abs{\sum_{x\in S}p_x-\sum_{x\in S}q_x}$$
+\Soln Let the index set be $U$, and define $S^p = \{x| x\in U, p_x > q_x\}$, $S^q = \{x| x\in U, p_x < q_x\}$, and $S^0 = \{x| x\in U, p_x = q_x\}$.  That is, $S^p$ is the subset of the index set in which the outcomes are more probable under $p_x$ than under $q_x$, and vice versa in $S^q$, where $S^0$ is the subset of the outcomes equally likely under both $p_x$ and $q_x$.  To prove that $D(p_x,q_x) = \max_{S}\abs{p(S)-q(S)}$, we'll prove that both are equal to $p(S^p)-q(S^p) \left(=-p(S^q)+q(S^q)\right)$.
+
+To see that $\max_{S}\abs{p(S)-q(S)} = p(S^p)-q(S^p)$, it is enough to argue that $S^p$ maximizes $\abs{p(S)-q(S)}$.  $S^p$ contains all elements of $U$ that contribute positively to $p(S)-q(S)$.  So, the inclusion of any other element of $U$ would decrease the quantity $p(S)-q(S)$.  So, $p(S)-q(S)$ is maximized by $S^p$.  Similarly, $p(S)-q(S)$ is minimized by $S^q$.  All subsets of $U$ produce values of $p(S)-q(S)$ in between. To determine the maximum {\em absolute value}, we'll argue that $p(S^q)-q(S^q) = -(p(S^p)-q(S^p))$, that is, these two extremes produce values equal in magnitude, but opposite in sign.  To see this, note that $p(U)-q(U) \equiv \sum_{x\in U} p(x) - \sum_{x\in U}q(x) = 1 - 1 = 0$, since $p$ and $q$ are probability distributions and $U$ is the entire index set on which they are defined.  Alternatively, 
+\begin{align*} p(U)-q(U) &= p(S^p\cup S^0 \cup S^q) - q(S^p\cup S^0 \cup S^q) \tag{set equality}\\
+& = p(S^p) + p(S^0) + p(S^q) - q(S^p) - q(S^0) - q(S^q) \tag{separate implicit sums} \\
+&= p(S^p)-q(S^p) + p(S^0)-q(S^0) + p(S^q)-q(S^q) \tag{rearrange}\\
+&= p(S^p)-q(S^p) + p(S^q)-q(S^q) \tag{$p_x=q_x$ for $x\in S^0$} 
+\end{align*}
+So $0 = p(U)-q(U) =  p(S^p)-q(S^p) + p(S^q)-q(S^q)$ and $p(S^q)-q(S^q) = -(p(S^p)-q(S^p))$.  So, $p(S)-q(S)$ achieves extremes of equal magnitude but opposite sign on $S^p$ and $S^q$, so $\max_{S}\abs{p(S)-q(S)} = p(S^p)-q(S^p) \left(=-p(S^q)+q(S^q)\right)$.
+
+Now we must show that $D(p_x,q_x) = p(S^p)-q(S^p)$:
+\begin{align*}
+D(p_x,q_x) &\equiv \frac{1}{2}\sum_{x\in U}\abs{p_x-q_x} \\
+ &= \frac{1}{2}\left(\sum_{x\in S^p} \abs{p_x-q_x} + \sum_{x\in S^0} \abs{p_x-q_x} + \sum_{x\in S^q} \abs{p_x-q_x}\right) \tag{separate explicit sum} \\
+ &= \frac{1}{2}\left(\sum_{x\in S^p} \abs{p_x-q_x} + \sum_{x\in S^0} 0 + \sum_{x\in S^q} \abs{p_x-q_x}\right) \tag{$p_x-q_x=0$ for $x\in S^0$} \\
+ &= \frac{1}{2}\left(\sum_{x\in S^p} p_x-q_x + \sum_{x\in S^q} -(p_x-q_x)\right) \tag{$p_x-q_x$ has consistent sign within $S^p$ and $S^q$} \\
+ &= \frac{1}{2}( p(S^p)-q(S^p) -(p(S^q)-q(S^q))) \tag{definition of $p,q$ applied to subsets} \\
+ &= p(S^p)-q(S^p) \tag{$p(S^q)-q(S^q) = -(p(S^p)-q(S^p))$}
+ \end{align*}
+So, $D(p_x,q_x) = p(S^p)-q(S^p) = \max_{S}\abs{p(S)-q(S)}$.
+\begin{comment}
 
 Define $r_x = p_x - q_x$. Let $U$ be the whole index set.
 \begin{align*}
@@ -77,8 +102,12 @@ On the other hand,
 \end{align}
 
 Therefore $D(p_x, q_x) = \max_S \left|\sum_{x \in S} p_x - \sum_{x \in S}q_x \right| = \max_S |p(S) - q(S)|$.
+\end{comment}
 
-\Textbf{9.5}
+\Textbf{9.5}  Show that the absolute value signs may be removed from Equation (9.3), that is, $$D(p_x, q_x) = \max_{S}(p(S)-q(S)) \equiv \max_{S}\left(\sum_{x\in S} p_x - \sum_{x\in S} q_x\right).$$
+\Soln This has effectively already been proven in the solution to exercise 9.4 by the observation that $p(S)-q(S)$ achieves extremes equal in magnitude, but opposite in sign, on $S^p$ and $S^q$.  So, $$\max_S(p(S)-q(S)) = p(S^p)-q(S^p) = \max_S\abs{p(S)-q(S)}.$$
+
+\begin{comment}
 From eqn (\ref{eq:subsettracedist}) and (\ref{eq:probtracedist}), maximizing $\left|\sum_{x \in S} r_x \right|$ is equivalent to
 maximizing $\sum_{x \in S} r_x$.
 
@@ -88,38 +117,42 @@ Hence
 \end{align*}
 
 
-
-\Textbf{9.6}
-
-Define $\rho = \frac{3}{4}\kb{0} + \frac{1}{4}\kb{1}$, $\sigma = \frac{2}{3} \kb{1} + \frac{1}{3}\kb{1}$.
+\end{comment}
+\Textbf{9.6} What is the trace distance between the density operators $$\frac{3}{4}\kb{0}+\frac{1}{4}\kb{1}; \frac{2}{3}\kb{0}+\frac{1}{3}\kb{1}?$$ Between:  $$\frac{3}{4}\kb{0}+\frac{1}{4}\kb{1}; \frac{2}{3}\kb{+}+\frac{1}{3}\kb{-}?$$ (Recall that $\ket{\pm} \equiv (\ket{0}+\ket{1})/\sqrt{2}$)
+\Soln Define $\rho = \frac{3}{4}\kb{0} + \frac{1}{4}\kb{1}$, $\sigma = \frac{2}{3} \kb{1} + \frac{1}{3}\kb{1}$.  Both being diagonal in the same basis, we may apply equation (9.14):
 \begin{align*}
-	D(\rho, \sigma) &= \frac{1}{2} \Tr |\rho - \sigma|\\
-		&= D((3/4, 1/4), (2/3, 1/3))\\
-		&= \frac{1}{2} \left(\left| \frac{3}{4} - \frac{2}{3}  \right| +\left| \frac{1}{4} - \frac{1}{3} \right| \right)\\
+	D(\rho, \sigma) &= \frac{1}{2} \Tr \abs{\rho - \sigma} \tag{definition}\\
+		&= D((3/4, 1/4), (2/3, 1/3)) \tag{equation (9.14)}\\
+		&= \frac{1}{2} \left(\left| \frac{3}{4} - \frac{2}{3}  \right| +\left| \frac{1}{4} - \frac{1}{3} \right| \right) \tag{definition of trace-distance of probability distributions}\\
 		&= \frac{1}{2} \left( \frac{1}{12} + \frac{1}{12} \right)\\
 		&= \frac{1}{12}
 \end{align*}
 
-
-Define $\rho = \frac{3}{4}\kb{0} + \frac{1}{4}\kb{1}$, $\sigma = \frac{2}{3} \kb{+} + \frac{1}{3}\kb{-}$.
+Next, define $\rho = \frac{3}{4}\kb{0} + \frac{1}{4}\kb{1}$, $\sigma = \frac{2}{3} \kb{+} + \frac{1}{3}\kb{-}$.
 \begin{align*}
 	\kb{+} &= \frac{1}{2} (\kb{0} + \kbt{0}{1} + \kbt{1}{0} + \kb{1})\\
 	\kb{-} &= \frac{1}{2} (\kb{0} - \kbt{0}{1} - \kbt{1}{0} + \kb{1})
 \end{align*}
-
+so, $\sigma = \frac{1}{2}\kb{0}+\frac{1}{6}\kbt{0}{1}+\frac{1}{6}\kbt{1}{0}+\frac{1}{2}\kb{1}$.
 \begin{align*}
 	\rho - \sigma &= \left(\frac{3}{4} - \frac{1}{2}\right) \kb{0} - \frac{1}{6} (\kbt{0}{1} + \kbt{1}{0}) + \left(\frac{1}{4} - \frac{1}{2}\right) \kb{1}\\
 		&= \frac{1}{4} \kb{0} - \frac{1}{6} (\kbt{0}{1} + \kbt{1}{0}) - \frac{1}{4} \kb{1}\\
+			&= \begin{bmatrix}\frac{1}{4} & \frac{-1}{6} \\ \frac{-1}{6} & \frac{-1}{4}\end{bmatrix}
 \end{align*}
 
 \begin{align*}
-	(\rho - \sigma)^\dagger (\rho - \sigma) &= \frac{1}{4^2} \kb{0} - \frac{1}{4\cdot 6} \kbt{0}{1} + \frac{1}{6^2} \kb{0} + \frac{1}{6 \cdot 4} \kbt{0}{1} - \frac{1}{4\cdot 6} \kbt{1}{0} + \frac{1}{6^2} \kb{1} + \frac{1}{4\cdot 6} \kbt{1}{0} + \frac{1}{4^2} \kb{1}\\
-		&= \left(\frac{1}{4^2} + \frac{1}{6^2}\right) (\kb{0} + \kb{1})
+	(\rho - \sigma)^\dagger (\rho - \sigma) &= (\rho-\sigma)^2 \tag{$\rho-\sigma$ is symmetric, real-valued} \\
+	& = \begin{bmatrix}\frac{1}{4} & \frac{-1}{6} \\ \frac{-1}{6} & \frac{-1}{4}\end{bmatrix}\begin{bmatrix}\frac{1}{4} & \frac{-1}{6} \\ \frac{-1}{6} & \frac{-1}{4}\end{bmatrix} \\
+	&= \begin{bmatrix}\frac{1}{4^2}+\frac{1}{6^2} & \frac{-1}{4\cdot6}+\frac{1}{4\cdot6} \\ \frac{-1}{4\cdot6}+\frac{1}{4\cdot6} & \frac{1}{6^2}+\frac{1}{4^2} \end{bmatrix} \\
+	&= \left(\frac{1}{4^2}+\frac{1}{6^2}\right)I	
 \end{align*}
-
+%	\frac{1}{4^2} \kb{0} - \frac{1}{4\cdot 6} \kbt{0}{1} + \frac{1}{6^2} \kb{0} + \frac{1}{6 \cdot 4} \kbt{0}{1} - \frac{1}{4\cdot 6} \kbt{1}{0} + \frac{1}{6^2} \kb{1} + \frac{1}{4\cdot 6} \kbt{1}{0} + \frac{1}{4^2} \kb{1}\\
+%		&= \left(\frac{1}{4^2} + \frac{1}{6^2}\right) (\kb{0} + \kb{1})
+%\end{align*}
 
 \begin{align*}
 	D(\rho, \sigma) &= \frac{1}{2} \Tr |\rho - \sigma|\\
+		&= \frac{1}{2}\left(2\sqrt{\frac{1}{4^2} + \frac{1}{6^2}}\right) \\
 		&= \sqrt{\frac{1}{4^2} + \frac{1}{6^2}}
 \end{align*}
 

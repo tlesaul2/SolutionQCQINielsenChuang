@@ -5,6 +5,7 @@
 \documentclass[11pt]{book}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{enumitem}
 \usepackage[letterpaper,left=0.5in,top=0.65in,bottom=0.65in]{geometry}
 \usepackage[dvipdfmx]{graphicx}
 \usepackage[english]{babel}
@@ -14,7 +15,7 @@
 \usepackage{here}
 
 \RequirePackage[l2tabu, orthodox]{nag}
-\usepackage[all, warning]{onlyamsmath}
+%\usepackage[all, warning]{onlyamsmath}
 
 %単位を書くときに使う
 \usepackage{siunitx}
@@ -27,7 +28,7 @@
 \usepackage{dsfont}
 \usepackage{ascmac}
 \usepackage{url}
-\usepackage{hyperref} % hyper link
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref} % hyper link
 \usepackage{ccicons} % creative commons license icon
 \usepackage{fancyhdr} % footer
 \usepackage{blkarray}
@@ -42,6 +43,10 @@
 \usepackage{comment}
 \usepackage{changepage}
 
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usetikzlibrary{decorations.pathreplacing,decorations.pathmorphing}
+
 %\usepackage{xcolor}
 %\definecolor{Pagecolor}{RGB}{35,38,41} % Dark gray
 %\definecolor{Textcolor}{RGB}{255,255,255} % Light gray
@@ -50,6 +55,33 @@
 
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
+
+%\newcommand{\Gate}[1]{{\fontfamily{pcr}\selectfont#1}}
+\newcommand{\NAND}{{\fontfamily{pcr}\selectfont NAND}}
+\newcommand{\AND}{{\fontfamily{pcr}\selectfont AND}}
+\newcommand{\OR}{{\fontfamily{pcr}\selectfont OR}}
+\newcommand{\NOR}{{\fontfamily{pcr}\selectfont NOR}}
+\newcommand{\NOT}{{\fontfamily{pcr}\selectfont NOT}}
+\newcommand{\XOR}{{\fontfamily{pcr}\selectfont XOR}}
+\newcommand{\FANOUT}{{\fontfamily{pcr}\selectfont FANOUT}}
+\newcommand{\CROSSOVER}{{\fontfamily{pcr}\selectfont CROSSOVER}}
+\newcommand{\CNOT}{{\fontfamily{pcr}\selectfont CNOT}}
+
+\newcommand\encircle[1]{%
+  \tikz[baseline=(X.base)] 
+    \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}
+
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\Abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\Ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\Floor{\lfloor}{\rfloor}
+\newcommand{\abs}[1]{\Abs*{#1}}
+\newcommand{\ceil}[1]{\Ceil*{#1}}
+\newcommand{\floor}[1]{\Floor*{#1}}
+%\newcommand{\abs}[1]{\big|#1\big|}
+%\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+%\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
 
 %\renewcommand{\familydefault}{\sfdefault}
 %% Only use the math font of mathpazo
@@ -78,7 +110,7 @@
 
 
 
-\title{Select Solutions for ``Quantum Computation and Quantum Information: 10th Anniversary Edition" by Nielsen and Chuang}
+\title{Select Solutions for ``Quantum Computation and Quantum Information: 10th Anniversary Edition'' by Nielsen and Chuang}
 \author{Original author: goropikari\\Extended by: tlesaul2}
 \date{\today}
 
@@ -133,6 +165,7 @@ If you find some mistake or have some comments, please feel free to open an issu
 {\let\cleardoublepage\clearpage\tableofcontents\thispagestyle{empty}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \frontmatter
 \include{chapter/errata}
 
@@ -140,12 +173,13 @@ If you find some mistake or have some comments, please feel free to open an issu
 \setcounter{chapter}{1}
 \input{chapter/chapter2}
 \input{chapter/chapter3}
+\input{chapter/chapter4}
+\input{chapter/chapter5}
 \setcounter{chapter}{7}
 \input{chapter/chapter8}
 \input{chapter/chapter9}
-\setcounter{chapter}{10}
+\input{chapter/chapter10}
 \input{chapter/chapter11}
-
 \input{chapter/chapter12}
 
 \setcounter{chapter}{0}
